@@ -187,6 +187,18 @@ describe('METRIC_CONFIG', () => {
     const result = METRIC_CONFIG.sqft_living.fmt(1850);
     expect(result).toMatch(/[\d,]+/);
   });
+
+  it('assessed_value formats with dollar sign and commas', () => {
+    const result = METRIC_CONFIG.assessed_value.fmt(380000);
+    expect(result).toMatch(/^\$[\d,]+$/);
+    expect(result).toContain('380');
+  });
+
+  it('sqft_lot formats with commas', () => {
+    const result = METRIC_CONFIG.sqft_lot.fmt(12000);
+    expect(result).toMatch(/[\d,]+/);
+    expect(result).toContain('12');
+  });
 });
 
 // ── createHexPolygon ────────────────────────────────────
@@ -537,6 +549,16 @@ describe('searchParcels', () => {
     const results = searchParcels(parcels, '  main  ');
     expect(results).toHaveLength(1);
     expect(results[0].account).toBe('10001');
+  });
+
+  it('handles parcels with null account gracefully', () => {
+    const parcelsWithNullAccount = [
+      { account: null, address: '100 Maple Ct' },
+      { account: '20001', address: null },
+    ];
+    const results = searchParcels(parcelsWithNullAccount, 'maple');
+    expect(results).toHaveLength(1);
+    expect(results[0].address).toBe('100 Maple Ct');
   });
 });
 
