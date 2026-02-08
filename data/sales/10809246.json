@@ -1,0 +1,14 @@
+{
+  "account": "10809246",
+  "maptaxlot": "391E04DC03401",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 10350,
+      "description": "Commercial Flex Space",
+      "stat_class": "564"
+    }
+  ]
+}

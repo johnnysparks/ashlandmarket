@@ -1,0 +1,13 @@
+{
+  "account": "10056179",
+  "maptaxlot": "391E05DA04800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Nursing Home",
+      "stat_class": "643"
+    }
+  ]
+}

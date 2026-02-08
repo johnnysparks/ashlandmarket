@@ -1,0 +1,50 @@
+{
+  "account": "10050010",
+  "maptaxlot": "391E04CC03400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1534,
+      "year_built": 1920,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1153,
+      "year_built": 1947,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 704,
+      "year_built": 1956,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1040,
+      "year_built": 1950,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 950,
+      "year_built": 2022,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 570,
+      "year_built": 2022,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    }
+  ]
+}

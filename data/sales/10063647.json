@@ -1,0 +1,14 @@
+{
+  "account": "10063647",
+  "maptaxlot": "391E09AD01100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2600,
+      "description": "Commercial",
+      "stat_class": "502"
+    }
+  ]
+}

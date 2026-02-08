@@ -1,0 +1,14 @@
+{
+  "account": "10057134",
+  "maptaxlot": "391E05DB02100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 7200,
+      "description": "Hospital",
+      "stat_class": "624"
+    }
+  ]
+}

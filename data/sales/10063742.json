@@ -1,0 +1,29 @@
+{
+  "account": "10063742",
+  "maptaxlot": "391E09AD02000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1280,
+      "year_built": 1958,
+      "description": "Two story",
+      "stat_class": "132"
+    },
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1008,
+      "year_built": 2020,
+      "description": "DUPLEX CLASS 3 SINGLE STORY",
+      "stat_class": "231"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 450,
+      "year_built": 2020,
+      "description": "One story",
+      "stat_class": "131"
+    }
+  ]
+}

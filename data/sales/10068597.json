@@ -1,0 +1,14 @@
+{
+  "account": "10068597",
+  "maptaxlot": "391E09BD05300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 8626,
+      "description": "Theatre",
+      "stat_class": "671"
+    }
+  ]
+}

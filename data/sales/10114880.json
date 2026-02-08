@@ -1,0 +1,14 @@
+{
+  "account": "10114880",
+  "maptaxlot": "391E11CD01900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 30776,
+      "description": "Subsidized Housing",
+      "stat_class": "537"
+    }
+  ]
+}

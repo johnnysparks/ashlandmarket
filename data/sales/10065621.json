@@ -1,0 +1,14 @@
+{
+  "account": "10065621",
+  "maptaxlot": "391E09BA13400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 5590,
+      "description": "Branch Bank",
+      "stat_class": "632"
+    }
+  ]
+}

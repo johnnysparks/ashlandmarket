@@ -1,0 +1,36 @@
+{
+  "account": "10677913",
+  "maptaxlot": "391E020000700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2609,
+      "year_built": 1999,
+      "description": "One story",
+      "stat_class": "151"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 26988,
+      "year_built": 2000,
+      "description": "Arena",
+      "stat_class": "810"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1800,
+      "year_built": 2002,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 4752,
+      "year_built": 2000,
+      "description": "Hay Cover/Roof Cover",
+      "stat_class": "871"
+    }
+  ]
+}

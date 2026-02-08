@@ -1,0 +1,15 @@
+{
+  "account": "10049730",
+  "maptaxlot": "391E04CC00800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 3218,
+      "year_built": 1905,
+      "description": "FOURPLEX CLASS 3 U/L LEVELS",
+      "stat_class": "434"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account": "10114814",
+  "maptaxlot": "391E11CD01000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 56386,
+      "description": "Health Club",
+      "stat_class": "674"
+    }
+  ]
+}
