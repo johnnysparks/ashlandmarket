@@ -8,5 +8,11 @@ export default defineConfig({
     fs: {
       allow: [path.resolve(__dirname, '..')]
     }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.js'],
+    css: true
   }
 })
