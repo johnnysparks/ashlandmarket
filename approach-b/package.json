@@ -1,0 +1,13 @@
+{
+  "name": "ashland-market-approach-b",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ashland Market Heat Map — Approach B (Leaflet + Vanilla JS + D3)",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}
