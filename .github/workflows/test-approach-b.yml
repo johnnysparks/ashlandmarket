@@ -1,0 +1,38 @@
+name: Test Approach B
+
+on:
+  push:
+    paths:
+      - 'approach-b/**'
+  pull_request:
+    paths:
+      - 'approach-b/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: approach-b/package-lock.json
+
+      - name: Install dependencies
+        working-directory: approach-b
+        run: npm ci
+
+      - name: Run tests with coverage
+        working-directory: approach-b
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: approach-b-coverage
+          path: approach-b/coverage/
+          retention-days: 14
