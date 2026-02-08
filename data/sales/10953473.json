@@ -1,0 +1,14 @@
+{
+  "account": "10953473",
+  "maptaxlot": "391E15AB08306",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1152,
+      "description": "Day Care",
+      "stat_class": "512"
+    }
+  ]
+}

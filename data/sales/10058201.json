@@ -1,0 +1,22 @@
+{
+  "account": "10058201",
+  "maptaxlot": "391E05DD03600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1822,
+      "year_built": 1969,
+      "description": "DUPLEX CLASS 3 UPPER LEVELS",
+      "stat_class": "232"
+    },
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1822,
+      "year_built": 1969,
+      "description": "DUPLEX CLASS 3 UPPER LEVELS",
+      "stat_class": "232"
+    }
+  ]
+}
