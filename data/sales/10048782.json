@@ -1,0 +1,29 @@
+{
+  "account": "10048782",
+  "maptaxlot": "391E04CA03800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2854,
+      "year_built": 1953,
+      "description": "One story",
+      "stat_class": "141"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1826,
+      "year_built": 1900,
+      "description": "Loft Barn",
+      "stat_class": "843"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 512,
+      "year_built": 1940,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    }
+  ]
+}

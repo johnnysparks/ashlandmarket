@@ -1,0 +1,22 @@
+{
+  "account": "11014663",
+  "maptaxlot": "391E09AA08600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 422,
+      "year_built": 2023,
+      "description": "One story",
+      "stat_class": "141"
+    },
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 2099,
+      "year_built": 2023,
+      "description": "FOURPLEX CLASS 4 UPPER LEVELS",
+      "stat_class": "442"
+    }
+  ]
+}

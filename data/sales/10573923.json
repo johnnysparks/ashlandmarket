@@ -1,0 +1,36 @@
+{
+  "account": "10573923",
+  "maptaxlot": "391E11DD00900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 93860,
+      "year_built": 1978,
+      "description": "Lodging Over 60 Units",
+      "stat_class": "603"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 29462,
+      "year_built": 1978,
+      "description": "Lodging Over 60 Units",
+      "stat_class": "603"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 9370,
+      "year_built": 1978,
+      "description": "Lodging Over 60 Units",
+      "stat_class": "603"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 43830,
+      "year_built": 1995,
+      "description": "Lodging Over 60 Units",
+      "stat_class": "603"
+    }
+  ]
+}

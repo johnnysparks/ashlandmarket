@@ -1,0 +1,43 @@
+{
+  "account": "10101643",
+  "maptaxlot": "391E13D002000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "FARM BLDG",
+      "sqft": 5040,
+      "year_built": 2019,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 5040,
+      "year_built": 2019,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 5040,
+      "year_built": 2019,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 160,
+      "year_built": 1985,
+      "description": "GP Shed",
+      "stat_class": "860"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1950,
+      "year_built": 1990,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    }
+  ]
+}

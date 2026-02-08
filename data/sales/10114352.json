@@ -1,0 +1,21 @@
+{
+  "account": "10114352",
+  "maptaxlot": "391E100001700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 18818,
+      "description": "Church/Temple",
+      "stat_class": "686"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 2213,
+      "year_built": 1990,
+      "description": "Two story",
+      "stat_class": "142"
+    }
+  ]
+}

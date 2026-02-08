@@ -1,0 +1,22 @@
+{
+  "account": "10710691",
+  "maptaxlot": "391E14AB02000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 7464,
+      "year_built": 1983,
+      "description": "OFFICE",
+      "stat_class": "540"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 5000,
+      "year_built": 1983,
+      "description": "Warehouse - Storage",
+      "stat_class": "611"
+    }
+  ]
+}
