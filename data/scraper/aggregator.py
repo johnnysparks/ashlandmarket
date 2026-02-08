@@ -179,7 +179,7 @@ def write_aggregations(parcels: list[dict[str, Any]]) -> None:
     """Compute and write all aggregation files."""
     AGGREGATES_DIR.mkdir(parents=True, exist_ok=True)
 
-    metrics = ["price_per_sqft", "last_sale_price", "assessed_value"]
+    metrics = ["price_per_sqft", "price_per_sqft_lot", "last_sale_price", "assessed_value"]
 
     for metric in metrics:
         # Check if any parcels have this metric

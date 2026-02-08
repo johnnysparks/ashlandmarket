@@ -89,6 +89,7 @@ const hexbinCache = {}
 // Map metric keys to available aggregate files
 const HEXBIN_FILE_MAP = {
   price_per_sqft: 'hexbin-price_per_sqft.json',
+  price_per_sqft_lot: 'hexbin-price_per_sqft_lot.json',
   last_sale_price: 'hexbin-last_sale_price.json',
   assessed_value: 'hexbin-assessed_value.json'
 }

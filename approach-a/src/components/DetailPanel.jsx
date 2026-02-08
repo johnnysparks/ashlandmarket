@@ -41,6 +41,7 @@ export default function DetailPanel({ parcel, onClose, onCompare, isInCompare })
       <div className="detail-body">
         <div className="detail-stats">
           <StatCard label="$/sqft" value={parcel.price_per_sqft ? `$${Math.round(parcel.price_per_sqft)}` : 'N/A'} />
+          <StatCard label="$/sqft Lot" value={parcel.price_per_sqft_lot ? `$${Math.round(parcel.price_per_sqft_lot)}` : 'N/A'} />
           <StatCard label="Last Sale" value={parcel.last_sale_price ? `$${(parcel.last_sale_price / 1000).toFixed(0)}k` : 'N/A'} />
           <StatCard label="Assessed" value={parcel.assessed_value ? `$${(parcel.assessed_value / 1000).toFixed(0)}k` : 'N/A'} />
           <StatCard label="Year Built" value={parcel.year_built || 'N/A'} />

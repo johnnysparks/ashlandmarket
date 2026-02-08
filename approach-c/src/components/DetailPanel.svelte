@@ -34,7 +34,11 @@
           </div>
           <div class="stat">
             <span class="stat-label">$/sqft</span>
-            <span class="stat-value">${$selectedParcel?.price_per_sqft.toFixed(0)}</span>
+            <span class="stat-value">${$selectedParcel?.price_per_sqft?.toFixed(0) ?? 'N/A'}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">$/sqft Lot</span>
+            <span class="stat-value">${$selectedParcel?.price_per_sqft_lot?.toFixed(0) ?? 'N/A'}</span>
           </div>
           <div class="stat">
             <span class="stat-label">Living</span>

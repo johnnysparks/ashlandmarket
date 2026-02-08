@@ -11,6 +11,7 @@ export const MARKER_RADIUS_RANGE = [4, 8];
 // ── Metric formatting ──────────────────────────────────
 export const METRIC_CONFIG = {
   price_per_sqft: { label: '$/sqft', fmt: v => '$' + Math.round(v) },
+  price_per_sqft_lot: { label: '$/sqft Lot', fmt: v => '$' + Math.round(v) },
   last_sale_price: { label: 'Sale Price', fmt: v => '$' + Math.round(v).toLocaleString('en-US') },
   assessed_value: { label: 'Assessed', fmt: v => '$' + Math.round(v).toLocaleString('en-US') },
   sqft_living: { label: 'Living sqft', fmt: v => Math.round(v).toLocaleString('en-US') },
