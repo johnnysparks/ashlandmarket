@@ -11,4 +11,6 @@ export const METRICS: MetricOption[] = [
   { key: 'sqft_living', label: 'Living Sqft', format: (v) => `${fmtNum.format(v)} sqft` },
   { key: 'sqft_lot', label: 'Lot Size', format: (v) => `${fmtNum.format(v)} sqft` },
   { key: 'year_built', label: 'Year Built', format: (v) => String(v) },
+  { key: 'num_sales', label: 'Sale Count', format: (v) => fmtNum.format(v) },
+  { key: 'num_permits', label: 'Permit Count', format: (v) => fmtNum.format(v) },
 ]

@@ -61,28 +61,28 @@ python jaco_scraper.py status     # Show pipeline progress
 ## Phase 2: Approach A — Mapbox GL + React (Agent 2)
 
 ### 2.1 Project Setup
-- [ ] Initialize React + Vite project in `approach-a/`
-- [ ] Install mapbox-gl, react-map-gl dependencies
-- [ ] Create `approach-a/README.md` with setup instructions (incl. Mapbox token)
-- [ ] Set up basic dev server, confirm it runs
+- [x] Initialize React + Vite project in `approach-a/`
+- [x] Install mapbox-gl, react-map-gl dependencies
+- [x] Create `approach-a/README.md` with setup instructions (incl. Mapbox token)
+- [x] Set up basic dev server, confirm it runs
 
 ### 2.2 MVP Map
-- [ ] Render Ashland-centered Mapbox map (42.1945, -122.7095, zoom ~14)
-- [ ] Load `data/parcels.json` and render parcel markers/circles
-- [ ] Color parcels by $/sqft using a sequential color ramp
-- [ ] Tap/click parcel → tooltip with key stats
+- [x] Render Ashland-centered Mapbox map (42.1945, -122.7095, zoom ~14)
+- [x] Load `data/parcels.json` and render parcel markers/circles
+- [x] Color parcels by $/sqft using a sequential color ramp
+- [x] Tap/click parcel → tooltip with key stats
 
 ### 2.3 Controls
-- [ ] Overlay metric selector (dropdown or toggle group)
-- [ ] Color ramp picker
-- [ ] Opacity slider
-- [ ] Time window filter (date range for sales)
+- [x] Overlay metric selector (dropdown or toggle group)
+- [x] Color ramp picker
+- [x] Opacity slider
+- [x] Time window filter (date range for sales)
 
 ### 2.4 Detail View
-- [ ] Tap parcel at high zoom → slide-up panel
-- [ ] Load per-account JSON, display sales history
-- [ ] Price trajectory chart (simple line chart)
-- [ ] Permit list, improvement breakdown
+- [x] Tap parcel at high zoom → slide-up panel
+- [x] Load per-account JSON, display sales history
+- [x] Price trajectory chart (simple line chart)
+- [x] Permit list, improvement breakdown
 
 ---
 
@@ -147,7 +147,7 @@ python jaco_scraper.py status     # Show pipeline progress
 ### 5.1 Project Setup
 - [x] Create `docs/` directory
 - [x] Create `docs/schema-proposals.md` (empty template for schema change requests)
-- [ ] Set up GitHub Pages deployment config if needed
+- [x] Set up GitHub Pages deployment config (`.github/workflows/deploy.yml`)
 - [x] Add sample/mock data for frontend development before scraper is done
 
 ### 5.2 Mock Data
@@ -157,9 +157,9 @@ python jaco_scraper.py status     # Show pipeline progress
 - [x] Document mock data format in `docs/mock-data.md`
 
 ### 5.3 Integration
-- [ ] Verify all three approaches can load and render mock data
-- [ ] Document any schema issues found during integration
-- [ ] Set up a simple comparison page or notes for evaluating the three approaches
+- [~] Verify all three approaches can load and render mock data (Approach C verified; A & B not started yet)
+- [x] Document any schema issues found during integration (none found — schema is clean)
+- [x] Set up a simple comparison page or notes for evaluating the three approaches (`docs/approach-comparison.md`)
 
 ---
 

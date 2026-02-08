@@ -5,6 +5,9 @@
     opacity,
     viewMode,
     hexRadius,
+    gridCellSize,
+    percentileLow,
+    percentileHigh,
     timeStart,
     timeEnd,
   } from '../store'
@@ -41,6 +44,23 @@
     hexRadius.set(parseInt(target.value))
   }
 
+  function handleGridCellSizeChange(e: Event) {
+    const target = e.target as HTMLInputElement
+    gridCellSize.set(parseInt(target.value))
+  }
+
+  function handlePercentileLowChange(e: Event) {
+    const target = e.target as HTMLInputElement
+    const v = parseInt(target.value)
+    if (v < $percentileHigh) percentileLow.set(v)
+  }
+
+  function handlePercentileHighChange(e: Event) {
+    const target = e.target as HTMLInputElement
+    const v = parseInt(target.value)
+    if (v > $percentileLow) percentileHigh.set(v)
+  }
+
   function setViewMode(mode: ViewMode) {
     viewMode.set(mode)
   }
@@ -75,6 +95,10 @@
             class:active={$viewMode === 'hexagon'}
             on:click={() => setViewMode('hexagon')}
           >Hexbin</button>
+          <button
+            class:active={$viewMode === 'grid'}
+            on:click={() => setViewMode('grid')}
+          >Grid</button>
         </div>
       </div>
 
@@ -114,6 +138,59 @@
           />
         </div>
       {/if}
+
+      {#if $viewMode === 'grid'}
+        <div class="control-group">
+          <label for="grid-slider">Grid Cell: {$gridCellSize}m</label>
+          <input
+            id="grid-slider"
+            type="range"
+            min="50"
+            max="500"
+            step="25"
+            value={$gridCellSize}
+            on:input={handleGridCellSizeChange}
+          />
+        </div>
+      {/if}
+
+      <div class="control-group">
+        <span class="field-label">Percentile Clamp</span>
+        <div class="percentile-display">
+          <span>{$percentileLow}%</span>
+          <span>-</span>
+          <span>{$percentileHigh}%</span>
+        </div>
+        <div class="dual-range">
+          <label for="pct-low">Low</label>
+          <input
+            id="pct-low"
+            type="range"
+            min="0"
+            max="50"
+            step="1"
+            value={$percentileLow}
+            on:input={handlePercentileLowChange}
+          />
+        </div>
+        <div class="dual-range">
+          <label for="pct-high">High</label>
+          <input
+            id="pct-high"
+            type="range"
+            min="50"
+            max="100"
+            step="1"
+            value={$percentileHigh}
+            on:input={handlePercentileHighChange}
+          />
+        </div>
+        {#if $percentileLow !== 0 || $percentileHigh !== 100}
+          <button class="clear-btn" on:click={() => { percentileLow.set(0); percentileHigh.set(100) }}>
+            Reset to full range
+          </button>
+        {/if}
+      </div>
 
       <div class="control-group">
         <span class="field-label">Time Window</span>
@@ -254,6 +331,33 @@
     background: rgba(100, 100, 255, 0.3);
     border-color: rgba(100, 100, 255, 0.5);
     color: #e0e0e0;
+  }
+
+  .percentile-display {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #a0a0c0;
+    margin-bottom: 4px;
+  }
+
+  .dual-range {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+
+  .dual-range label {
+    font-size: 10px;
+    min-width: 28px;
+    margin-bottom: 0;
+    color: #6666aa;
+  }
+
+  .dual-range input[type="range"] {
+    flex: 1;
   }
 
   .date-range {

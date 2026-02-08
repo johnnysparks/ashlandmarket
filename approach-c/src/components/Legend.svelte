@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selectedMetric, colorRamp, metricRange, filteredParcels } from '../store'
+  import { selectedMetric, colorRamp, metricRange, filteredParcels, percentileLow, percentileHigh } from '../store'
   import { getRampColors } from '../colors'
   import { METRICS } from '../metrics'
 
@@ -7,10 +7,16 @@
   $: colors = getRampColors($colorRamp)
   $: gradient = `linear-gradient(to right, ${colors.map(c => `rgb(${c[0]},${c[1]},${c[2]})`).join(', ')})`
   $: formatValue = metric?.format ?? String
+  $: isClamped = $percentileLow !== 0 || $percentileHigh !== 100
 </script>
 
 <div class="legend">
-  <div class="legend-label">{metric?.label ?? $selectedMetric}</div>
+  <div class="legend-label">
+    {metric?.label ?? $selectedMetric}
+    {#if isClamped}
+      <span class="clamp-badge">P{$percentileLow}-P{$percentileHigh}</span>
+    {/if}
+  </div>
   <div class="legend-bar" style="background: {gradient};"></div>
   <div class="legend-range">
     <span>{formatValue($metricRange.min)}</span>
@@ -42,6 +48,18 @@
     letter-spacing: 0.5px;
     margin-bottom: 6px;
     text-align: center;
+  }
+
+  .clamp-badge {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    background: rgba(100, 100, 255, 0.2);
+    color: #8888ff;
+    margin-left: 4px;
+    text-transform: none;
+    letter-spacing: 0;
   }
 
   .legend-bar {
