@@ -116,10 +116,17 @@ def cmd_scrape(args: argparse.Namespace) -> None:
     import time
     from config import REQUEST_DELAY_SEC
 
+    # Filter to uncached parcels (unless --force)
+    if not args.force:
+        targets = [p for p in with_account
+                   if any(not is_cached(p["account"], pt) for pt in page_types)]
+        logger.info("%d parcels need scraping (not yet cached)", len(targets))
+    else:
+        targets = with_account
+
     # Apply limit if specified
-    targets = with_account
     if args.limit > 0:
-        targets = with_account[: args.limit]
+        targets = targets[: args.limit]
         logger.info("Limited to %d parcels", len(targets))
 
     total = len(targets)
