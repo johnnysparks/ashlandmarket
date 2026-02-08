@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from 'svelte'
   import { Deck } from '@deck.gl/core'
   import { ScatterplotLayer } from '@deck.gl/layers'
-  import { HexagonLayer } from '@deck.gl/aggregation-layers'
+  import { HexagonLayer, GridLayer } from '@deck.gl/aggregation-layers'
   import maplibregl from 'maplibre-gl'
   import {
     filteredParcels,
@@ -11,6 +11,7 @@
     opacity,
     viewMode,
     hexRadius,
+    gridCellSize,
     metricRange,
     selectedParcel,
     hoveredParcel,
@@ -35,6 +36,7 @@
   let currentOpacity: number = 0.8
   let currentMode: ViewModeType = 'scatter'
   let currentHexRadius: number = 200
+  let currentGridCellSize: number = 200
   let currentRange = { min: 0, max: 1 }
 
   const unsubs: Array<() => void> = []
@@ -93,6 +95,7 @@
     unsubs.push(opacity.subscribe(v => { currentOpacity = v; updateLayers() }))
     unsubs.push(viewMode.subscribe(v => { currentMode = v; updateLayers() }))
     unsubs.push(hexRadius.subscribe(v => { currentHexRadius = v; updateLayers() }))
+    unsubs.push(gridCellSize.subscribe(v => { currentGridCellSize = v; updateLayers() }))
     unsubs.push(metricRange.subscribe(v => { currentRange = v; updateLayers() }))
   })
 
@@ -149,7 +152,7 @@
           },
         })
       )
-    } else {
+    } else if (currentMode === 'hexagon') {
       const rampColors = getRampColors(currentRamp)
       layers.push(
         new HexagonLayer({
@@ -157,6 +160,31 @@
           data: currentParcels,
           getPosition: (d: Parcel) => [d.lng, d.lat],
           radius: currentHexRadius,
+          elevationScale: 4,
+          extruded: false,
+          getColorWeight: (d: Parcel) => d[currentMetric],
+          colorAggregation: 'MEAN',
+          colorRange: rampColors,
+          opacity: currentOpacity,
+          pickable: true,
+          onHover: ({ object, x, y }: any) => {
+            if (object) {
+              hoveredParcel.set(null)
+              hoverPosition.set({ x, y })
+            } else {
+              hoveredParcel.set(null)
+            }
+          },
+        })
+      )
+    } else if (currentMode === 'grid') {
+      const rampColors = getRampColors(currentRamp)
+      layers.push(
+        new GridLayer({
+          id: 'parcels-grid',
+          data: currentParcels,
+          getPosition: (d: Parcel) => [d.lng, d.lat],
+          cellSize: currentGridCellSize,
           elevationScale: 4,
           extruded: false,
           getColorWeight: (d: Parcel) => d[currentMetric],

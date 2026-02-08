@@ -54,6 +54,8 @@ export type MetricKey =
   | 'sqft_living'
   | 'sqft_lot'
   | 'year_built'
+  | 'num_sales'
+  | 'num_permits'
 
 export interface MetricOption {
   key: MetricKey
@@ -63,4 +65,4 @@ export interface MetricOption {
 
 export type ColorRamp = 'viridis' | 'plasma' | 'warm' | 'cool' | 'reds'
 
-export type ViewMode = 'scatter' | 'hexagon'
+export type ViewMode = 'scatter' | 'hexagon' | 'grid'
