@@ -1,0 +1,51 @@
+{
+  "account": "10059000",
+  "sales": [
+    {
+      "date": "2019-10-16",
+      "price": 373700,
+      "buyer": "WILLIAMS HELEN",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2016-07-11",
+      "price": 257300,
+      "buyer": "ANDERSON LISA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-1436",
+      "type": "MECHANICAL",
+      "date": "2024-08-14",
+      "status": "ACTIVE"
+    },
+    {
+      "number": "B-2018-7342",
+      "type": "FENCE",
+      "date": "2018-05-20",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2012-5414",
+      "type": "DEMOLITION",
+      "date": "2012-11-01",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2004-2649",
+      "type": "ELECTRICAL",
+      "date": "2004-11-12",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1032,
+      "year_built": 2003,
+      "condition": "POOR"
+    }
+  ]
+}

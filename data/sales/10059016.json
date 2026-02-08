@@ -1,0 +1,39 @@
+{
+  "account": "10059016",
+  "sales": [
+    {
+      "date": "2022-07-31",
+      "price": 712300,
+      "buyer": "THOMAS MARK",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2014-02-12",
+      "price": 562700,
+      "buyer": "WILLIAMS ELIZABETH",
+      "type": "WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2017-4913",
+      "type": "ROOF",
+      "date": "2017-02-22",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1903,
+      "year_built": 1906,
+      "condition": "AVERAGE"
+    },
+    {
+      "type": "CARPORT",
+      "sqft": 656,
+      "year_built": 1925,
+      "condition": "FAIR"
+    }
+  ]
+}

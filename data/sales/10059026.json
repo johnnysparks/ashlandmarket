@@ -1,0 +1,57 @@
+{
+  "account": "10059026",
+  "sales": [
+    {
+      "date": "2019-01-17",
+      "price": 724900,
+      "buyer": "LEE JENNIFER",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2017-08-14",
+      "price": 473700,
+      "buyer": "BROWN ELIZABETH",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2012-09-13",
+      "price": 381700,
+      "buyer": "HILL SUSAN",
+      "type": "WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-8709",
+      "type": "FENCE",
+      "date": "2024-06-09",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2023-8834",
+      "type": "ROOF",
+      "date": "2023-10-07",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2013-8598",
+      "type": "PLUMBING",
+      "date": "2013-10-15",
+      "status": "EXPIRED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1529,
+      "year_built": 2009,
+      "condition": "AVERAGE"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 452,
+      "year_built": 2017,
+      "condition": "POOR"
+    }
+  ]
+}

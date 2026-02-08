@@ -1,0 +1,57 @@
+{
+  "account": "10059034",
+  "sales": [
+    {
+      "date": "2021-01-24",
+      "price": 238800,
+      "buyer": "MOORE ROBERT",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2019-12-05",
+      "price": 164400,
+      "buyer": "HALL JOHN",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2016-02-04",
+      "price": 95900,
+      "buyer": "JOHNSON DANIEL",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2009-12-27",
+      "price": 80300,
+      "buyer": "WILSON HELEN",
+      "type": "WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-1024",
+      "type": "ELECTRICAL",
+      "date": "2024-09-14",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2012-7291",
+      "type": "PLUMBING",
+      "date": "2012-10-03",
+      "status": "ISSUED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 759,
+      "year_built": 1960,
+      "condition": "GOOD"
+    },
+    {
+      "type": "CARPORT",
+      "sqft": 791,
+      "year_built": 1979,
+      "condition": "AVERAGE"
+    }
+  ]
+}

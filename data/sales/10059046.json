@@ -1,0 +1,27 @@
+{
+  "account": "10059046",
+  "sales": [
+    {
+      "date": "2025-02-06",
+      "price": 217200,
+      "buyer": "CLARK DONNA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-5532",
+      "type": "FENCE",
+      "date": "2024-02-24",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 631,
+      "year_built": 1932,
+      "condition": "EXCELLENT"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "account": "10059006",
+  "sales": [
+    {
+      "date": "2023-01-24",
+      "price": 787900,
+      "buyer": "MARTIN MARK",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2021-08-19",
+      "price": 460300,
+      "buyer": "WRIGHT JAMES",
+      "type": "WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-5643",
+      "type": "SOLAR",
+      "date": "2024-11-02",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2016-2927",
+      "type": "REMODEL",
+      "date": "2016-05-06",
+      "status": "ACTIVE"
+    },
+    {
+      "number": "B-2014-8686",
+      "type": "NEW CONSTRUCTION",
+      "date": "2014-11-09",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2011-6208",
+      "type": "MECHANICAL",
+      "date": "2011-07-18",
+      "status": "ACTIVE"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 2880,
+      "year_built": 1975,
+      "condition": "AVERAGE"
+    }
+  ]
+}

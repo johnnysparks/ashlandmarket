@@ -1,0 +1,44 @@
+{
+  "account": "10059027",
+  "sales": [
+    {
+      "date": "2023-06-07",
+      "price": 639400,
+      "buyer": "TAYLOR PATRICIA",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2016-12-26",
+      "price": 454900,
+      "buyer": "MARTIN LINDA",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2008-05-20",
+      "price": 293400,
+      "buyer": "MARTINEZ DONNA",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2003-07-22",
+      "price": 240600,
+      "buyer": "HALL DAVID",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1464,
+      "year_built": 1994,
+      "condition": "EXCELLENT"
+    },
+    {
+      "type": "SHOP",
+      "sqft": 306,
+      "year_built": 2010,
+      "condition": "FAIR"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "account": "10059042",
+  "sales": [
+    {
+      "date": "2019-07-27",
+      "price": 715700,
+      "buyer": "WILLIAMS MICHAEL",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2016-07-13",
+      "price": 561700,
+      "buyer": "CLARK DAVID",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2010-6009",
+      "type": "ADDITION",
+      "date": "2010-02-16",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1682,
+      "year_built": 1983,
+      "condition": "AVERAGE"
+    },
+    {
+      "type": "CARPORT",
+      "sqft": 304,
+      "year_built": 1987,
+      "condition": "EXCELLENT"
+    }
+  ]
+}

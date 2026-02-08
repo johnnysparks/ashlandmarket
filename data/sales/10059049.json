@@ -1,0 +1,44 @@
+{
+  "account": "10059049",
+  "sales": [
+    {
+      "date": "2025-02-06",
+      "price": 247300,
+      "buyer": "HARRIS JENNIFER",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2018-09-08",
+      "price": 179100,
+      "buyer": "CLARK JAMES",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2013-11-09",
+      "price": 121700,
+      "buyer": "JONES LINDA",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2005-08-23",
+      "price": 91700,
+      "buyer": "YOUNG DONNA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 945,
+      "year_built": 2020,
+      "condition": "POOR"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 520,
+      "year_built": 2023,
+      "condition": "GOOD"
+    }
+  ]
+}

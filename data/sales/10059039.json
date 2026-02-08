@@ -1,0 +1,39 @@
+{
+  "account": "10059039",
+  "sales": [
+    {
+      "date": "2025-11-04",
+      "price": 505400,
+      "buyer": "BROWN MARIA",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2019-09-27",
+      "price": 320100,
+      "buyer": "THOMAS WILLIAM",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2002-6212",
+      "type": "FENCE",
+      "date": "2002-08-24",
+      "status": "ISSUED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 2668,
+      "year_built": 1976,
+      "condition": "GOOD"
+    },
+    {
+      "type": "SHED",
+      "sqft": 96,
+      "year_built": 1981,
+      "condition": "FAIR"
+    }
+  ]
+}

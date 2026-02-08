@@ -117,44 +117,44 @@ python jaco_scraper.py status     # Show pipeline progress
 ## Phase 2: Approach C — Deck.gl + Svelte (Agent 4)
 
 ### 4.1 Project Setup
-- [ ] Initialize Svelte + Vite project in `approach-c/`
-- [ ] Install deck.gl, @luma.gl dependencies
-- [ ] Create `approach-c/README.md` with setup instructions
-- [ ] Set up basic dev server, confirm it runs
+- [x] Initialize Svelte + Vite project in `approach-c/`
+- [x] Install deck.gl, @luma.gl dependencies
+- [x] Create `approach-c/README.md` with setup instructions
+- [x] Set up basic dev server, confirm it runs
 
 ### 4.2 MVP Map
-- [ ] Render Ashland-centered map with Deck.gl base map
-- [ ] Load `data/parcels.json`, create ScatterplotLayer for parcels
-- [ ] HexagonLayer colored by $/sqft
-- [ ] Click/hover → tooltip with key stats
+- [x] Render Ashland-centered map with Deck.gl base map
+- [x] Load `data/parcels.json`, create ScatterplotLayer for parcels
+- [x] HexagonLayer colored by $/sqft
+- [x] Click/hover → tooltip with key stats
 
 ### 4.3 Controls
-- [ ] Svelte UI for overlay metric selector
-- [ ] Color ramp controls
-- [ ] Opacity and aggregation radius sliders
-- [ ] Time window filter
+- [x] Svelte UI for overlay metric selector
+- [x] Color ramp controls
+- [x] Opacity and aggregation radius sliders
+- [x] Time window filter
 
 ### 4.4 Detail View
-- [ ] Click parcel → Svelte slide-up panel
-- [ ] Load per-account JSON, display sales history
-- [ ] Chart component for price trajectory
-- [ ] Permit list, improvement breakdown
+- [x] Click parcel → Svelte slide-up panel
+- [x] Load per-account JSON, display sales history
+- [x] Chart component for price trajectory
+- [x] Permit list, improvement breakdown
 
 ---
 
 ## Shared / Infra (Agent 5, or highest-numbered agent)
 
 ### 5.1 Project Setup
-- [ ] Create `docs/` directory
-- [ ] Create `docs/schema-proposals.md` (empty template for schema change requests)
+- [x] Create `docs/` directory
+- [x] Create `docs/schema-proposals.md` (empty template for schema change requests)
 - [ ] Set up GitHub Pages deployment config if needed
-- [ ] Add sample/mock data for frontend development before scraper is done
+- [x] Add sample/mock data for frontend development before scraper is done
 
 ### 5.2 Mock Data
-- [ ] Generate `data/parcels.json` with ~50 realistic mock parcels in Ashland
-- [ ] Generate a few `data/sales/{account}.json` mock files
-- [ ] Generate a mock aggregate file in `data/aggregates/`
-- [ ] Document mock data format in `docs/mock-data.md`
+- [x] Generate `data/parcels.json` with ~50 realistic mock parcels in Ashland
+- [x] Generate a few `data/sales/{account}.json` mock files
+- [x] Generate a mock aggregate file in `data/aggregates/`
+- [x] Document mock data format in `docs/mock-data.md`
 
 ### 5.3 Integration
 - [ ] Verify all three approaches can load and render mock data

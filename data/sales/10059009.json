@@ -1,0 +1,63 @@
+{
+  "account": "10059009",
+  "sales": [
+    {
+      "date": "2024-03-26",
+      "price": 383500,
+      "buyer": "ALLEN SUSAN",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2020-12-13",
+      "price": 330800,
+      "buyer": "HARRIS DANIEL",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2012-07-14",
+      "price": 236800,
+      "buyer": "WHITE LISA",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2004-11-05",
+      "price": 141100,
+      "buyer": "MOORE SARAH",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2016-2514",
+      "type": "FENCE",
+      "date": "2016-02-16",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2011-9185",
+      "type": "ADDITION",
+      "date": "2011-12-31",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2009-1474",
+      "type": "ELECTRICAL",
+      "date": "2009-05-20",
+      "status": "ACTIVE"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1492,
+      "year_built": 1978,
+      "condition": "FAIR"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 624,
+      "year_built": 1979,
+      "condition": "FAIR"
+    }
+  ]
+}

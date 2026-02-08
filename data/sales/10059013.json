@@ -1,0 +1,26 @@
+{
+  "account": "10059013",
+  "sales": [
+    {
+      "date": "2021-06-16",
+      "price": 1615200,
+      "buyer": "ALLEN MICHAEL",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 4251,
+      "year_built": 1945,
+      "condition": "GOOD"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 795,
+      "year_built": 1955,
+      "condition": "GOOD"
+    }
+  ]
+}
