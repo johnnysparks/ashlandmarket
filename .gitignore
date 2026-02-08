@@ -3,3 +3,6 @@ dist/
 .DS_Store
 Thumbs.db
 *.env
+data/cache/
+__pycache__/
+*.pyc
