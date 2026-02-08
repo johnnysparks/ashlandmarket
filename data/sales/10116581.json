@@ -1,0 +1,22 @@
+{
+  "account": "10116581",
+  "maptaxlot": "391E13C002501",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3416,
+      "year_built": 1990,
+      "description": "One story",
+      "stat_class": "151"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1744,
+      "year_built": 1990,
+      "description": "Hay Cover/Roof Cover",
+      "stat_class": "871"
+    }
+  ]
+}

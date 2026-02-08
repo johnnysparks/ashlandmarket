@@ -1,0 +1,22 @@
+{
+  "account": "10113242",
+  "maptaxlot": "391E030001500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1778,
+      "year_built": 2020,
+      "description": "One story with attic",
+      "stat_class": "148"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1440,
+      "year_built": 2020,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    }
+  ]
+}

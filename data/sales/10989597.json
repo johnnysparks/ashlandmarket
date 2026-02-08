@@ -1,0 +1,15 @@
+{
+  "account": "10989597",
+  "maptaxlot": "391E09AA90004",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2008,
+      "year_built": 2008,
+      "description": "Office, Single Occupant",
+      "stat_class": "541"
+    }
+  ]
+}

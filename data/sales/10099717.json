@@ -1,0 +1,15 @@
+{
+  "account": "10099717",
+  "maptaxlot": "391E010000106",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "FARM BLDG",
+      "sqft": 1800,
+      "year_built": 1980,
+      "description": "Hay Cover/Roof Cover",
+      "stat_class": "871"
+    }
+  ]
+}

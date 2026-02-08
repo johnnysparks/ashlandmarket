@@ -1,0 +1,20 @@
+{
+  "account": "10886318",
+  "maptaxlot": "391E13BB00900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 3472,
+      "year_built": 2008,
+      "description": "COMMERCIAL SHOP",
+      "stat_class": "560"
+    },
+    {
+      "type": "COMML IMP",
+      "description": "WAREHOUSE - OTHER",
+      "stat_class": "615"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "account": "10113800",
+  "maptaxlot": "391E100000700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 720,
+      "year_built": 2019,
+      "description": "School",
+      "stat_class": "687"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 12533,
+      "description": "School",
+      "stat_class": "687"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 2750,
+      "description": "School",
+      "stat_class": "687"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1848,
+      "year_built": 2021,
+      "description": "School",
+      "stat_class": "687"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1820,
+      "description": "School",
+      "stat_class": "687"
+    },
+    {
+      "type": "COMML IMP",
+      "description": "School",
+      "stat_class": "687"
+    }
+  ]
+}
