@@ -4,6 +4,7 @@ coverage/
 .DS_Store
 Thumbs.db
 *.env
+!approach-a/.env
 data/cache/
 __pycache__/
 *.pyc
