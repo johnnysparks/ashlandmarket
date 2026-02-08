@@ -1,0 +1,69 @@
+{
+  "account": "10918938",
+  "sales": [
+    {
+      "date": "2024-01-17",
+      "price": 190700,
+      "buyer": "JOHNSON MILLER",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2023-05-18",
+      "price": 244039,
+      "buyer": "HARRIS WHITE",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2021-02-17",
+      "price": 135354,
+      "buyer": "ROBINSON HALL",
+      "type": "BARGAIN AND SALE DEED"
+    },
+    {
+      "date": "2015-02-11",
+      "price": 142619,
+      "buyer": "ROBINSON WALKER",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2013-06-17",
+      "price": 182333,
+      "buyer": "HARRIS KING",
+      "type": "SPECIAL WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2020-8005",
+      "type": "FENCE",
+      "date": "2020-05-04",
+      "status": "UNDER REVIEW"
+    },
+    {
+      "number": "B-2012-5191",
+      "type": "DEMOLITION",
+      "date": "2012-01-08",
+      "status": "UNDER REVIEW"
+    },
+    {
+      "number": "B-2011-8265",
+      "type": "PLUMBING",
+      "date": "2011-09-18",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2009-3781",
+      "type": "ADDITION",
+      "date": "2009-08-25",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1185,
+      "year_built": 2007,
+      "condition": "POOR"
+    }
+  ]
+}

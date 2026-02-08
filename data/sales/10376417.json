@@ -1,0 +1,81 @@
+{
+  "account": "10376417",
+  "sales": [
+    {
+      "date": "2024-04-20",
+      "price": 616676,
+      "buyer": "HALL SMITH",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2018-06-18",
+      "price": 403732,
+      "buyer": "GARCIA ANDERSON",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2003-02-21",
+      "price": 389990,
+      "buyer": "LEWIS WILSON",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2001-07-22",
+      "price": 492590,
+      "buyer": "MARTIN GARCIA",
+      "type": "TRUST DEED"
+    },
+    {
+      "date": "1997-02-25",
+      "price": 503383,
+      "buyer": "TAYLOR MOORE",
+      "type": "BARGAIN AND SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2022-2168",
+      "type": "FENCE",
+      "date": "2022-02-22",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2008-0845",
+      "type": "REMODEL",
+      "date": "2008-10-10",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2006-3645",
+      "type": "FENCE",
+      "date": "2006-05-22",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2005-5052",
+      "type": "REMODEL",
+      "date": "2005-12-29",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2003-3280",
+      "type": "PLUMBING",
+      "date": "2003-04-27",
+      "status": "EXPIRED"
+    },
+    {
+      "number": "B-2003-3255",
+      "type": "ELECTRICAL",
+      "date": "2003-03-03",
+      "status": "ISSUED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 4377,
+      "year_built": 1921,
+      "condition": "POOR"
+    }
+  ]
+}

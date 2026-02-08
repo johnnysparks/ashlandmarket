@@ -1,0 +1,87 @@
+{
+  "account": "10970342",
+  "sales": [
+    {
+      "date": "2022-07-02",
+      "price": 399073,
+      "buyer": "YOUNG MARTINEZ",
+      "type": "TRUST DEED"
+    },
+    {
+      "date": "2019-04-22",
+      "price": 396931,
+      "buyer": "RODRIGUEZ ALLEN",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2019-03-26",
+      "price": 324830,
+      "buyer": "WALKER DAVIS",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2018-01-01",
+      "price": 427795,
+      "buyer": "SMITH WILLIAMS",
+      "type": "BARGAIN AND SALE DEED"
+    },
+    {
+      "date": "2006-01-31",
+      "price": 400448,
+      "buyer": "THOMAS WHITE",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2004-11-02",
+      "price": 313802,
+      "buyer": "WRIGHT MOORE",
+      "type": "BARGAIN AND SALE DEED"
+    },
+    {
+      "date": "2004-07-21",
+      "price": 405817,
+      "buyer": "CLARK ALLEN",
+      "type": "SPECIAL WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2024-9112",
+      "type": "REMODEL",
+      "date": "2024-08-20",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2022-8217",
+      "type": "PLUMBING",
+      "date": "2022-12-06",
+      "status": "UNDER REVIEW"
+    },
+    {
+      "number": "B-2010-1813",
+      "type": "NEW CONSTRUCTION",
+      "date": "2010-06-18",
+      "status": "UNDER REVIEW"
+    },
+    {
+      "number": "B-2010-4235",
+      "type": "ELECTRICAL",
+      "date": "2010-03-01",
+      "status": "UNDER REVIEW"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1538,
+      "year_built": 1904,
+      "condition": "POOR"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 773,
+      "year_built": 2015,
+      "condition": "POOR"
+    }
+  ]
+}

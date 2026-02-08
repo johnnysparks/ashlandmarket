@@ -1,0 +1,295 @@
+{
+  "generated": "2026-02-08T06:03:32Z",
+  "hex_size_deg": 0.005,
+  "metric": "price_per_sqft",
+  "bins": [
+    {
+      "lat": 42.18,
+      "lng": -122.7,
+      "median_price_sqft": 253.9,
+      "mean_price_sqft": 253.9,
+      "count": 1,
+      "min_price_sqft": 253.9,
+      "max_price_sqft": 253.9
+    },
+    {
+      "lat": 42.185,
+      "lng": -122.71,
+      "median_price_sqft": 218.49,
+      "mean_price_sqft": 218.49,
+      "count": 1,
+      "min_price_sqft": 218.49,
+      "max_price_sqft": 218.49
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.725,
+      "median_price_sqft": 354.27,
+      "mean_price_sqft": 295.58,
+      "count": 2,
+      "min_price_sqft": 236.89,
+      "max_price_sqft": 354.27
+    },
+    {
+      "lat": 42.21,
+      "lng": -122.705,
+      "median_price_sqft": 140.89,
+      "mean_price_sqft": 140.89,
+      "count": 1,
+      "min_price_sqft": 140.89,
+      "max_price_sqft": 140.89
+    },
+    {
+      "lat": 42.2,
+      "lng": -122.7,
+      "median_price_sqft": 416.8,
+      "mean_price_sqft": 377.5,
+      "count": 2,
+      "min_price_sqft": 338.2,
+      "max_price_sqft": 416.8
+    },
+    {
+      "lat": 42.18,
+      "lng": -122.715,
+      "median_price_sqft": 226.95,
+      "mean_price_sqft": 228.2,
+      "count": 3,
+      "min_price_sqft": 196.02,
+      "max_price_sqft": 261.62
+    },
+    {
+      "lat": 42.2,
+      "lng": -122.71,
+      "median_price_sqft": 278.15,
+      "mean_price_sqft": 278.15,
+      "count": 1,
+      "min_price_sqft": 278.15,
+      "max_price_sqft": 278.15
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.72,
+      "median_price_sqft": 265.67,
+      "mean_price_sqft": 229.9,
+      "count": 4,
+      "min_price_sqft": 169.71,
+      "max_price_sqft": 278.26
+    },
+    {
+      "lat": 42.19,
+      "lng": -122.69,
+      "median_price_sqft": 401.36,
+      "mean_price_sqft": 401.36,
+      "count": 1,
+      "min_price_sqft": 401.36,
+      "max_price_sqft": 401.36
+    },
+    {
+      "lat": 42.2,
+      "lng": -122.715,
+      "median_price_sqft": 286.21,
+      "mean_price_sqft": 286.21,
+      "count": 1,
+      "min_price_sqft": 286.21,
+      "max_price_sqft": 286.21
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.715,
+      "median_price_sqft": 312.83,
+      "mean_price_sqft": 312.83,
+      "count": 1,
+      "min_price_sqft": 312.83,
+      "max_price_sqft": 312.83
+    },
+    {
+      "lat": 42.21,
+      "lng": -122.695,
+      "median_price_sqft": 287.48,
+      "mean_price_sqft": 264.81,
+      "count": 4,
+      "min_price_sqft": 192.93,
+      "max_price_sqft": 304.97
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.725,
+      "median_price_sqft": 299.62,
+      "mean_price_sqft": 299.62,
+      "count": 1,
+      "min_price_sqft": 299.62,
+      "max_price_sqft": 299.62
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.705,
+      "median_price_sqft": 297.12,
+      "mean_price_sqft": 236.55,
+      "count": 2,
+      "min_price_sqft": 175.98,
+      "max_price_sqft": 297.12
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.71,
+      "median_price_sqft": 381.31,
+      "mean_price_sqft": 381.31,
+      "count": 1,
+      "min_price_sqft": 381.31,
+      "max_price_sqft": 381.31
+    },
+    {
+      "lat": 42.19,
+      "lng": -122.71,
+      "median_price_sqft": 352.52,
+      "mean_price_sqft": 292.94,
+      "count": 4,
+      "min_price_sqft": 178.84,
+      "max_price_sqft": 376.77
+    },
+    {
+      "lat": 42.18,
+      "lng": -122.725,
+      "median_price_sqft": 144.5,
+      "mean_price_sqft": 144.5,
+      "count": 1,
+      "min_price_sqft": 144.5,
+      "max_price_sqft": 144.5
+    },
+    {
+      "lat": 42.185,
+      "lng": -122.715,
+      "median_price_sqft": 202.23,
+      "mean_price_sqft": 202.23,
+      "count": 1,
+      "min_price_sqft": 202.23,
+      "max_price_sqft": 202.23
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.715,
+      "median_price_sqft": 251.53,
+      "mean_price_sqft": 251.53,
+      "count": 1,
+      "min_price_sqft": 251.53,
+      "max_price_sqft": 251.53
+    },
+    {
+      "lat": 42.19,
+      "lng": -122.73,
+      "median_price_sqft": 144.17,
+      "mean_price_sqft": 144.17,
+      "count": 1,
+      "min_price_sqft": 144.17,
+      "max_price_sqft": 144.17
+    },
+    {
+      "lat": 42.185,
+      "lng": -122.725,
+      "median_price_sqft": 205.23,
+      "mean_price_sqft": 246.16,
+      "count": 3,
+      "min_price_sqft": 168.38,
+      "max_price_sqft": 364.87
+    },
+    {
+      "lat": 42.19,
+      "lng": -122.72,
+      "median_price_sqft": 172.66,
+      "mean_price_sqft": 172.66,
+      "count": 1,
+      "min_price_sqft": 172.66,
+      "max_price_sqft": 172.66
+    },
+    {
+      "lat": 42.175,
+      "lng": -122.715,
+      "median_price_sqft": 293.1,
+      "mean_price_sqft": 264.64,
+      "count": 2,
+      "min_price_sqft": 236.19,
+      "max_price_sqft": 293.1
+    },
+    {
+      "lat": 42.185,
+      "lng": -122.7,
+      "median_price_sqft": 201.31,
+      "mean_price_sqft": 201.31,
+      "count": 1,
+      "min_price_sqft": 201.31,
+      "max_price_sqft": 201.31
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.7,
+      "median_price_sqft": 381.24,
+      "mean_price_sqft": 381.24,
+      "count": 1,
+      "min_price_sqft": 381.24,
+      "max_price_sqft": 381.24
+    },
+    {
+      "lat": 42.18,
+      "lng": -122.69,
+      "median_price_sqft": 168.36,
+      "mean_price_sqft": 168.36,
+      "count": 1,
+      "min_price_sqft": 168.36,
+      "max_price_sqft": 168.36
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.71,
+      "median_price_sqft": 232.6,
+      "mean_price_sqft": 232.6,
+      "count": 1,
+      "min_price_sqft": 232.6,
+      "max_price_sqft": 232.6
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.7,
+      "median_price_sqft": 237.87,
+      "mean_price_sqft": 235.45,
+      "count": 2,
+      "min_price_sqft": 233.04,
+      "max_price_sqft": 237.87
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.705,
+      "median_price_sqft": 289.46,
+      "mean_price_sqft": 289.46,
+      "count": 1,
+      "min_price_sqft": 289.46,
+      "max_price_sqft": 289.46
+    },
+    {
+      "lat": 42.18,
+      "lng": -122.695,
+      "median_price_sqft": 303.23,
+      "mean_price_sqft": 303.23,
+      "count": 1,
+      "min_price_sqft": 303.23,
+      "max_price_sqft": 303.23
+    },
+    {
+      "lat": 42.205,
+      "lng": -122.695,
+      "median_price_sqft": 193.57,
+      "mean_price_sqft": 193.57,
+      "count": 1,
+      "min_price_sqft": 193.57,
+      "max_price_sqft": 193.57
+    },
+    {
+      "lat": 42.195,
+      "lng": -122.73,
+      "median_price_sqft": 205.24,
+      "mean_price_sqft": 205.24,
+      "count": 1,
+      "min_price_sqft": 205.24,
+      "max_price_sqft": 205.24
+    }
+  ]
+}

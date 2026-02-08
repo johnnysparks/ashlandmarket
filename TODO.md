@@ -129,16 +129,17 @@
 ## Shared / Infra (Agent 5, or highest-numbered agent)
 
 ### 5.1 Project Setup
-- [ ] Create `docs/` directory
-- [ ] Create `docs/schema-proposals.md` (empty template for schema change requests)
+- [x] Create `docs/` directory
+- [x] Create `docs/schema-proposals.md` (empty template for schema change requests)
 - [ ] Set up GitHub Pages deployment config if needed
-- [ ] Add sample/mock data for frontend development before scraper is done
+- [x] Add sample/mock data for frontend development before scraper is done
+- [x] Create `.gitignore` (Python, Node, IDE, OS, scraper cache)
 
 ### 5.2 Mock Data
-- [ ] Generate `data/parcels.json` with ~50 realistic mock parcels in Ashland
-- [ ] Generate a few `data/sales/{account}.json` mock files
-- [ ] Generate a mock aggregate file in `data/aggregates/`
-- [ ] Document mock data format in `docs/mock-data.md`
+- [x] Generate `data/parcels.json` with ~50 realistic mock parcels in Ashland
+- [x] Generate a few `data/sales/{account}.json` mock files (10 parcels)
+- [x] Generate a mock aggregate file in `data/aggregates/`
+- [x] Document mock data format in `docs/mock-data.md`
 
 ### 5.3 Integration
 - [ ] Verify all three approaches can load and render mock data

@@ -1,0 +1,26 @@
+{
+  "account": "10670487",
+  "sales": [
+    {
+      "date": "2021-08-15",
+      "price": 918102,
+      "buyer": "WALKER SMITH",
+      "type": "BARGAIN AND SALE DEED"
+    },
+    {
+      "date": "1985-11-30",
+      "price": 541416,
+      "buyer": "ROBINSON BROWN",
+      "type": "BARGAIN AND SALE DEED"
+    }
+  ],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 3616,
+      "year_built": 1925,
+      "condition": "GOOD"
+    }
+  ]
+}
