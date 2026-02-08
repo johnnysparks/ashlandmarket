@@ -495,6 +495,7 @@ def enrich_parcels(
             "last_sale_price": None,
             "last_sale_date": None,
             "price_per_sqft": None,
+            "price_per_sqft_lot": None,
             "assessed_value": data.get("assessed_value"),
             "num_sales": None,
             "num_permits": None,

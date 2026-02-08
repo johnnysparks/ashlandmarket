@@ -3,6 +3,7 @@ import { METRICS } from '../utils/colors'
 // Stats rows to display in the comparison table
 const COMPARE_ROWS = [
   { key: 'price_per_sqft', label: '$/sqft' },
+  { key: 'price_per_sqft_lot', label: '$/sqft Lot' },
   { key: 'last_sale_price', label: 'Last Sale' },
   { key: 'assessed_value', label: 'Assessed' },
   { key: 'year_built', label: 'Year Built' },

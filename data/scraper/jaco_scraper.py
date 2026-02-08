@@ -72,6 +72,7 @@ def cmd_seed(args: argparse.Namespace) -> None:
             "last_sale_price": None,
             "last_sale_date": None,
             "price_per_sqft": None,
+            "price_per_sqft_lot": None,
             "assessed_value": None,
             "num_sales": None,
             "num_permits": None,
@@ -327,6 +328,12 @@ def _update_parcel_from_parsed(
     if parcel.get("last_sale_price") and parcel.get("sqft_living"):
         parcel["price_per_sqft"] = round(
             parcel["last_sale_price"] / parcel["sqft_living"], 2,
+        )
+
+    # Compute $/sqft lot
+    if parcel.get("last_sale_price") and parcel.get("sqft_lot") and parcel["sqft_lot"] > 0:
+        parcel["price_per_sqft_lot"] = round(
+            parcel["last_sale_price"] / parcel["sqft_lot"], 2,
         )
 
 

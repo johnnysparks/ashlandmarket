@@ -30,6 +30,7 @@ const COLOR_RAMPS = {
 // ── Metric formatting (using d3.format for display) ────
 const METRIC_CONFIG = {
   price_per_sqft: { label: '$/sqft', fmt: v => '$' + Math.round(v) },
+  price_per_sqft_lot: { label: '$/sqft Lot', fmt: v => '$' + Math.round(v) },
   last_sale_price: { label: 'Sale Price', fmt: v => '$' + d3.format(',.0f')(v) },
   assessed_value: { label: 'Assessed', fmt: v => '$' + d3.format(',.0f')(v) },
   sqft_living: { label: 'Living sqft', fmt: v => d3.format(',.0f')(v) },
@@ -257,6 +258,7 @@ async function openDetailPanel(parcel) {
   detailSummary.innerHTML = [
     { label: 'Sale Price', value: parcel.last_sale_price ? '$' + d3.format(',.0f')(parcel.last_sale_price) : '—' },
     { label: '$/sqft', value: parcel.price_per_sqft ? '$' + Math.round(parcel.price_per_sqft) : '—' },
+    { label: '$/sqft Lot', value: parcel.price_per_sqft_lot ? '$' + Math.round(parcel.price_per_sqft_lot) : '—' },
     { label: 'Living sqft', value: parcel.sqft_living ? d3.format(',')(parcel.sqft_living) : '—' },
     { label: 'Lot sqft', value: parcel.sqft_lot ? d3.format(',')(parcel.sqft_lot) : '—' },
     { label: 'Year Built', value: parcel.year_built || '—' },

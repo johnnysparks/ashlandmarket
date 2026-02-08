@@ -40,6 +40,7 @@ PARCEL_NULLABLE_FIELDS = {
     "last_sale_price": (int, float, type(None)),
     "last_sale_date": (str, type(None)),
     "price_per_sqft": (int, float, type(None)),
+    "price_per_sqft_lot": (int, float, type(None)),
     "assessed_value": (int, float, type(None)),
     "num_sales": (int, type(None)),
     "num_permits": (int, type(None)),
@@ -440,6 +441,12 @@ def fix_parcels_from_sales(parcels_data: dict, sales_accounts: list[str]) -> int
         # Lot size: estimate from a common Ashland range
         if parcel["sqft_living"] and not parcel.get("sqft_lot"):
             parcel["sqft_lot"] = parcel["sqft_living"] * 4  # rough estimate
+
+        # price_per_sqft_lot
+        if parcel.get("last_sale_price") and parcel.get("sqft_lot") and parcel["sqft_lot"] > 0:
+            parcel["price_per_sqft_lot"] = round(
+                parcel["last_sale_price"] / parcel["sqft_lot"], 2
+            )
 
         # Assessed value: estimate as ~90% of last sale
         if parcel["last_sale_price"] and not parcel.get("assessed_value"):

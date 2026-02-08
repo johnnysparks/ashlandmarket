@@ -113,6 +113,11 @@ def update_parcel(parcel: dict, parsed: dict) -> None:
             parcel["last_sale_price"] / parcel["sqft_living"], 2
         )
 
+    if parcel.get("last_sale_price") and parcel.get("sqft_lot") and parcel["sqft_lot"] > 0:
+        parcel["price_per_sqft_lot"] = round(
+            parcel["last_sale_price"] / parcel["sqft_lot"], 2
+        )
+
 
 def save_parcels(parcels: list[dict]) -> None:
     """Write parcels.json."""

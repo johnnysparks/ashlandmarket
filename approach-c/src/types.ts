@@ -9,6 +9,7 @@ export interface Parcel {
   last_sale_price: number
   last_sale_date: string
   price_per_sqft: number
+  price_per_sqft_lot: number
   assessed_value: number
   num_sales: number
   num_permits: number
@@ -49,6 +50,7 @@ export interface ParcelDetail {
 
 export type MetricKey =
   | 'price_per_sqft'
+  | 'price_per_sqft_lot'
   | 'last_sale_price'
   | 'assessed_value'
   | 'sqft_living'
