@@ -1,0 +1,50 @@
+{
+  "account": "10055910",
+  "maptaxlot": "391E05DD09600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1307,
+      "year_built": 1888,
+      "description": "One story with attic",
+      "stat_class": "148"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 453,
+      "year_built": 1960,
+      "description": "One story",
+      "stat_class": "121"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 180,
+      "year_built": 2012,
+      "description": "One story",
+      "stat_class": "121"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 380,
+      "year_built": 1960,
+      "description": "One story",
+      "stat_class": "121"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 160,
+      "year_built": 1985,
+      "description": "One story",
+      "stat_class": "121"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 384,
+      "year_built": 2024,
+      "description": "One story",
+      "stat_class": "121"
+    }
+  ]
+}
