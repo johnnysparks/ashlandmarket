@@ -61,56 +61,56 @@ python jaco_scraper.py status     # Show pipeline progress
 ## Phase 2: Approach A — Mapbox GL + React (Agent 2)
 
 ### 2.1 Project Setup
-- [ ] Initialize React + Vite project in `approach-a/`
-- [ ] Install mapbox-gl, react-map-gl dependencies
-- [ ] Create `approach-a/README.md` with setup instructions (incl. Mapbox token)
-- [ ] Set up basic dev server, confirm it runs
+- [x] Initialize React + Vite project in `approach-a/`
+- [x] Install mapbox-gl, react-map-gl dependencies
+- [x] Create `approach-a/README.md` with setup instructions (incl. Mapbox token)
+- [x] Set up basic dev server, confirm it runs
 
 ### 2.2 MVP Map
-- [ ] Render Ashland-centered Mapbox map (42.1945, -122.7095, zoom ~14)
-- [ ] Load `data/parcels.json` and render parcel markers/circles
-- [ ] Color parcels by $/sqft using a sequential color ramp
-- [ ] Tap/click parcel → tooltip with key stats
+- [x] Render Ashland-centered Mapbox map (42.1945, -122.7095, zoom ~14)
+- [x] Load `data/parcels.json` and render parcel markers/circles
+- [x] Color parcels by $/sqft using a sequential color ramp
+- [x] Tap/click parcel → tooltip with key stats
 
 ### 2.3 Controls
-- [ ] Overlay metric selector (dropdown or toggle group)
-- [ ] Color ramp picker
-- [ ] Opacity slider
-- [ ] Time window filter (date range for sales)
+- [x] Overlay metric selector (dropdown or toggle group)
+- [x] Color ramp picker
+- [x] Opacity slider
+- [x] Time window filter (date range for sales)
 
 ### 2.4 Detail View
-- [ ] Tap parcel at high zoom → slide-up panel
-- [ ] Load per-account JSON, display sales history
-- [ ] Price trajectory chart (simple line chart)
-- [ ] Permit list, improvement breakdown
+- [x] Tap parcel at high zoom → slide-up panel
+- [x] Load per-account JSON, display sales history
+- [x] Price trajectory chart (simple line chart)
+- [x] Permit list, improvement breakdown
 
 ---
 
 ## Phase 2: Approach B — Leaflet + Vanilla JS + D3 (Agent 3)
 
 ### 3.1 Project Setup
-- [ ] Create `approach-b/` with `index.html`, `style.css`, `main.js`
-- [ ] Include Leaflet + D3 via CDN or local bundle
-- [ ] Create `approach-b/README.md` with setup instructions
-- [ ] Confirm map renders with `npx serve .` or `python -m http.server`
+- [x] Create `approach-b/` with `index.html`, `style.css`, `main.js`
+- [x] Include Leaflet + D3 via CDN or local bundle
+- [x] Create `approach-b/README.md` with setup instructions
+- [x] Confirm map renders with `npx serve .` or `python -m http.server`
 
 ### 3.2 MVP Map
-- [ ] Render Ashland-centered Leaflet map with OSM tiles
-- [ ] Load `data/parcels.json`, create GeoJSON layer from parcels
-- [ ] D3 color scale for $/sqft, apply to parcel markers
-- [ ] Click parcel → popup/tooltip with key stats
+- [x] Render Ashland-centered Leaflet map with OSM tiles
+- [x] Load `data/parcels.json`, create GeoJSON layer from parcels
+- [x] D3 color scale for $/sqft, apply to parcel markers
+- [x] Click parcel → popup/tooltip with key stats
 
 ### 3.3 Controls
-- [ ] Overlay metric selector (HTML select or button group)
-- [ ] D3 color ramp switching
-- [ ] Opacity control
-- [ ] Time window filter (range inputs)
+- [x] Overlay metric selector (HTML select or button group)
+- [x] D3 color ramp switching
+- [x] Opacity control
+- [x] Time window filter (range inputs)
 
 ### 3.4 Detail View
-- [ ] Click parcel → side panel or modal with full history
-- [ ] Fetch per-account JSON, render sales table
-- [ ] D3 line chart for price trajectory
-- [ ] Permit list, improvement breakdown
+- [x] Click parcel → side panel or modal with full history
+- [x] Fetch per-account JSON, render sales table
+- [x] D3 line chart for price trajectory
+- [x] Permit list, improvement breakdown
 
 ---
 
@@ -168,6 +168,9 @@ python jaco_scraper.py status     # Show pipeline progress
 - [x] Phase 3: Aggregation mode switching (hexbin, grid) — implemented in Approach C
 - [x] Phase 3: Percentile clamp control (clip outliers) — implemented in Approach C
 - [~] Phase 3: Multiple overlay metrics wired up across all approaches (8 metrics in Approach C; A & B pending)
+- [x] Phase 3: Aggregation mode switching (hexbin, heatmap, points) — Approach A done
+- [x] Phase 3: Percentile clamp control (clip outliers) — Approach A done
+- [x] Phase 3: Multiple overlay metrics wired up — Approach A done (bivariate size-by metric)
 - [ ] Phase 4: Compare mode (pin multiple parcels)
 - [ ] Phase 5: Walkability/amenity overlays
 - [ ] Phase 5: Search/filter by criteria
