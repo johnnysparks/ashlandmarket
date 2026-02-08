@@ -1,0 +1,15 @@
+{
+  "account": "10067673",
+  "maptaxlot": "391E09BC05000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 5158,
+      "year_built": 1966,
+      "description": "APARTMENTS",
+      "stat_class": "530"
+    }
+  ]
+}

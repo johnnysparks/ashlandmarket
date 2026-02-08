@@ -1,0 +1,15 @@
+{
+  "account": "10067111",
+  "maptaxlot": "391E09BC00100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 54048,
+      "year_built": 1925,
+      "description": "Lodging Over 60 Units",
+      "stat_class": "603"
+    }
+  ]
+}
