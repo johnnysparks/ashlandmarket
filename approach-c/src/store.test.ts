@@ -295,6 +295,7 @@ describe('loadParcels', () => {
       parcels: [makeParcel()],
     }
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
       json: () => Promise.resolve(mockData),
     }))
 
@@ -321,6 +322,7 @@ describe('loadParcelDetail', () => {
       improvements: [],
     }
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
       json: () => Promise.resolve(mockDetail),
     }))
 
@@ -355,6 +357,7 @@ describe('loadParcelDetail', () => {
 
     // Resolve the fetch
     resolveFetch!({
+      ok: true,
       json: () => Promise.resolve({
         account: '10059095',
         sales: [],
