@@ -1,0 +1,15 @@
+{
+  "account": "10080322",
+  "maptaxlot": "391E10DC10500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 4136,
+      "year_built": 2020,
+      "description": "FOOD/BEVERAGE",
+      "stat_class": "550"
+    }
+  ]
+}

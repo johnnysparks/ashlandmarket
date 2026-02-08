@@ -1,0 +1,13 @@
+{
+  "account": "10080477",
+  "maptaxlot": "391E11C002900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Automotive Card Lock",
+      "stat_class": "588"
+    }
+  ]
+}

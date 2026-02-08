@@ -1,0 +1,20 @@
+{
+  "account": "10118443",
+  "maptaxlot": "391E14D000700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Class 3 MH Park",
+      "stat_class": "573"
+    },
+    {
+      "type": "MANF STRCT",
+      "sqft": 528,
+      "year_built": 1968,
+      "description": "Single wide",
+      "stat_class": "941"
+    }
+  ]
+}

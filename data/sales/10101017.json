@@ -1,0 +1,29 @@
+{
+  "account": "10101017",
+  "maptaxlot": "391E070000200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 780,
+      "year_built": 1999,
+      "description": "One story with basement",
+      "stat_class": "133"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 720,
+      "year_built": 2023,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1520,
+      "year_built": 2024,
+      "description": "One story",
+      "stat_class": "141"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "account": "10763877",
+  "maptaxlot": "391E14D001301",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Lumber & Wood Products",
+      "stat_class": "720"
+    }
+  ]
+}

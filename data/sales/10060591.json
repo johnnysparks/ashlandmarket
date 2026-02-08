@@ -1,0 +1,36 @@
+{
+  "account": "10060591",
+  "maptaxlot": "391E08BA00800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1014,
+      "year_built": 1956,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 780,
+      "year_built": 2002,
+      "description": "Area over Garage/Shop",
+      "stat_class": "147"
+    },
+    {
+      "type": "MANF STRCT",
+      "sqft": 2640,
+      "year_built": 2002,
+      "description": "Triple wide",
+      "stat_class": "973"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1080,
+      "year_built": 1956,
+      "description": "One story",
+      "stat_class": "131"
+    }
+  ]
+}

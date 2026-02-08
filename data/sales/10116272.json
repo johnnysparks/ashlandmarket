@@ -1,0 +1,15 @@
+{
+  "account": "10116272",
+  "maptaxlot": "391E13BB00400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2000,
+      "year_built": 2024,
+      "description": "RV Parks",
+      "stat_class": "576"
+    }
+  ]
+}

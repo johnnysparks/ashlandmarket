@@ -1,0 +1,50 @@
+{
+  "account": "10118671",
+  "maptaxlot": "391E230000200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2113,
+      "year_built": 1900,
+      "description": "One story with attic",
+      "stat_class": "148"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1140,
+      "year_built": 1990,
+      "description": "Area over Garage/Shop",
+      "stat_class": "137"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1110,
+      "year_built": 1967,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 918,
+      "year_built": 1967,
+      "description": "Loft Barn",
+      "stat_class": "843"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 780,
+      "year_built": 1985,
+      "description": "Hay Cover/Roof Cover",
+      "stat_class": "871"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 428,
+      "year_built": 1980,
+      "description": "GP Shed",
+      "stat_class": "860"
+    }
+  ]
+}

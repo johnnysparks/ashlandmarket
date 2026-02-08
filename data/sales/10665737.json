@@ -1,0 +1,22 @@
+{
+  "account": "10665737",
+  "maptaxlot": "391E09BA10301",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1960,
+      "year_built": 1988,
+      "description": "EXEMPT",
+      "stat_class": "685"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 2100,
+      "year_built": 1988,
+      "description": "OFFICE",
+      "stat_class": "540"
+    }
+  ]
+}

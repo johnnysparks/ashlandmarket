@@ -1,0 +1,22 @@
+{
+  "account": "10080736",
+  "maptaxlot": "391E14BA00600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 9915,
+      "year_built": 2022,
+      "description": "IND WAREHOUSE/LITE MANUFACTURING",
+      "stat_class": "713"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 17858,
+      "year_built": 2022,
+      "description": "IND WAREHOUSE/LITE MANUFACTURING",
+      "stat_class": "713"
+    }
+  ]
+}

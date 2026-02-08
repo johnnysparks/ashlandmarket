@@ -1,0 +1,13 @@
+{
+  "account": "10080128",
+  "maptaxlot": "391E10DC08500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Church/Temple",
+      "stat_class": "686"
+    }
+  ]
+}

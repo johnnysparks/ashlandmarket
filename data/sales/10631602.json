@@ -1,0 +1,41 @@
+{
+  "account": "10631602",
+  "maptaxlot": "391E120000108",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "year_built": 1994,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 3108,
+      "year_built": 2009,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 864,
+      "year_built": 2022,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "RESIDENCE",
+      "year_built": 2012,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1066,
+      "year_built": 2010,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    }
+  ]
+}

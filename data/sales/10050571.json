@@ -1,0 +1,14 @@
+{
+  "account": "10050571",
+  "maptaxlot": "391E04CD01400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2048,
+      "description": "Lumber Yards",
+      "stat_class": "658"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "account": "10115965",
+  "maptaxlot": "391E13A000300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1704,
+      "year_built": 1960,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 3225,
+      "year_built": 2019,
+      "description": "One story",
+      "stat_class": "151"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 2000,
+      "year_built": 2021,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    },
+    {
+      "type": "RESIDENCE",
+      "year_built": 2018,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 992,
+      "year_built": 1960,
+      "description": "Horse Stables",
+      "stat_class": "811"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1800,
+      "year_built": 2023,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account": "10079388",
+  "maptaxlot": "391E10DD02100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 4364,
+      "description": "Mortuaries",
+      "stat_class": "655"
+    }
+  ]
+}

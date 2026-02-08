@@ -1,0 +1,15 @@
+{
+  "account": "10118962",
+  "maptaxlot": "391E230003400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MANF STRCT",
+      "sqft": 2094,
+      "year_built": 2000,
+      "description": "Triple wide",
+      "stat_class": "953"
+    }
+  ]
+}

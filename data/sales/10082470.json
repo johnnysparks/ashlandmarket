@@ -1,0 +1,14 @@
+{
+  "account": "10082470",
+  "maptaxlot": "391E14CA02300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 48112,
+      "description": "Mini-storage",
+      "stat_class": "614"
+    }
+  ]
+}

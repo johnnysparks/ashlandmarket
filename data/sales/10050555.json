@@ -1,0 +1,21 @@
+{
+  "account": "10050555",
+  "maptaxlot": "391E04CD01201",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 11500,
+      "year_built": 2000,
+      "description": "RECREATION",
+      "stat_class": "670"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 13000,
+      "description": "Yard Improvements",
+      "stat_class": "651"
+    }
+  ]
+}

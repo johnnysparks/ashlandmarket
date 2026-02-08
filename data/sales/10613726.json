@@ -1,0 +1,68 @@
+{
+  "account": "10613726",
+  "maptaxlot": "391E100000900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 6240,
+      "description": "Government Office",
+      "stat_class": "688"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3500,
+      "description": "Government Office",
+      "stat_class": "688"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 18920,
+      "description": "Government Office",
+      "stat_class": "688"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 5700,
+      "description": "COMMERCIAL SHOP",
+      "stat_class": "560"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 8406,
+      "description": "Community Bldg",
+      "stat_class": "692"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 8624,
+      "description": "COMMERCIAL SHOP",
+      "stat_class": "560"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 12180,
+      "description": "COMMERCIAL SHOP",
+      "stat_class": "560"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3320,
+      "description": "Canopy",
+      "stat_class": "653"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 332450,
+      "description": "Yard Improvements",
+      "stat_class": "651"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3000,
+      "description": "Yard Improvements",
+      "stat_class": "651"
+    }
+  ]
+}

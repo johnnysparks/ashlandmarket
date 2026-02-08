@@ -1,0 +1,13 @@
+{
+  "account": "10116304",
+  "maptaxlot": "391E13B002200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Golf Course",
+      "stat_class": "673"
+    }
+  ]
+}

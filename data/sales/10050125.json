@@ -1,0 +1,22 @@
+{
+  "account": "10050125",
+  "maptaxlot": "391E04CC04500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2054,
+      "year_built": 1900,
+      "description": "SFR/Duplex",
+      "stat_class": "536"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3706,
+      "year_built": 2019,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    }
+  ]
+}

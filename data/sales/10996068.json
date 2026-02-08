@@ -1,0 +1,15 @@
+{
+  "account": "10996068",
+  "maptaxlot": "391E04BC00410",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2379,
+      "year_built": 2014,
+      "description": "Two story",
+      "stat_class": "152"
+    }
+  ]
+}

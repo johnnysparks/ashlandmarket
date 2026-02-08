@@ -1,0 +1,15 @@
+{
+  "account": "11001600",
+  "maptaxlot": "391E09BB98004",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 993,
+      "year_built": 1991,
+      "description": "Condo Commercial",
+      "stat_class": "508"
+    }
+  ]
+}

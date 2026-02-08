@@ -1,0 +1,22 @@
+{
+  "account": "10913396",
+  "maptaxlot": "391E05DA04701",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 4011,
+      "year_built": 2000,
+      "description": "MEDICAL OFFICE",
+      "stat_class": "620"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 4523,
+      "year_built": 2000,
+      "description": "EXEMPT",
+      "stat_class": "685"
+    }
+  ]
+}

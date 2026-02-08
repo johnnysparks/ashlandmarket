@@ -1,0 +1,15 @@
+{
+  "account": "10919031",
+  "maptaxlot": "391E13BB00800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 8000,
+      "year_built": 2003,
+      "description": "Warehouse - Distribution",
+      "stat_class": "612"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "account": "10076940",
+  "maptaxlot": "391E10CB02100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 31528,
+      "year_built": 2024,
+      "description": "APTS Over 20 Units",
+      "stat_class": "533"
+    }
+  ]
+}
