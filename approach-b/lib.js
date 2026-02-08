@@ -5,7 +5,7 @@
 // ── Config ──────────────────────────────────────────────
 export const ASHLAND_CENTER = [42.1945, -122.7095];
 export const INITIAL_ZOOM = 14;
-export const DATA_BASE = '../data';
+export const DATA_BASE = location.hostname === 'localhost' ? '../data' : './data';
 export const MARKER_RADIUS_RANGE = [4, 8];
 
 // ── Metric formatting ──────────────────────────────────
