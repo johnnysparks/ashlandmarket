@@ -7,6 +7,11 @@ export const colorRamp = writable<ColorRamp>('viridis')
 export const opacity = writable(0.8)
 export const viewMode = writable<ViewMode>('scatter')
 export const hexRadius = writable(200)
+export const gridCellSize = writable(200)
+
+// Percentile clamp (0-100)
+export const percentileLow = writable(2)
+export const percentileHigh = writable(98)
 
 // Time filter
 export const timeStart = writable('')
@@ -34,15 +39,32 @@ export const filteredParcels = derived(
   }
 )
 
-// Metric range for color scaling
+function percentile(sorted: number[], p: number): number {
+  if (sorted.length === 0) return 0
+  const idx = (p / 100) * (sorted.length - 1)
+  const lo = Math.floor(idx)
+  const hi = Math.ceil(idx)
+  if (lo === hi) return sorted[lo]
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo)
+}
+
+// Metric range with percentile clamping
 export const metricRange = derived(
-  [filteredParcels, selectedMetric],
-  ([$parcels, $metric]) => {
-    if ($parcels.length === 0) return { min: 0, max: 1 }
-    const values = $parcels.map(p => p[$metric])
+  [filteredParcels, selectedMetric, percentileLow, percentileHigh],
+  ([$parcels, $metric, $pLow, $pHigh]) => {
+    if ($parcels.length === 0) return { min: 0, max: 1, rawMin: 0, rawMax: 1 }
+    const values = $parcels.map(p => p[$metric]).filter(v => v != null && isFinite(v))
+    if (values.length === 0) return { min: 0, max: 1, rawMin: 0, rawMax: 1 }
+    const sorted = [...values].sort((a, b) => a - b)
+    const rawMin = sorted[0]
+    const rawMax = sorted[sorted.length - 1]
+    const clampedMin = percentile(sorted, $pLow)
+    const clampedMax = percentile(sorted, $pHigh)
     return {
-      min: Math.min(...values),
-      max: Math.max(...values),
+      min: clampedMin,
+      max: clampedMax,
+      rawMin,
+      rawMax,
     }
   }
 )
