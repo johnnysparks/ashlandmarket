@@ -1,0 +1,27 @@
+{
+  "account": "10065671",
+  "maptaxlot": "391E09BA13900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2160,
+      "year_built": 2003,
+      "description": "Commercial",
+      "stat_class": "502"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1964,
+      "year_built": 2005,
+      "description": "COMMERCIAL SHOP",
+      "stat_class": "560"
+    },
+    {
+      "type": "COMML IMP",
+      "description": "MISC COMMERCIAL",
+      "stat_class": "650"
+    }
+  ]
+}

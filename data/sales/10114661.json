@@ -1,0 +1,22 @@
+{
+  "account": "10114661",
+  "maptaxlot": "391E110001300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3200,
+      "year_built": 1951,
+      "description": "Two story",
+      "stat_class": "142"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 2640,
+      "year_built": 2019,
+      "description": "Metal Component Bldg",
+      "stat_class": "852"
+    }
+  ]
+}

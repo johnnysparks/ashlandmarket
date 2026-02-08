@@ -1,0 +1,15 @@
+{
+  "account": "10970126",
+  "maptaxlot": "391E150000306",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 7480,
+      "year_built": 2004,
+      "description": "One Strory with basement",
+      "stat_class": "183"
+    }
+  ]
+}

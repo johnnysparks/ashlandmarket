@@ -1,0 +1,15 @@
+{
+  "account": "10119685",
+  "maptaxlot": "391E25A000113",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MANF STRCT",
+      "sqft": 1188,
+      "year_built": 1986,
+      "description": "Double wide",
+      "stat_class": "942"
+    }
+  ]
+}

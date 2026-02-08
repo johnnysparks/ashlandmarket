@@ -1,0 +1,14 @@
+{
+  "account": "10088181",
+  "maptaxlot": "391E15BA00600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2280,
+      "description": "Restaurant",
+      "stat_class": "553"
+    }
+  ]
+}

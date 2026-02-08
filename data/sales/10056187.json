@@ -1,0 +1,19 @@
+{
+  "account": "10056187",
+  "maptaxlot": "391E05DA04900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 30949,
+      "description": "Nursing Home",
+      "stat_class": "643"
+    },
+    {
+      "type": "COMML IMP",
+      "description": "MISC COMMERCIAL",
+      "stat_class": "650"
+    }
+  ]
+}

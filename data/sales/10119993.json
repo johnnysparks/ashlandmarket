@@ -1,0 +1,20 @@
+{
+  "account": "10119993",
+  "maptaxlot": "391E240003700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "MANF STRCT",
+      "sqft": 1400,
+      "year_built": 1999,
+      "description": "Double wide",
+      "stat_class": "952"
+    }
+  ]
+}

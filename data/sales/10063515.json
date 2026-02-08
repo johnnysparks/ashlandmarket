@@ -1,0 +1,15 @@
+{
+  "account": "10063515",
+  "maptaxlot": "391E09AC15300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 15088,
+      "year_built": 2003,
+      "description": "Fire Station",
+      "stat_class": "690"
+    }
+  ]
+}

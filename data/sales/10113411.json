@@ -1,0 +1,13 @@
+{
+  "account": "10113411",
+  "maptaxlot": "391E04A000200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Class 1 MH Park",
+      "stat_class": "571"
+    }
+  ]
+}

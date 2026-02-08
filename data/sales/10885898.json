@@ -1,0 +1,14 @@
+{
+  "account": "10885898",
+  "maptaxlot": "391E04AD00204",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 6336,
+      "description": "Retirement Center",
+      "stat_class": "642"
+    }
+  ]
+}

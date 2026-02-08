@@ -1,0 +1,14 @@
+{
+  "account": "10080614",
+  "maptaxlot": "391E14AA07300",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1192,
+      "description": "Truck Terminal",
+      "stat_class": "562"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "account": "10966069",
+  "maptaxlot": "391E09AB06605",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 10750,
+      "year_built": 2022,
+      "description": "WAREHOUSE/MANUFTRG",
+      "stat_class": "610"
+    }
+  ]
+}

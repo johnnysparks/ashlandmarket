@@ -1,0 +1,13 @@
+{
+  "account": "10577846",
+  "maptaxlot": "391E09CD02104",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    }
+  ]
+}

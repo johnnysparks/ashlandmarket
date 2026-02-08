@@ -12,10 +12,10 @@ PARCELS_JSON = DATA_DIR / "parcels.json"
 
 # ── Jackson County PDO URLs ────────────────────────────────────────────────
 PDO_BASE = "https://pdo.jacksoncountyor.gov/pdo"
-PDO_SALES_URL = f"{PDO_BASE}/sales.cfm"       # ?account={{ACCOUNT_ID}}
-PDO_DETAIL_URL = f"{PDO_BASE}/detail.cfm"      # ?account={{ACCOUNT_ID}}
-PDO_PERMIT_URL = f"{PDO_BASE}/permit.cfm"      # ?account={{ACCOUNT_ID}}
-PDO_TEXT_URL = f"{PDO_BASE}/index.cfm"          # ?bTextOnly=True
+PDO_SALES_URL = f"{PDO_BASE}/sales.cfm"                  # ?account={{ACCOUNT_ID}}
+PDO_DETAIL_URL = f"{PDO_BASE}/Ora_asmt_details.cfm"      # ?account={{ACCOUNT_ID}} — richest data source
+PDO_PERMIT_URL = f"{PDO_BASE}/permit.cfm"                 # ?account={{ACCOUNT_ID}}
+PDO_TEXT_URL = f"{PDO_BASE}/index.cfm"                    # ?bTextOnly=True
 
 # ── PSO (Assessor Property Search) ────────────────────────────────────────
 PSO_BASE = "https://apps.jacksoncountyor.gov/PSO"

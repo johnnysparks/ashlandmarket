@@ -1,0 +1,29 @@
+{
+  "account": "10101976",
+  "maptaxlot": "391E15D001500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2343,
+      "year_built": 2019,
+      "description": "Two story",
+      "stat_class": "152"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1272,
+      "year_built": 2019,
+      "description": "Two story",
+      "stat_class": "152"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1013,
+      "year_built": 2021,
+      "description": "Area over Garage/Shop",
+      "stat_class": "147"
+    }
+  ]
+}

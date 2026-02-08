@@ -1,0 +1,15 @@
+{
+  "account": "10592977",
+  "maptaxlot": "391E04DC03505",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 8848,
+      "year_built": 1988,
+      "description": "MIXED APTS WITH COMMERCIAL",
+      "stat_class": "539"
+    }
+  ]
+}

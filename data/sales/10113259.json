@@ -1,0 +1,22 @@
+{
+  "account": "10113259",
+  "maptaxlot": "391E030001600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1098,
+      "year_built": 1931,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1056,
+      "year_built": 1960,
+      "description": "Utility Bldg",
+      "stat_class": "853"
+    }
+  ]
+}

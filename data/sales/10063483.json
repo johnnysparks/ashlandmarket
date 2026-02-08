@@ -1,0 +1,15 @@
+{
+  "account": "10063483",
+  "maptaxlot": "391E09AC14900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1470,
+      "year_built": 1890,
+      "description": "TRIPLEX CLASS 5 UPPER LEVELS",
+      "stat_class": "352"
+    }
+  ]
+}

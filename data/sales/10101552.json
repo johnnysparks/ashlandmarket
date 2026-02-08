@@ -1,0 +1,22 @@
+{
+  "account": "10101552",
+  "maptaxlot": "391E110001201",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "FARM BLDG",
+      "sqft": 1624,
+      "year_built": 2009,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 120,
+      "year_built": 2009,
+      "description": "GP Shed",
+      "stat_class": "860"
+    }
+  ]
+}

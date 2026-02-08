@@ -1,0 +1,36 @@
+{
+  "account": "10782571",
+  "maptaxlot": "391E09AB06500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2952,
+      "year_built": 2007,
+      "description": "MIXED APTS WITH COMMERCIAL",
+      "stat_class": "539"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 100,
+      "year_built": 2012,
+      "description": "MISC COMMERCIAL",
+      "stat_class": "650"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 207,
+      "year_built": 2015,
+      "description": "MISC COMMERCIAL",
+      "stat_class": "650"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 501,
+      "year_built": 2023,
+      "description": "MIXED APTS WITH COMMERCIAL",
+      "stat_class": "539"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "account": "10962000",
+  "maptaxlot": "391E09AB02101",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1568,
+      "year_built": 1990,
+      "description": "Office, Converted SFR",
+      "stat_class": "543"
+    }
+  ]
+}

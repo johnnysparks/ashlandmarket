@@ -1,0 +1,15 @@
+{
+  "account": "10064714",
+  "maptaxlot": "391E09BA04100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1474,
+      "year_built": 1976,
+      "description": "DUPLEX CLASS 3 SINGLE STORY",
+      "stat_class": "231"
+    }
+  ]
+}

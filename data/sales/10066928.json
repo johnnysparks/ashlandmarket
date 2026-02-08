@@ -1,0 +1,14 @@
+{
+  "account": "10066928",
+  "maptaxlot": "391E09BB11000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2354,
+      "description": "Converted SFR",
+      "stat_class": "507"
+    }
+  ]
+}

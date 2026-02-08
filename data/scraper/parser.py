@@ -256,184 +256,228 @@ def _extract_jv_from_row(
     return None
 
 
-# ── Property Detail Parser ─────────────────────────────────────────────────
+# ── Property Detail Parser (Ora_asmt_details.cfm) ────────────────────────
 
 def parse_detail(html: str) -> dict[str, Any]:
     """
-    Parse property details from a PDO detail page.
+    Parse property details from the Ora_asmt_details.cfm page.
 
-    Extracts:
-    - sqft_living, sqft_lot, year_built
-    - assessed_value (real market value)
-    - improvements list (type, sqft, year_built, condition)
-    - owner info
+    This is the richest PDO data source. It contains:
+    - Account info (account number, maptaxlot, owner)
+    - Situs address
+    - Land info (acreage, tax code, property class)
+    - Last sale price and date (AS400 or ORCATS source)
+    - Market Value Summary (RMV, M5, MAV, AV)
+    - Improvements (building #, year built, type, sqft)
     """
     soup = BeautifulSoup(html, "lxml")
     detail: dict[str, Any] = {}
 
-    # Extract all text content for regex-based parsing
-    text = soup.get_text()
+    # ── Last Sale (from "Sales Data" section) ──
+    _parse_last_sale(soup, detail)
 
-    # ── Key-value pairs from tables or definition lists ──
-    kv_pairs = _extract_key_value_pairs(soup)
-
-    # Map common field names to our schema
-    field_mappings: dict[str, list[str]] = {
-        "sqft_living": ["living area", "livable sqft", "living sqft", "bldg sqft",
-                         "building sqft", "total living", "finished sqft"],
-        "sqft_lot": ["lot size", "lot sqft", "land sqft", "lot area", "acres",
-                      "land area", "total land"],
-        "year_built": ["year built", "yr built", "year blt", "effective year"],
-        "assessed_value": ["real market", "rmv", "total rmv", "real market value",
-                            "assessed value", "total value", "market value"],
-        "owner": ["owner", "fee owner", "property owner"],
-        "situs": ["situs", "situs address", "property address", "address"],
-        "land_use": ["land use", "property class", "prop class", "use code"],
-        "zoning": ["zoning", "zone"],
-    }
-
-    for field, keywords in field_mappings.items():
-        for kw in keywords:
-            for key, value in kv_pairs.items():
-                if kw in key.lower():
-                    if field in ("sqft_living", "sqft_lot"):
-                        parsed = _parse_int(value)
-                        if parsed and parsed > 0:
-                            detail[field] = parsed
-                            break
-                    elif field == "year_built":
-                        parsed = _parse_int(value)
-                        if parsed and 1800 <= parsed <= 2030:
-                            detail[field] = parsed
-                            break
-                    elif field == "assessed_value":
-                        parsed = _parse_price(value)
-                        if parsed and parsed > 0:
-                            detail[field] = parsed
-                            break
-                    else:
-                        if value:
-                            detail[field] = value
-                            break
-            if field in detail:
-                break
+    # ── Market Value Summary ──
+    _parse_market_values(soup, detail)
 
     # ── Improvements table ──
-    detail["improvements"] = _parse_improvements(soup)
+    detail["improvements"] = _parse_improvements_asmt(soup)
 
-    # ── Fallback: regex extraction from full text ──
-    if "sqft_living" not in detail:
-        match = re.search(r"(?:living|bldg|building)\s*(?:area|sqft|sq\s*ft)[:\s]*([0-9,]+)", text, re.I)
-        if match:
-            detail["sqft_living"] = _parse_int(match.group(1))
+    # ── Get year_built and sqft_living from improvements ──
+    if detail["improvements"]:
+        # Use the first residential improvement
+        for imp in detail["improvements"]:
+            imp_type = (imp.get("type") or "").upper()
+            if imp_type in ("RESIDENCE", "DWELLING", "MULTI-FAMILY",
+                            "MANUFACTURED", "CONDO", "TOWNHOUSE"):
+                if imp.get("year_built") and "year_built" not in detail:
+                    detail["year_built"] = imp["year_built"]
+                if imp.get("sqft") and "sqft_living" not in detail:
+                    detail["sqft_living"] = imp["sqft"]
+                break
+        # Fallback: use any improvement with sqft
+        if "sqft_living" not in detail:
+            for imp in detail["improvements"]:
+                if imp.get("sqft") and imp["sqft"] > 0:
+                    detail["sqft_living"] = imp["sqft"]
+                    break
+        if "year_built" not in detail:
+            for imp in detail["improvements"]:
+                if imp.get("year_built"):
+                    detail["year_built"] = imp["year_built"]
+                    break
 
-    if "year_built" not in detail:
-        match = re.search(r"(?:year|yr)\s*(?:built|blt)[:\s]*(\d{4})", text, re.I)
-        if match:
-            yr = int(match.group(1))
-            if 1800 <= yr <= 2030:
-                detail["year_built"] = yr
-
-    if "assessed_value" not in detail:
-        match = re.search(r"(?:real\s*market|rmv|total\s*rmv|assessed)[:\s]*\$?([0-9,]+)", text, re.I)
-        if match:
-            detail["assessed_value"] = _parse_price(match.group(1))
+    # ── Acreage (from Land Info section) ──
+    for td in soup.find_all("td", class_="asmt_hd"):
+        if _clean_text(td.get_text()).lower() == "acreage":
+            val_td = td.find_next_sibling("td", class_="asmt_info")
+            if val_td:
+                acreage = _parse_float(val_td.get_text())
+                if acreage and acreage > 0:
+                    detail["sqft_lot"] = int(round(acreage * 43560))
+            break
 
     return detail
 
 
-def _extract_key_value_pairs(soup: BeautifulSoup) -> dict[str, str]:
-    """Extract key-value pairs from tables and definition lists."""
-    pairs: dict[str, str] = {}
-
-    # From tables with two columns (label, value)
-    for table in soup.find_all("table"):
-        rows = table.find_all("tr")
-        for row in rows:
-            cells = row.find_all(["td", "th"])
-            if len(cells) == 2:
-                key = _clean_text(cells[0].get_text())
-                val = _clean_text(cells[1].get_text())
-                if key and val:
-                    pairs[key] = val
-            elif len(cells) >= 4:
-                # Some pages use label-value-label-value in a single row
-                for i in range(0, len(cells) - 1, 2):
-                    key = _clean_text(cells[i].get_text())
-                    val = _clean_text(cells[i + 1].get_text())
-                    if key and val:
-                        pairs[key] = val
-
-    # From definition lists
-    for dl in soup.find_all("dl"):
-        dts = dl.find_all("dt")
-        dds = dl.find_all("dd")
-        for dt, dd in zip(dts, dds):
-            key = _clean_text(dt.get_text())
-            val = _clean_text(dd.get_text())
-            if key and val:
-                pairs[key] = val
-
-    # From labeled spans/divs (e.g., <span class="label">Year Built:</span> <span>1952</span>)
-    for label in soup.find_all(["span", "div", "b", "strong"],
-                                string=re.compile(r":\s*$")):
-        key = _clean_text(label.get_text()).rstrip(":")
-        next_sib = label.find_next_sibling()
-        if next_sib:
-            val = _clean_text(next_sib.get_text())
-            if key and val:
-                pairs[key] = val
-
-    return pairs
-
-
-def _parse_improvements(soup: BeautifulSoup) -> list[dict[str, Any]]:
-    """Parse the improvements/structures table from a detail page."""
-    improvements: list[dict[str, Any]] = []
-
-    for table in soup.find_all("table"):
-        rows = table.find_all("tr")
-        if len(rows) < 2:
-            continue
-
-        headers = [_clean_text(th.get_text()).lower()
-                    for th in rows[0].find_all(["th", "td"])]
-
-        # Check if this looks like an improvements table
-        is_impr = any(
-            keyword in " ".join(headers)
-            for keyword in ["improvement", "structure", "dwelling", "building",
-                             "bldg", "condition"]
-        )
-        if not is_impr:
-            continue
-
-        col_map = _map_columns(headers, {
-            "type": ["type", "improvement", "structure", "description", "bldg"],
-            "sqft": ["sqft", "sq ft", "area", "size", "living"],
-            "year": ["year", "yr built", "year built"],
-            "condition": ["condition", "cond", "grade"],
-        })
-
-        for row in rows[1:]:
-            cells = [_clean_text(td.get_text()) for td in row.find_all("td")]
-            if not cells or all(not c for c in cells):
+def _parse_last_sale(soup: BeautifulSoup, detail: dict[str, Any]) -> None:
+    """Extract last sale price and date from the Sales Data section."""
+    # Find "Last Sale" header cell
+    for td in soup.find_all("td", class_="asmt_hd"):
+        text = _clean_text(td.get_text())
+        if "last sale" in text.lower():
+            # The data row follows in the next <tr>
+            header_row = td.find_parent("tr")
+            if not header_row:
+                continue
+            data_row = header_row.find_next_sibling("tr")
+            if not data_row:
                 continue
 
-            impr: dict[str, Any] = {}
-            if "type" in col_map and col_map["type"] < len(cells):
-                impr["type"] = cells[col_map["type"]]
-            if "sqft" in col_map and col_map["sqft"] < len(cells):
-                impr["sqft"] = _parse_int(cells[col_map["sqft"]])
-            if "year" in col_map and col_map["year"] < len(cells):
-                yr = _parse_int(cells[col_map["year"]])
-                if yr and 1800 <= yr <= 2030:
-                    impr["year_built"] = yr
-            if "condition" in col_map and col_map["condition"] < len(cells):
-                impr["condition"] = cells[col_map["condition"]]
+            cells = data_row.find_all("td", class_="asmt_info")
+            if len(cells) >= 2:
+                # First cell: price, second cell: date
+                price = _parse_price(cells[0].get_text())
+                date = _parse_date(cells[1].get_text())
+                if price and price > 0:
+                    detail["last_sale_price"] = price
+                    detail["last_sale_date"] = date
+            return
 
-            if impr.get("type"):
-                improvements.append(impr)
+
+def _parse_market_values(soup: BeautifulSoup, detail: dict[str, Any]) -> None:
+    """Extract total RMV/AV from Market Value Summary table."""
+    # Find the MarketTable by id or by header text
+    market_table = soup.find("table", id="MarketTable")
+    if not market_table:
+        # Fallback: find by header text
+        for th in soup.find_all("th", class_="asmt_hd"):
+            if "market value summary" in _clean_text(th.get_text()).lower():
+                parent_tr = th.find_parent("tr")
+                if parent_tr:
+                    next_tr = parent_tr.find_next_sibling("tr")
+                    if next_tr:
+                        market_table = next_tr.find("table")
+                break
+
+    if not market_table:
+        return
+
+    # Find the "Total:" row
+    for row in market_table.find_all("tr"):
+        cells = row.find_all("td")
+        cell_texts = [_clean_text(c.get_text()) for c in cells]
+        if any("total" in t.lower() for t in cell_texts):
+            # Parse RMV, M5, MAV, AV from the total row
+            # Layout: [PSO link, "Total:", RMV, M5, MAV, AV]
+            values = []
+            for c in cells:
+                text = _clean_text(c.get_text())
+                val = _parse_price(text)
+                if val is not None and val >= 0:
+                    values.append(val)
+
+            if values:
+                # RMV is typically the first/largest value
+                detail["assessed_value"] = max(values) if values else None
+            return
+
+
+def _parse_improvements_asmt(soup: BeautifulSoup) -> list[dict[str, Any]]:
+    """Parse improvements from the Ora_asmt_details.cfm Improvements section.
+
+    The table has columns:
+    Building # | Code Area | Year Built | Eff Year | Stat Class |
+    Description | Type | SqFt | % Complete
+    """
+    improvements: list[dict[str, Any]] = []
+
+    # Find the "Improvements" header
+    impr_header = None
+    for th in soup.find_all("th", class_="asmt_hd"):
+        text = _clean_text(th.get_text())
+        if text.lower() == "improvements":
+            impr_header = th
+            break
+
+    if not impr_header:
+        return improvements
+
+    # Find the header row with "Building #"
+    parent = impr_header.find_parent("table")
+    if not parent:
+        return improvements
+
+    # Look for the column headers row
+    header_row = None
+    col_indices: dict[str, int] = {}
+    for row in parent.find_all("tr"):
+        cells = row.find_all("td", class_="asmt_hd")
+        if not cells:
+            continue
+        texts = [_clean_text(c.get_text()).lower() for c in cells]
+        if any("building" in t for t in texts) and any("sqft" in t for t in texts):
+            header_row = row
+            for i, t in enumerate(texts):
+                if "building" in t:
+                    col_indices["building"] = i
+                elif "year" in t and "eff" not in t:
+                    col_indices["year_built"] = i
+                elif "eff" in t and "year" in t:
+                    col_indices["eff_year"] = i
+                elif "description" in t:
+                    col_indices["description"] = i
+                elif "type" in t:
+                    col_indices["type"] = i
+                elif "sqft" in t:
+                    col_indices["sqft"] = i
+                elif "stat" in t and "class" in t:
+                    col_indices["stat_class"] = i
+            break
+
+    if not header_row or not col_indices:
+        return improvements
+
+    # Parse data rows after the header
+    for row in header_row.find_next_siblings("tr"):
+        cells = row.find_all("td", class_="asmt_info")
+        if not cells:
+            # Stop at next header/section
+            if row.find("th"):
+                break
+            continue
+
+        texts = [_clean_text(c.get_text()) for c in cells]
+        if not texts or all(not t for t in texts):
+            continue
+
+        impr: dict[str, Any] = {}
+
+        idx = col_indices.get("type")
+        if idx is not None and idx < len(texts):
+            impr["type"] = texts[idx]
+
+        idx = col_indices.get("sqft")
+        if idx is not None and idx < len(texts):
+            sqft = _parse_int(texts[idx])
+            if sqft and sqft > 0:
+                impr["sqft"] = sqft
+
+        idx = col_indices.get("year_built")
+        if idx is not None and idx < len(texts):
+            yr = _parse_int(texts[idx])
+            if yr and 1800 <= yr <= 2030:
+                impr["year_built"] = yr
+
+        idx = col_indices.get("description")
+        if idx is not None and idx < len(texts):
+            impr["description"] = texts[idx]
+
+        idx = col_indices.get("stat_class")
+        if idx is not None and idx < len(texts):
+            impr["stat_class"] = texts[idx]
+
+        if impr.get("type") or impr.get("sqft"):
+            improvements.append(impr)
 
     return improvements
 

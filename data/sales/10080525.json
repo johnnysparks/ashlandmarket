@@ -1,0 +1,19 @@
+{
+  "account": "10080525",
+  "maptaxlot": "391E11D001202",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1160,
+      "description": "Service Station",
+      "stat_class": "581"
+    },
+    {
+      "type": "COMML IMP",
+      "description": "EXEMPT",
+      "stat_class": "685"
+    }
+  ]
+}

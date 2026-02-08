@@ -1,0 +1,29 @@
+{
+  "account": "10102672",
+  "maptaxlot": "391E230002500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3836,
+      "year_built": 1963,
+      "description": "Two story",
+      "stat_class": "142"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1045,
+      "year_built": 1963,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 8250,
+      "year_built": 2010,
+      "description": "Metal Component Bldg",
+      "stat_class": "852"
+    }
+  ]
+}

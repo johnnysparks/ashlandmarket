@@ -1,0 +1,21 @@
+{
+  "account": "10664248",
+  "maptaxlot": "391E15AB08001",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1035,
+      "description": "SFR/Duplex",
+      "stat_class": "536"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1062,
+      "year_built": 1947,
+      "description": "One story",
+      "stat_class": "131"
+    }
+  ]
+}

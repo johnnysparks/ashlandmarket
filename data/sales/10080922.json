@@ -1,0 +1,21 @@
+{
+  "account": "10080922",
+  "maptaxlot": "391E14BA01500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 26670,
+      "description": "Supermarket",
+      "stat_class": "503"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 192,
+      "year_built": 2022,
+      "description": "Supermarket",
+      "stat_class": "503"
+    }
+  ]
+}

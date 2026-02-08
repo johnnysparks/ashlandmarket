@@ -38,8 +38,12 @@ logger = logging.getLogger(__name__)
 
 
 def cmd_seed(args: argparse.Namespace) -> None:
-    """Step 1: Fetch Ashland parcel seed data from ArcGIS REST services."""
-    from gis_fetcher import fetch_ashland_parcels
+    """Step 1: Fetch Ashland parcel seed data from ArcGIS REST services.
+
+    Fetches geometry from ODOT, then enriches with account numbers,
+    addresses, and values from JCGIS AGOL.
+    """
+    from gis_fetcher import enrich_parcels, fetch_agol_enrichment, fetch_ashland_parcels
 
     logger.info("=== Step 1: Fetching parcel seed data ===")
     raw_parcels = fetch_ashland_parcels()
@@ -74,6 +78,15 @@ def cmd_seed(args: argparse.Namespace) -> None:
         }
         parcels.append(parcel)
 
+    # Enrich with JCGIS AGOL data (account numbers, addresses, values)
+    logger.info("Enriching parcels with JCGIS AGOL data...")
+    enrichment = fetch_agol_enrichment()
+    if enrichment:
+        parcels, match_count = enrich_parcels(parcels, enrichment)
+        logger.info("Enriched %d parcels with AGOL data", match_count)
+    else:
+        logger.warning("Could not fetch AGOL enrichment data")
+
     _write_parcels_json(parcels)
     logger.info("Seed complete: %d parcels written to %s", len(parcels), PARCELS_JSON)
 
@@ -81,10 +94,10 @@ def cmd_seed(args: argparse.Namespace) -> None:
 def cmd_scrape(args: argparse.Namespace) -> None:
     """Step 2: Scrape PDO pages for all parcels in parcels.json.
 
-    Uses account numbers when available, falls back to maptaxlot for PDO lookup.
-    Currently only the sales page supports maptaxlot lookup.
+    Uses account numbers when available. The Ora_asmt_details.cfm page
+    is the richest data source (has improvements, values, sales, addresses).
     """
-    from pdo_scraper import fetch_page, is_cached, print_progress_summary
+    from pdo_scraper import fetch_page, is_cached
 
     logger.info("=== Step 2: Scraping PDO pages ===")
     parcels = _load_parcels_json()
@@ -92,56 +105,50 @@ def cmd_scrape(args: argparse.Namespace) -> None:
         logger.error("No parcels found. Run 'seed' first.")
         sys.exit(1)
 
-    # Identify parcels with account numbers vs maptaxlot only
+    # Identify parcels with account numbers
     with_account = [p for p in parcels if p.get("account")]
-    maptaxlot_only = [p for p in parcels if not p.get("account") and p.get("maptaxlot")]
-    logger.info(
-        "%d parcels with account, %d with maptaxlot only",
-        len(with_account), len(maptaxlot_only),
-    )
+    logger.info("%d parcels with account numbers", len(with_account))
 
-    # For account-based parcels, scrape all page types
-    accounts = [p["account"] for p in with_account]
-    if accounts:
-        logger.info("Scraping %d accounts...", len(accounts))
-        print_progress_summary(accounts)
-
-    page_types = None
+    page_types = ["detail"]  # Ora_asmt_details.cfm is the primary source
     if args.pages:
         page_types = args.pages.split(",")
 
     import time
     from config import REQUEST_DELAY_SEC
 
-    total = len(with_account) + len(maptaxlot_only)
-    done = 0
+    # Filter to uncached parcels (unless --force)
+    if not args.force:
+        targets = [p for p in with_account
+                   if any(not is_cached(p["account"], pt) for pt in page_types)]
+        logger.info("%d parcels need scraping (not yet cached)", len(targets))
+    else:
+        targets = with_account
 
-    # Scrape account-based parcels
-    for p in with_account:
+    # Apply limit if specified
+    if args.limit > 0:
+        targets = targets[: args.limit]
+        logger.info("Limited to %d parcels", len(targets))
+
+    total = len(targets)
+    done = 0
+    fetched = 0
+
+    for p in targets:
         acct = p["account"]
-        types = page_types or ["sales"]  # Only sales works reliably on PDO
-        for pt in types:
+        for pt in page_types:
             if not args.force and is_cached(acct, pt):
                 continue
-            fetch_page(acct, pt, force=args.force)
+            result = fetch_page(acct, pt, force=args.force)
+            if result:
+                fetched += 1
             time.sleep(REQUEST_DELAY_SEC)
         done += 1
-        if done % 50 == 0:
-            logger.info("Progress: %d/%d (%.1f%%)", done, total, 100 * done / total)
+        if done % 25 == 0:
+            logger.info("Progress: %d/%d (%.1f%%), %d new pages fetched",
+                         done, total, 100 * done / total, fetched)
 
-    # Scrape maptaxlot-only parcels (sales page only — it supports maptaxlot param)
-    for p in maptaxlot_only:
-        mt = p["maptaxlot"]
-        if not args.force and is_cached(mt, "sales"):
-            done += 1
-            continue
-        fetch_page("", "sales", force=args.force, maptaxlot=mt)
-        time.sleep(REQUEST_DELAY_SEC)
-        done += 1
-        if done % 50 == 0:
-            logger.info("Progress: %d/%d (%.1f%%)", done, total, 100 * done / total)
-
-    logger.info("Scraping complete: %d parcels processed.", total)
+    logger.info("Scraping complete: %d parcels processed, %d new pages fetched.",
+                total, fetched)
 
 
 def cmd_parse(args: argparse.Namespace) -> None:
@@ -288,7 +295,7 @@ def _update_parcel_from_parsed(
     parsed: dict[str, Any],
 ) -> None:
     """Update a parcel record with data extracted from PDO pages."""
-    # From detail page
+    # From detail page (Ora_asmt_details.cfm)
     if parsed.get("sqft_living"):
         parcel["sqft_living"] = parsed["sqft_living"]
     if parsed.get("sqft_lot"):
@@ -298,26 +305,29 @@ def _update_parcel_from_parsed(
     if parsed.get("assessed_value"):
         parcel["assessed_value"] = parsed["assessed_value"]
 
-    # From sales history
-    sales = parsed.get("sales", [])
-    parcel["num_sales"] = len(sales)
+    # Last sale — may come directly from detail page or from sales list
+    if parsed.get("last_sale_price"):
+        parcel["last_sale_price"] = parsed["last_sale_price"]
+        parcel["last_sale_date"] = parsed.get("last_sale_date")
+    else:
+        # Fallback: from sales history list
+        sales = parsed.get("sales", [])
+        for sale in sales:
+            price = sale.get("price")
+            if price and price > 0:
+                parcel["last_sale_price"] = price
+                parcel["last_sale_date"] = sale.get("date")
+                break
 
-    # Find last sale with a price > 0
-    for sale in sales:
-        price = sale.get("price")
-        if price and price > 0:
-            parcel["last_sale_price"] = price
-            parcel["last_sale_date"] = sale.get("date")
-            break
+    # Sales and permits counts
+    parcel["num_sales"] = len(parsed.get("sales", []))
+    parcel["num_permits"] = len(parsed.get("permits", []))
 
     # Compute $/sqft
     if parcel.get("last_sale_price") and parcel.get("sqft_living"):
         parcel["price_per_sqft"] = round(
             parcel["last_sale_price"] / parcel["sqft_living"], 2,
         )
-
-    # From permits
-    parcel["num_permits"] = len(parsed.get("permits", []))
 
 
 # ── CLI ────────────────────────────────────────────────────────────────────
@@ -340,6 +350,8 @@ def main() -> None:
                              help="Re-scrape even if cached")
     sub_scrape.add_argument("--pages", type=str, default=None,
                              help="Comma-separated page types: sales,detail,permit")
+    sub_scrape.add_argument("--limit", type=int, default=0,
+                             help="Max number of parcels to scrape (0=all)")
     sub_scrape.set_defaults(func=cmd_scrape)
 
     # parse

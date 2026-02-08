@@ -1,0 +1,29 @@
+{
+  "account": "10067071",
+  "maptaxlot": "391E09BB12500",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 755,
+      "year_built": 1884,
+      "description": "Converted SFR",
+      "stat_class": "507"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 755,
+      "year_built": 1884,
+      "description": "Converted SFR",
+      "stat_class": "507"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 420,
+      "year_built": 2016,
+      "description": "Converted SFR",
+      "stat_class": "507"
+    }
+  ]
+}

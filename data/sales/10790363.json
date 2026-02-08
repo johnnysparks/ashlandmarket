@@ -1,0 +1,14 @@
+{
+  "account": "10790363",
+  "maptaxlot": "391E09BD90009",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1188,
+      "description": "Downtown Commercial",
+      "stat_class": "506"
+    }
+  ]
+}

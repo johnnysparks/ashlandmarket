@@ -1,0 +1,29 @@
+{
+  "account": "10580303",
+  "maptaxlot": "391E240000723",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3145,
+      "year_built": 1981,
+      "description": "One story",
+      "stat_class": "141"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 396,
+      "year_built": 1996,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1925,
+      "year_built": 1996,
+      "description": "Horse Stables",
+      "stat_class": "811"
+    }
+  ]
+}

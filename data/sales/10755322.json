@@ -1,0 +1,14 @@
+{
+  "account": "10755322",
+  "maptaxlot": "391E11CD01600",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 25847,
+      "description": "NON-PROFIT HOUSE/CARE FOR ELDERLY",
+      "stat_class": "538"
+    }
+  ]
+}

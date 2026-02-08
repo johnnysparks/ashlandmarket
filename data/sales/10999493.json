@@ -1,0 +1,42 @@
+{
+  "account": "10999493",
+  "maptaxlot": "391E100000102",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 792,
+      "year_built": 1940,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1228,
+      "year_built": 1920,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 653,
+      "year_built": 1940,
+      "description": "One story",
+      "stat_class": "131"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 8064,
+      "year_built": 2008,
+      "description": "Hay Cover/Roof Cover",
+      "stat_class": "871"
+    },
+    {
+      "type": "RESIDENCE",
+      "year_built": 1980,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    }
+  ]
+}

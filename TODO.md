@@ -17,26 +17,31 @@
 ### 1.2 Parcel Seed List
 - [x] Research Jackson County GIS data sources for Ashland parcel list
 - [x] Fetch 10,317 Ashland parcels from ODOT ArcGIS (maptaxlot + polygon centroids)
-- [~] Get account numbers (county spatial server intermittently down — `spatial.jacksoncountyor.gov` returns 502)
+- [x] Get account numbers via JCGIS AGOL (10,592 accounts matched via maptaxlot normalization)
 - [x] Output initial `data/parcels.json` with maptaxlot, lat, lng (other fields null pending scrape)
+- [x] Enrich parcels with AGOL data: addresses, year_built, assessed values, lot acreage
 
 > **Note:** ODOT endpoint provides maptaxlot + geometry but no account numbers or addresses.
-> The JCGIS AGOL hosted layer has the fields but returns null for non-geometry attributes.
-> The county spatial server (`spatial.jacksoncountyor.gov`) has full data but is intermittently down.
-> PDO `sales.cfm` supports both `?account=` and `?maptaxlot=` parameters.
-> When the county server comes back, re-run `python jaco_scraper.py seed` to get full data.
+> JCGIS AGOL returns null attributes UNLESS you filter `ACCOUNT IS NOT NULL`. With this filter,
+> it returns ACCOUNT, SITEADD, YEARBLT, IMPVALUE, LANDVALUE, ACREAGE for ~10,900 Ashland parcels.
+> AGOL uses compact maptaxlot format; `gis_fetcher.normalize_maptaxlot()` converts to ODOT 13-char format.
+> County spatial server (`spatial.jacksoncountyor.gov`) remains down (502) as of Feb 2026.
 
 ### 1.3 Scraper
-- [x] Build scraper for PDO sales page (`/pdo/sales.cfm?account=...` or `?maptaxlot=...`)
-- [x] Build scraper for PDO property detail page (note: `detail.cfm` returns 404 — URL may have changed)
-- [x] Build scraper for PDO permit page (note: `permit.cfm` returns 404 — URL may have changed)
+- [x] Build scraper for PDO sales page (`/pdo/sales.cfm?account=...`)
+- [x] Build scraper for PDO property detail page (`/pdo/Ora_asmt_details.cfm?account=...`)
 - [x] Add rate limiting (0.75s between requests)
 - [x] Add raw HTML caching (don't re-scrape what we have)
 - [x] Add resume capability (skip already-cached accounts)
+- [x] Add `--limit` flag for batch scraping
+
+> **Note:** `Ora_asmt_details.cfm` is the richest data source — contains sales, improvements,
+> market values, land info all in one page. The old `detail.cfm` and `permit.cfm` return 404.
+> `sales.cfm` returns 0 records for most accounts (data may have migrated to ORCATS).
 
 ### 1.4 Parser
-- [x] Parse sales history from cached HTML → structured JSON (tested on real data)
-- [~] Parse property details (sqft, lot size, year built, improvements) — parser ready, needs working detail page URL
+- [x] Parse property details from `Ora_asmt_details.cfm` (sqft, lot size, year built, improvements, sale price)
+- [x] Parse sales history from sales page (ORCATS + JV table formats)
 - [~] Parse permit history — parser ready, needs working permit page URL
 - [x] Write per-account JSON files to `data/sales/{account}.json`
 - [x] Update `data/parcels.json` master index with computed fields (price_per_sqft, etc.)

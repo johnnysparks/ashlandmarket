@@ -1,0 +1,15 @@
+{
+  "account": "10077549",
+  "maptaxlot": "391E10CB07900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 3072,
+      "year_built": 1987,
+      "description": "FOURPLEX CLASS 3 SGL STORY",
+      "stat_class": "431"
+    }
+  ]
+}

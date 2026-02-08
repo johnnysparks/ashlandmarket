@@ -2,14 +2,17 @@
 Fetch Ashland parcel seed data from ArcGIS REST services.
 
 Strategy:
-1. Try ODOT's ArcGIS service (confirmed working, has Query support)
-2. Try Jackson County's spatial server endpoints (may be intermittently down)
-3. Extract maptaxlot IDs and compute polygon centroids for lat/lng
-4. Filter to Ashland parcels using the 391E map prefix
+1. Fetch geometry + maptaxlot from ODOT (always reliable)
+2. Enrich with account numbers, addresses, values from JCGIS AGOL
+   (AGOL has ACCOUNT, SITEADD, YEARBLT, IMPVALUE, LANDVALUE, ACREAGE
+   but only when querying with ACCOUNT IS NOT NULL)
+3. Try Jackson County spatial server as fallback (intermittently down)
+4. Normalize maptaxlot formats between sources (AGOL uses shorter format)
 """
 
 import json
 import logging
+import re
 import time
 from typing import Any
 
@@ -354,9 +357,168 @@ def _filter_ashland(parcels: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return ashland
 
 
+def normalize_maptaxlot(mt: str) -> str:
+    """Normalize a maptaxlot to ODOT 13-char format.
+
+    AGOL uses compact format (e.g. '391E04DB1400') while ODOT pads the tax lot
+    portion to 13 chars total (e.g. '391E04DB01400'). This function converts
+    AGOL format to ODOT format by zero-padding the lot number.
+    """
+    if len(mt) == 13:
+        return mt
+    if len(mt) < 8:
+        return mt  # Too short to normalize
+
+    prefix = mt[:4]  # e.g. '391E'
+    rest = mt[4:]
+
+    m = re.match(r"^(\d{2})([A-Da-d]{0,2})(\d+)$", rest)
+    if not m:
+        return mt
+
+    section = m.group(1)
+    quarter = m.group(2)
+    lot = m.group(3)
+    lot_width = 7 - len(quarter)
+    return prefix + section + quarter + lot.zfill(lot_width)
+
+
+def fetch_agol_enrichment() -> dict[str, dict[str, Any]]:
+    """Fetch account numbers and property data from JCGIS AGOL.
+
+    Returns a dict keyed by normalized maptaxlot containing:
+    account, address, year_built, imp_value, land_value, acreage, owner.
+
+    AGOL has ~10,900 Ashland parcels with populated ACCOUNT fields.
+    """
+    logger.info("Fetching enrichment data from JCGIS AGOL...")
+    out_fields = (
+        "MAPLOT,ACCOUNT,SITEADD,YEARBLT,"
+        "IMPVALUE,LANDVALUE,ACREAGE,FEEOWNER,PROPCLASS,COMMSQFT"
+    )
+
+    all_features = _fetch_all_pages(
+        JCGIS_AGOL,
+        where=f"ACCOUNT IS NOT NULL AND MAPLOT LIKE '{ASHLAND_MAP_PREFIX}%'",
+        out_fields=out_fields,
+        page_size=1000,
+        return_format="json",
+    )
+
+    enrichment: dict[str, dict[str, Any]] = {}
+    for parcel in all_features:
+        raw_mt = parcel.get("maptaxlot", "")
+        if not raw_mt:
+            continue
+
+        norm_mt = normalize_maptaxlot(raw_mt)
+        props = parcel.get("raw_props", {})
+
+        acct = str(props.get("ACCOUNT", "")).strip()
+        if not acct or acct == "0":
+            continue
+
+        impval = props.get("IMPVALUE") or 0
+        landval = props.get("LANDVALUE") or 0
+        acreage = props.get("ACREAGE") or 0
+        yb = props.get("YEARBLT")
+
+        enrichment[norm_mt] = {
+            "account": acct,
+            "address": str(props.get("SITEADD", "")).strip(),
+            "year_built": int(yb) if yb and yb > 0 else None,
+            "assessed_value": int(impval + landval) if (impval + landval) > 0 else None,
+            "sqft_lot": int(round(acreage * 43560)) if acreage > 0 else None,
+            "owner": str(props.get("FEEOWNER", "")).strip(),
+            "prop_class": props.get("PROPCLASS"),
+        }
+        # Also store under raw maptaxlot for direct matches
+        if raw_mt != norm_mt:
+            enrichment[raw_mt] = enrichment[norm_mt]
+
+    logger.info(
+        "AGOL enrichment: %d parcels with account data", len(enrichment)
+    )
+    return enrichment
+
+
+def enrich_parcels(
+    parcels: list[dict[str, Any]],
+    enrichment: dict[str, dict[str, Any]],
+) -> tuple[list[dict[str, Any]], int]:
+    """Merge AGOL enrichment data into parcel records.
+
+    Matches by maptaxlot. Returns (updated_parcels, match_count).
+    """
+    matched = 0
+    seen_mts: set[str] = set()
+
+    for parcel in parcels:
+        mt = parcel.get("maptaxlot", "")
+        if mt:
+            seen_mts.add(mt)
+
+        data = enrichment.get(mt)
+        if not data:
+            continue
+
+        matched += 1
+
+        if data.get("account"):
+            parcel["account"] = data["account"]
+        if data.get("address"):
+            parcel["address"] = data["address"]
+        if data.get("year_built"):
+            parcel["year_built"] = data["year_built"]
+        if data.get("assessed_value"):
+            parcel["assessed_value"] = data["assessed_value"]
+        if data.get("sqft_lot"):
+            parcel["sqft_lot"] = data["sqft_lot"]
+
+    # Add new parcels from AGOL that don't exist in current set
+    new_count = 0
+    for mt, data in enrichment.items():
+        norm = normalize_maptaxlot(mt)
+        if norm in seen_mts or mt in seen_mts:
+            continue
+        seen_mts.add(norm)
+
+        parcel = {
+            "account": data.get("account", ""),
+            "lat": None,
+            "lng": None,
+            "address": data.get("address", ""),
+            "maptaxlot": norm,
+            "sqft_living": None,
+            "sqft_lot": data.get("sqft_lot"),
+            "year_built": data.get("year_built"),
+            "last_sale_price": None,
+            "last_sale_date": None,
+            "price_per_sqft": None,
+            "assessed_value": data.get("assessed_value"),
+            "num_sales": None,
+            "num_permits": None,
+        }
+        parcels.append(parcel)
+        new_count += 1
+
+    logger.info(
+        "Enrichment: matched %d existing parcels, added %d new from AGOL",
+        matched, new_count,
+    )
+    return parcels, matched
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parcels = fetch_ashland_parcels()
     print(f"\nFetched {len(parcels)} Ashland parcels")
     if parcels:
         print("Sample:", json.dumps(parcels[0], indent=2, default=str))
+
+    # Test enrichment
+    enrichment = fetch_agol_enrichment()
+    print(f"\nEnrichment data for {len(enrichment)} parcels")
+    if enrichment:
+        sample_key = next(iter(enrichment))
+        print(f"Sample ({sample_key}):", json.dumps(enrichment[sample_key], indent=2))

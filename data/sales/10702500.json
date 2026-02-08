@@ -1,0 +1,21 @@
+{
+  "account": "10702500",
+  "maptaxlot": "391E10BD04100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1132,
+      "description": "Community Bldg",
+      "stat_class": "692"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 600,
+      "year_built": 2023,
+      "description": "EXEMPT",
+      "stat_class": "685"
+    }
+  ]
+}

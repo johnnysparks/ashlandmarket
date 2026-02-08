@@ -1,0 +1,28 @@
+{
+  "account": "10631660",
+  "maptaxlot": "391E240000725",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "year_built": 1970,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 5760,
+      "year_built": 2018,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 5760,
+      "year_built": 2018,
+      "description": "Commercial Greenhouse",
+      "stat_class": "830"
+    }
+  ]
+}

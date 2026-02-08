@@ -1,0 +1,14 @@
+{
+  "account": "10117025",
+  "maptaxlot": "391E14AC00200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 18224,
+      "description": "Fabricated Metal Prod.",
+      "stat_class": "770"
+    }
+  ]
+}

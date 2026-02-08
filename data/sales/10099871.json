@@ -1,0 +1,28 @@
+{
+  "account": "10099871",
+  "maptaxlot": "391E020000216",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2411,
+      "year_built": 1981,
+      "description": "Two story with basement",
+      "stat_class": "154"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 456,
+      "year_built": 1981,
+      "description": "One story",
+      "stat_class": "141"
+    },
+    {
+      "type": "RESIDENCE",
+      "year_built": 1981,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    }
+  ]
+}

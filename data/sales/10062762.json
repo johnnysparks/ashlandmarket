@@ -1,0 +1,14 @@
+{
+  "account": "10062762",
+  "maptaxlot": "391E09AC07800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 820,
+      "description": "Bed and Breakfast/Inns",
+      "stat_class": "605"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "account": "10053927",
+  "maptaxlot": "391E05AD00700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 40000,
+      "year_built": 2003,
+      "description": "Parking Lot",
+      "stat_class": "652"
+    }
+  ]
+}

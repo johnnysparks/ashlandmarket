@@ -1,0 +1,14 @@
+{
+  "account": "10085312",
+  "maptaxlot": "391E15AB06200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 23393,
+      "description": "Neighborhood Center",
+      "stat_class": "521"
+    }
+  ]
+}

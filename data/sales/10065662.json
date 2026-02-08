@@ -1,0 +1,21 @@
+{
+  "account": "10065662",
+  "maptaxlot": "391E09BA13800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1872,
+      "description": "Storage",
+      "stat_class": "563"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 160,
+      "year_built": 2023,
+      "description": "MISC COMMERCIAL",
+      "stat_class": "650"
+    }
+  ]
+}

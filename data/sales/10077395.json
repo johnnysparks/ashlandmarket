@@ -1,0 +1,22 @@
+{
+  "account": "10077395",
+  "maptaxlot": "391E09DA08100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 1713,
+      "year_built": 1940,
+      "description": "One story with basement",
+      "stat_class": "143"
+    },
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1750,
+      "year_built": 2018,
+      "description": "DUPLEX CLASS 4 UPPER LEVELS",
+      "stat_class": "242"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account": "10707816",
+  "maptaxlot": "391E14AB02400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 14232,
+      "description": "Warehouse - Lite Manufacturing",
+      "stat_class": "613"
+    }
+  ]
+}
