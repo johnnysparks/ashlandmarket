@@ -1,0 +1,15 @@
+{
+  "account": "10702534",
+  "maptaxlot": "391E14BA01800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 3439,
+      "year_built": 2002,
+      "description": "Mini-Lube",
+      "stat_class": "586"
+    }
+  ]
+}

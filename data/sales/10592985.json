@@ -1,0 +1,14 @@
+{
+  "account": "10592985",
+  "maptaxlot": "391E04DC03506",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 3480,
+      "description": "Warehouse - Storage",
+      "stat_class": "611"
+    }
+  ]
+}

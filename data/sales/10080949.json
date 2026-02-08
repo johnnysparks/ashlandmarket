@@ -1,0 +1,14 @@
+{
+  "account": "10080949",
+  "maptaxlot": "391E14BA01200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2880,
+      "description": "Franchise Fast Food",
+      "stat_class": "552"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account": "10988665",
+  "maptaxlot": "391E110000903",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "FARM BLDG",
+      "sqft": 2592,
+      "description": "GP Bldg",
+      "stat_class": "850"
+    }
+  ]
+}

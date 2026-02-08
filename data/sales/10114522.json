@@ -1,0 +1,21 @@
+{
+  "account": "10114522",
+  "maptaxlot": "391E110000701",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "year_built": 1960,
+      "description": "Residential Other Improvements",
+      "stat_class": "300"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 5040,
+      "year_built": 1960,
+      "description": "Loft Barn",
+      "stat_class": "843"
+    }
+  ]
+}
