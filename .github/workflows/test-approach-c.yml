@@ -1,14 +1,23 @@
-name: CI — Tests & Coverage
+name: Test Approach C
 
 on:
   push:
-    branches: ['**']
+    paths:
+      - 'approach-c/**'
+      - '.github/workflows/test-approach-c.yml'
   pull_request:
-    branches: [main]
+    paths:
+      - 'approach-c/**'
+      - '.github/workflows/test-approach-c.yml'
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: approach-c
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,17 +28,21 @@ jobs:
           cache-dependency-path: approach-c/package-lock.json
 
       - name: Install dependencies
-        working-directory: approach-c
         run: npm ci
 
+      - name: Type check
+        run: npx tsc --noEmit
+
       - name: Run tests with coverage
-        working-directory: approach-c
         run: npm run test:coverage
+
+      - name: Build
+        run: npm run build
 
       - name: Upload coverage artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: approach-c-coverage
           path: approach-c/coverage/
           retention-days: 14
