@@ -39,7 +39,12 @@ export const METRICS = {
   sqft_living: { label: 'Living Sqft', key: 'sqft_living', format: v => `${Math.round(v).toLocaleString()} sqft` },
   sqft_lot: { label: 'Lot Size', key: 'sqft_lot', format: v => `${Math.round(v).toLocaleString()} sqft` },
   num_sales: { label: 'Sale Count', key: 'num_sales', format: v => String(Math.round(v)) },
-  num_permits: { label: 'Permit Count', key: 'num_permits', format: v => String(Math.round(v)) }
+  num_permits: { label: 'Permit Count', key: 'num_permits', format: v => String(Math.round(v)) },
+  // Derived metrics
+  property_age: { label: 'Property Age', key: 'property_age', format: v => `${Math.round(v)} yrs` },
+  price_vs_assessed: { label: 'Sale/Assessed Ratio', key: 'price_vs_assessed', format: v => `${v.toFixed(2)}x` },
+  improvement_ratio: { label: 'Building/Lot Ratio', key: 'improvement_ratio', format: v => `${(v * 100).toFixed(1)}%` },
+  price_per_sqft_lot: { label: '$/sqft Lot', key: 'price_per_sqft_lot', format: v => `$${Math.round(v)}` }
 }
 
 export function interpolateColor(stops, t) {

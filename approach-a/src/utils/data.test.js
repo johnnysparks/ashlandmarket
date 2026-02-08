@@ -181,10 +181,10 @@ describe('hexbinsToGeoJSON', () => {
     const result = hexbinsToGeoJSON(mockHexData)
     const props = result.features[0].properties
     expect(props.count).toBe(15)
-    expect(props.median_price_sqft).toBe(230)
-    expect(props.mean_price_sqft).toBe(245)
-    expect(props.min_price_sqft).toBe(120)
-    expect(props.max_price_sqft).toBe(400)
+    expect(props.median).toBe(230)
+    expect(props.mean).toBe(245)
+    expect(props.min).toBe(120)
+    expect(props.max).toBe(400)
     expect(props.id).toBe(0)
   })
 

@@ -16,7 +16,8 @@ export default function MapView({
   sizeMetric,
   onParcelClick,
   onParcelHover,
-  hoveredAccount
+  hoveredAccount,
+  compareAccounts
 }) {
   const mapRef = useRef()
   const [token, setToken] = useState(import.meta.env.VITE_MAPBOX_TOKEN || '')
@@ -64,13 +65,13 @@ export default function MapView({
     ]
   }, [sizeMetric, sizeRange])
 
-  // Hexbin color expression
+  // Hexbin color expression (uses normalized 'median' property from hexbinsToGeoJSON)
   const hexbinColor = useMemo(() => {
     if (!hexbinGeojson || !hexbinGeojson.features.length) return '#888'
-    const values = hexbinGeojson.features.map(f => f.properties.median_price_sqft).filter(v => v != null)
+    const values = hexbinGeojson.features.map(f => f.properties.median).filter(v => v != null)
     if (!values.length) return '#888'
     const { min: hMin, max: hMax } = computePercentiles(values, percentileRange.lower, percentileRange.upper)
-    return buildColorExpression('median_price_sqft', hMin, hMax, colorRamp.stops)
+    return buildColorExpression('median', hMin, hMax, colorRamp.stops)
   }, [hexbinGeojson, colorRamp.stops, percentileRange.lower, percentileRange.upper])
 
   // Hexbin radius expression (based on parcel count)
@@ -108,6 +109,38 @@ export default function MapView({
     })
     return expr
   }, [colorRamp.stops])
+
+  // Build compare highlight expressions
+  const compareAccountsList = useMemo(() => {
+    return compareAccounts ? Array.from(compareAccounts) : []
+  }, [compareAccounts])
+
+  const strokeWidth = useMemo(() => {
+    const base = [
+      'case',
+      ['==', ['get', 'account'], hoveredAccount || ''],
+      2
+    ]
+    // Add compare highlights
+    for (const acct of compareAccountsList) {
+      base.push(['==', ['get', 'account'], acct], 3)
+    }
+    base.push(0.5) // default
+    return base
+  }, [hoveredAccount, compareAccountsList])
+
+  const strokeColor = useMemo(() => {
+    const base = [
+      'case',
+      ['==', ['get', 'account'], hoveredAccount || ''],
+      '#fff'
+    ]
+    for (const acct of compareAccountsList) {
+      base.push(['==', ['get', 'account'], acct], '#ff6b35')
+    }
+    base.push('rgba(0,0,0,0.3)') // default
+    return base
+  }, [hoveredAccount, compareAccountsList])
 
   const interactiveLayerIds = useMemo(() => {
     if (viewMode === 'points') return ['parcels-circle']
@@ -192,18 +225,8 @@ export default function MapView({
               'circle-radius': circleRadius,
               'circle-color': circleColor,
               'circle-opacity': opacity,
-              'circle-stroke-width': [
-                'case',
-                ['==', ['get', 'account'], hoveredAccount || ''],
-                2,
-                0.5
-              ],
-              'circle-stroke-color': [
-                'case',
-                ['==', ['get', 'account'], hoveredAccount || ''],
-                '#fff',
-                'rgba(0,0,0,0.3)'
-              ]
+              'circle-stroke-width': strokeWidth,
+              'circle-stroke-color': strokeColor
             }}
           />
         </Source>

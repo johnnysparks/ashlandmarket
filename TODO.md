@@ -162,7 +162,7 @@ python jaco_scraper.py status     # Show pipeline progress
 - [x] Document mock data format in `docs/mock-data.md`
 
 ### 5.3 Integration
-- [~] Verify all three approaches can load and render mock data (Approach C verified; A & B not started yet)
+- [~] Verify all three approaches can load and render mock data (Approach A & C verified; B not started yet)
 - [x] Document any schema issues found during integration (none found — schema is clean)
 - [x] Set up a simple comparison page or notes for evaluating the three approaches (`docs/approach-comparison.md`)
 
@@ -172,8 +172,8 @@ python jaco_scraper.py status     # Show pipeline progress
 
 - [x] Phase 3: Aggregation mode switching (hexbin, grid, neighborhood polygon) — **Approach B done** (hexbin toggle)
 - [x] Phase 3: Percentile clamp control (clip outliers) — **Approach B done** (adjustable lo/hi sliders)
-- [ ] Phase 3: Multiple overlay metrics wired up across all approaches
-- [ ] Phase 4: Compare mode (pin multiple parcels)
+- [x] Phase 3: Multiple overlay metrics wired up across all approaches — **Approach A done** (12 metrics: 8 raw + 4 derived: property age, sale/assessed ratio, building/lot ratio, $/sqft lot)
+- [x] Phase 4: Compare mode (pin multiple parcels) — **Approach A done** (pin up to 5 parcels, side-by-side table, best-value highlights, map ring indicators)
 - [ ] Phase 5: Walkability/amenity overlays
 - [x] Phase 5: Search/filter by criteria — **Approach B done** (address/account search with results)
 - [ ] Phase 5: Offline/PWA support

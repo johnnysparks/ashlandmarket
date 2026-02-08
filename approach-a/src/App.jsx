@@ -3,6 +3,7 @@ import MapView from './components/MapView'
 import Controls from './components/Controls'
 import Tooltip from './components/Tooltip'
 import DetailPanel from './components/DetailPanel'
+import ComparePanel from './components/ComparePanel'
 import { loadParcels, parcelsToGeoJSON, filterByTimeWindow, loadHexbins, hexbinsToGeoJSON } from './utils/data'
 import { COLOR_RAMPS, METRICS, computePercentiles } from './utils/colors'
 import './App.css'
@@ -34,6 +35,10 @@ export default function App() {
   const [hoverPoint, setHoverPoint] = useState(null)
   const [selectedParcel, setSelectedParcel] = useState(null)
 
+  // Phase 4: Compare mode
+  const [compareList, setCompareList] = useState([]) // array of parcel properties
+  const [compareOpen, setCompareOpen] = useState(false)
+
   useEffect(() => {
     loadParcels()
       .then(data => {
@@ -44,11 +49,14 @@ export default function App() {
         setError(err.message)
         setLoading(false)
       })
-    // Pre-load hexbin data
-    loadHexbins().then(data => {
+  }, [])
+
+  // Load hexbin data when metric changes (for hexbin view mode)
+  useEffect(() => {
+    loadHexbins(metric.key).then(data => {
       if (data) setHexbinData(data)
     })
-  }, [])
+  }, [metric.key])
 
   const filteredParcels = useMemo(
     () => filterByTimeWindow(parcels, dateRange.start, dateRange.end),
@@ -74,6 +82,35 @@ export default function App() {
     setHoveredParcel(props)
     setHoverPoint(point)
   }, [])
+
+  // Compare mode handlers
+  const handleAddToCompare = useCallback((parcel) => {
+    setCompareList(prev => {
+      if (prev.some(p => p.account === parcel.account)) return prev
+      if (prev.length >= 5) return prev // max 5 parcels
+      return [...prev, parcel]
+    })
+    setCompareOpen(true)
+  }, [])
+
+  const handleRemoveFromCompare = useCallback((account) => {
+    setCompareList(prev => {
+      const next = prev.filter(p => p.account !== account)
+      if (next.length === 0) setCompareOpen(false)
+      return next
+    })
+  }, [])
+
+  const handleClearCompare = useCallback(() => {
+    setCompareList([])
+    setCompareOpen(false)
+  }, [])
+
+  // Set of accounts in compare list for map highlighting
+  const compareAccounts = useMemo(
+    () => new Set(compareList.map(p => p.account)),
+    [compareList]
+  )
 
   if (loading) {
     return (
@@ -109,6 +146,7 @@ export default function App() {
           onParcelClick={handleParcelClick}
           onParcelHover={handleParcelHover}
           hoveredAccount={hoveredParcel?.account}
+          compareAccounts={compareAccounts}
         />
 
         <Tooltip parcel={hoveredParcel} point={hoverPoint} metric={metric} />
@@ -138,12 +176,34 @@ export default function App() {
         />
 
         <Legend metric={metric} colorRamp={colorRamp} geojson={geojson} percentileRange={percentileRange} />
+
+        {compareList.length > 0 && !compareOpen && (
+          <button
+            className="compare-badge"
+            onClick={() => setCompareOpen(true)}
+          >
+            Compare ({compareList.length})
+          </button>
+        )}
       </div>
 
       {selectedParcel && (
         <DetailPanel
           parcel={selectedParcel}
           onClose={() => setSelectedParcel(null)}
+          onCompare={handleAddToCompare}
+          isInCompare={compareAccounts.has(selectedParcel.account)}
+        />
+      )}
+
+      {compareOpen && compareList.length > 0 && (
+        <ComparePanel
+          parcels={compareList}
+          metric={metric}
+          onRemove={handleRemoveFromCompare}
+          onClear={handleClearCompare}
+          onClose={() => setCompareOpen(false)}
+          onSelect={(parcel) => { setSelectedParcel(parcel); }}
         />
       )}
     </div>

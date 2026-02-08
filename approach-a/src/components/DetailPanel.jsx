@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { loadParcelDetail } from '../utils/data'
 
-export default function DetailPanel({ parcel, onClose }) {
+export default function DetailPanel({ parcel, onClose, onCompare, isInCompare }) {
   const [detail, setDetail] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -24,7 +24,18 @@ export default function DetailPanel({ parcel, onClose }) {
           <h2>{parcel.address || `Parcel ${parcel.account}`}</h2>
           <span className="detail-account">Account: {parcel.account}</span>
         </div>
-        <button className="detail-close" onClick={onClose}>&times;</button>
+        <div className="detail-actions">
+          {onCompare && (
+            <button
+              className={`compare-btn ${isInCompare ? 'active' : ''}`}
+              onClick={() => onCompare(parcel)}
+              disabled={isInCompare}
+            >
+              {isInCompare ? 'In Compare' : '+ Compare'}
+            </button>
+          )}
+          <button className="detail-close" onClick={onClose}>&times;</button>
+        </div>
       </div>
 
       <div className="detail-body">
