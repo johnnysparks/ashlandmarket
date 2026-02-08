@@ -2,8 +2,8 @@ import { writable, derived } from 'svelte/store'
 import type { Parcel, ParcelDetail, MetricKey, ColorRamp, ViewMode } from './types'
 
 // In dev, data lives at ../data/ (sibling to approach-c/).
-// In production (GitHub Pages), data is copied into dist/data/.
-const DATA_BASE = import.meta.env.DEV ? '../data' : './data'
+// In production (GitHub Pages), data is copied into the app's base URL.
+const DATA_BASE = import.meta.env.DEV ? '../data' : `${import.meta.env.BASE_URL}data`
 
 export const parcels = writable<Parcel[]>([])
 export const selectedMetric = writable<MetricKey>('price_per_sqft')

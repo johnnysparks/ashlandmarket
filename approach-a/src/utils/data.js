@@ -4,10 +4,12 @@ const CURRENT_YEAR = new Date().getFullYear()
 
 let cachedParcels = null
 
+const DATA_BASE = import.meta.env.DEV ? '../data' : `${import.meta.env.BASE_URL}data`
+
 export async function loadParcels() {
   if (cachedParcels) return cachedParcels
 
-  const resp = await fetch('../data/parcels.json')
+  const resp = await fetch(`${DATA_BASE}/parcels.json`)
   const data = await resp.json()
 
   cachedParcels = data.parcels.filter(p => p.lat && p.lng)
@@ -73,7 +75,7 @@ export function filterByTimeWindow(parcels, startDate, endDate) {
 
 export async function loadParcelDetail(account) {
   try {
-    const resp = await fetch(`../data/sales/${account}.json`)
+    const resp = await fetch(`${DATA_BASE}/sales/${account}.json`)
     if (!resp.ok) return null
     return await resp.json()
   } catch {
@@ -102,7 +104,7 @@ export async function loadHexbins(metricKey = 'price_per_sqft') {
   if (hexbinCache[metricKey]) return hexbinCache[metricKey]
 
   try {
-    const resp = await fetch(`../data/aggregates/${fileName}`)
+    const resp = await fetch(`${DATA_BASE}/aggregates/${fileName}`)
     if (!resp.ok) return null
     const data = await resp.json()
     hexbinCache[metricKey] = data

@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: './',
   server: {
     fs: {
       allow: [path.resolve(__dirname, '..')]

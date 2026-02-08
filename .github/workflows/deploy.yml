@@ -24,9 +24,15 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: approach-c/package-lock.json
+          cache-dependency-path: |
+            approach-a/package-lock.json
+            approach-c/package-lock.json
 
-      - name: Install dependencies
+      - name: Install dependencies (Approach A)
+        working-directory: approach-a
+        run: npm ci
+
+      - name: Install dependencies (Approach C)
         working-directory: approach-c
         run: npm ci
 
@@ -34,66 +40,96 @@ jobs:
         working-directory: approach-c
         run: npm test
 
-      - name: Build
+      - name: Build Approach A
+        working-directory: approach-a
+        run: npm run build
+
+      - name: Build Approach C
         working-directory: approach-c
         run: npm run build
 
-      - name: Copy data files into dist
+      - name: Copy data files into app builds
         run: |
           echo "=== Copying data files ==="
-          # Copy parcels.json (required)
-          mkdir -p approach-c/dist/data
-          cp data/parcels.json approach-c/dist/data/parcels.json
-          echo "parcels.json: $(wc -c < data/parcels.json) bytes"
+          copy_data() {
+            local target="$1"
+            mkdir -p "$target/data"
+            cp data/parcels.json "$target/data/parcels.json"
+            echo "parcels.json: $(wc -c < data/parcels.json) bytes -> $target"
 
-          # Copy aggregates if they exist
+            if [ -d data/aggregates ]; then
+              cp -r data/aggregates "$target/data/aggregates"
+              echo "aggregates: $(find data/aggregates -type f | wc -l) files -> $target"
+            fi
+
+            if [ -d data/sales ]; then
+              SALES_COUNT=$(find data/sales -type f | wc -l)
+              echo "sales directory: $SALES_COUNT files"
+              if [ "$SALES_COUNT" -le 50000 ]; then
+                cp -r data/sales "$target/data/sales"
+                echo "sales: copied $SALES_COUNT files -> $target"
+              else
+                echo "WARNING: Skipping sales/ ($SALES_COUNT files) — too many for Pages artifact"
+                echo "Consider pre-bundling or using an API instead"
+              fi
+            fi
+          }
+
+          copy_data "approach-a/dist"
+          copy_data "approach-c/dist"
+
+      - name: Assemble Pages site
+        run: |
+          echo "=== Assembling Pages site ==="
+          rm -rf site
+          mkdir -p site/approach-a site/approach-b site/approach-c
+
+          cp -r approach-a/dist/. site/approach-a/
+          cp -r approach-c/dist/. site/approach-c/
+
+          cp approach-b/index.html approach-b/main.js approach-b/lib.js approach-b/style.css site/approach-b/
+          mkdir -p site/approach-b/data
+          cp data/parcels.json site/approach-b/data/parcels.json
           if [ -d data/aggregates ]; then
-            cp -r data/aggregates approach-c/dist/data/aggregates
-            echo "aggregates: $(find data/aggregates -type f | wc -l) files"
+            cp -r data/aggregates site/approach-b/data/aggregates
           fi
-
-          # Copy sales data (skip if too many files to keep artifact small)
           if [ -d data/sales ]; then
             SALES_COUNT=$(find data/sales -type f | wc -l)
-            echo "sales directory: $SALES_COUNT files"
             if [ "$SALES_COUNT" -le 50000 ]; then
-              cp -r data/sales approach-c/dist/data/sales
-              echo "sales: copied $SALES_COUNT files"
+              cp -r data/sales site/approach-b/data/sales
             else
-              echo "WARNING: Skipping sales/ ($SALES_COUNT files) — too many for Pages artifact"
-              echo "Consider pre-bundling or using an API instead"
+              echo "WARNING: Skipping sales/ for approach-b ($SALES_COUNT files) — too many for Pages artifact"
             fi
           fi
+
+          cp docs/pages/index.html site/index.html
 
       - name: Verify build output
         run: |
           echo "=== Build output verification ==="
-          echo "--- dist/ top-level ---"
-          ls -la approach-c/dist/
+          echo "--- site/ top-level ---"
+          ls -la site/
           echo ""
-          echo "--- dist/assets/ ---"
-          ls -la approach-c/dist/assets/ 2>/dev/null || echo "(no assets/ directory)"
-          echo ""
-          echo "--- dist/data/ ---"
-          ls -la approach-c/dist/data/ 2>/dev/null || echo "ERROR: data/ directory missing!"
+          echo "--- approach-c assets/ ---"
+          ls -la site/approach-c/assets/ 2>/dev/null || echo "(no assets/ directory)"
           echo ""
           echo "--- Key file checks ---"
-          for f in index.html debug.html data/parcels.json; do
-            if [ -f "approach-c/dist/$f" ]; then
-              SIZE=$(wc -c < "approach-c/dist/$f")
+          for f in index.html approach-a/index.html approach-b/index.html approach-c/index.html approach-c/debug.html approach-c/data/parcels.json; do
+            if [ -f "site/$f" ]; then
+              SIZE=$(wc -c < "site/$f")
               echo "  ✓ $f ($SIZE bytes)"
             else
               echo "  ✗ $f MISSING"
             fi
           done
           echo ""
-          echo "--- Total dist size ---"
-          du -sh approach-c/dist/
+          echo "--- Total site size ---"
+          du -sh site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: approach-c/dist
+          path: site
 
   deploy:
     needs: build
