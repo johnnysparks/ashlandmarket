@@ -1,0 +1,22 @@
+{
+  "account": "10729371",
+  "maptaxlot": "391E04CC00503",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 3840,
+      "year_built": 1965,
+      "description": "APTS 5-9 Units",
+      "stat_class": "531"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1424,
+      "year_built": 2021,
+      "description": "Yard Improvements",
+      "stat_class": "651"
+    }
+  ]
+}

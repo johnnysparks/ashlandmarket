@@ -1,0 +1,21 @@
+{
+  "account": "10997995",
+  "maptaxlot": "391E09BA10104",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 6492,
+      "year_built": 2021,
+      "description": "MIXED APTS WITH COMMERCIAL",
+      "stat_class": "539"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 1352,
+      "description": "Office, Single Occupant",
+      "stat_class": "541"
+    }
+  ]
+}

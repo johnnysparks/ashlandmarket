@@ -1,0 +1,14 @@
+{
+  "account": "10080785",
+  "maptaxlot": "391E14AB00400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2018,
+      "description": "Serv Station w/retail",
+      "stat_class": "589"
+    }
+  ]
+}

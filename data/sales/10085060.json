@@ -1,0 +1,14 @@
+{
+  "account": "10085060",
+  "maptaxlot": "391E15AB03703",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1800,
+      "description": "Car Wash - Coin-op",
+      "stat_class": "582"
+    }
+  ]
+}

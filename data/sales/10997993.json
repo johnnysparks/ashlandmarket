@@ -1,0 +1,29 @@
+{
+  "account": "10997993",
+  "maptaxlot": "391E09BA10102",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 36349,
+      "year_built": 2020,
+      "description": "APTS Over 20 Units",
+      "stat_class": "533"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3164,
+      "year_built": 2020,
+      "description": "Downtown Commercial",
+      "stat_class": "506"
+    },
+    {
+      "type": "COMML IMP",
+      "sqft": 3900,
+      "year_built": 2020,
+      "description": "Downtown Commercial",
+      "stat_class": "506"
+    }
+  ]
+}

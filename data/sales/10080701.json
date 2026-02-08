@@ -1,0 +1,15 @@
+{
+  "account": "10080701",
+  "maptaxlot": "391E14AC01800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1323,
+      "year_built": 1958,
+      "description": "Government Office",
+      "stat_class": "688"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account": "10086755",
+  "maptaxlot": "391E15AD02000",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 25056,
+      "description": "Lodging 21-60 Units",
+      "stat_class": "602"
+    }
+  ]
+}
