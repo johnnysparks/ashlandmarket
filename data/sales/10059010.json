@@ -1,0 +1,51 @@
+{
+  "account": "10059010",
+  "sales": [
+    {
+      "date": "2024-05-22",
+      "price": 178300,
+      "buyer": "WILSON THOMAS",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2020-04-24",
+      "price": 99700,
+      "buyer": "HILL JENNIFER",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2012-03-15",
+      "price": 59400,
+      "buyer": "TAYLOR SUSAN",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2004-12-27",
+      "price": 41900,
+      "buyer": "ROBINSON JOHN",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2002-05-12",
+      "price": 26000,
+      "buyer": "BROWN NANCY",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2003-4820",
+      "type": "PLUMBING",
+      "date": "2003-06-04",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 899,
+      "year_built": 1893,
+      "condition": "EXCELLENT"
+    }
+  ]
+}

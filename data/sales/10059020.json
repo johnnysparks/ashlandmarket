@@ -1,0 +1,39 @@
+{
+  "account": "10059020",
+  "sales": [
+    {
+      "date": "2024-07-20",
+      "price": 456300,
+      "buyer": "THOMAS DANIEL",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2021-11-10",
+      "price": 384100,
+      "buyer": "WILLIAMS PATRICIA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2022-7942",
+      "type": "NEW CONSTRUCTION",
+      "date": "2022-07-30",
+      "status": "ACTIVE"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1141,
+      "year_built": 2011,
+      "condition": "POOR"
+    },
+    {
+      "type": "DECK",
+      "sqft": 117,
+      "year_built": 2018,
+      "condition": "FAIR"
+    }
+  ]
+}

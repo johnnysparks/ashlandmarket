@@ -1,0 +1,69 @@
+{
+  "account": "10059041",
+  "sales": [
+    {
+      "date": "2024-04-01",
+      "price": 902800,
+      "buyer": "BROWN STEVE",
+      "type": "TRUST DEED"
+    },
+    {
+      "date": "2022-06-03",
+      "price": 544900,
+      "buyer": "WILSON BRIAN",
+      "type": "TRUST DEED"
+    },
+    {
+      "date": "2015-10-04",
+      "price": 359300,
+      "buyer": "HALL HELEN",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "2007-12-19",
+      "price": 283500,
+      "buyer": "THOMPSON HELEN",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2021-9698",
+      "type": "SOLAR",
+      "date": "2021-07-14",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2020-4578",
+      "type": "DECK",
+      "date": "2020-09-08",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2011-9160",
+      "type": "FENCE",
+      "date": "2011-08-10",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2010-9858",
+      "type": "FENCE",
+      "date": "2010-06-17",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2001-1700",
+      "type": "FENCE",
+      "date": "2001-04-29",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 2190,
+      "year_built": 1957,
+      "condition": "POOR"
+    }
+  ]
+}

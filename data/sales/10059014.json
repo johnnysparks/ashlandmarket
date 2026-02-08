@@ -1,0 +1,45 @@
+{
+  "account": "10059014",
+  "sales": [
+    {
+      "date": "2023-04-12",
+      "price": 463600,
+      "buyer": "GARCIA JAMES",
+      "type": "WARRANTY DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2025-2309",
+      "type": "ADDITION",
+      "date": "2025-08-23",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2024-7712",
+      "type": "WATER HEATER",
+      "date": "2024-09-02",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2010-5180",
+      "type": "NEW CONSTRUCTION",
+      "date": "2010-07-23",
+      "status": "ACTIVE"
+    },
+    {
+      "number": "B-2009-3402",
+      "type": "REMODEL",
+      "date": "2009-04-13",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1181,
+      "year_built": 1960,
+      "condition": "AVERAGE"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "account": "10059015",
+  "sales": [
+    {
+      "date": "2022-11-15",
+      "price": 706400,
+      "buyer": "TAYLOR LINDA",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2014-12-02",
+      "price": 465900,
+      "buyer": "JONES LINDA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 3113,
+      "year_built": 1902,
+      "condition": "FAIR"
+    },
+    {
+      "type": "CARPORT",
+      "sqft": 547,
+      "year_built": 1907,
+      "condition": "FAIR"
+    }
+  ]
+}

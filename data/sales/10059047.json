@@ -1,0 +1,75 @@
+{
+  "account": "10059047",
+  "sales": [
+    {
+      "date": "2023-04-27",
+      "price": 763600,
+      "buyer": "THOMPSON NANCY",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2016-10-21",
+      "price": 475700,
+      "buyer": "THOMAS THOMAS",
+      "type": "TRUST DEED"
+    },
+    {
+      "date": "2008-12-13",
+      "price": 354000,
+      "buyer": "THOMPSON DAVID",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2006-09-05",
+      "price": 206900,
+      "buyer": "WHITE MICHAEL",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "1998-03-14",
+      "price": 137600,
+      "buyer": "ANDERSON DANIEL",
+      "type": "BARGAIN & SALE DEED"
+    },
+    {
+      "date": "1992-09-04",
+      "price": 91500,
+      "buyer": "JONES DANIEL",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2014-1200",
+      "type": "MECHANICAL",
+      "date": "2014-01-23",
+      "status": "FINAL"
+    },
+    {
+      "number": "B-2004-5720",
+      "type": "SOLAR",
+      "date": "2004-02-25",
+      "status": "ISSUED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 2724,
+      "year_built": 2004,
+      "condition": "GOOD"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 538,
+      "year_built": 2021,
+      "condition": "FAIR"
+    },
+    {
+      "type": "SHED",
+      "sqft": 287,
+      "year_built": 2024,
+      "condition": "GOOD"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "account": "10059007",
+  "sales": [
+    {
+      "date": "2023-04-22",
+      "price": 1028600,
+      "buyer": "LEWIS THOMAS",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2019-12-03",
+      "price": 893100,
+      "buyer": "ROBINSON DAVID",
+      "type": "QUIT CLAIM DEED"
+    },
+    {
+      "date": "2017-10-26",
+      "price": 686800,
+      "buyer": "HILL LINDA",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2020-6521",
+      "type": "ELECTRICAL",
+      "date": "2020-10-31",
+      "status": "FINAL"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 2790,
+      "year_built": 1963,
+      "condition": "AVERAGE"
+    },
+    {
+      "type": "CARPORT",
+      "sqft": 330,
+      "year_built": 1979,
+      "condition": "EXCELLENT"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "account": "10059003",
+  "sales": [
+    {
+      "date": "2022-01-22",
+      "price": 576700,
+      "buyer": "ANDERSON LISA",
+      "type": "SPECIAL WARRANTY DEED"
+    },
+    {
+      "date": "2017-12-20",
+      "price": 492200,
+      "buyer": "WILLIAMS ELIZABETH",
+      "type": "WARRANTY DEED"
+    },
+    {
+      "date": "2014-08-12",
+      "price": 366400,
+      "buyer": "THOMPSON MICHAEL",
+      "type": "BARGAIN & SALE DEED"
+    }
+  ],
+  "permits": [
+    {
+      "number": "B-2009-5662",
+      "type": "PLUMBING",
+      "date": "2009-06-20",
+      "status": "ISSUED"
+    },
+    {
+      "number": "B-2002-8463",
+      "type": "SOLAR",
+      "date": "2002-02-28",
+      "status": "ISSUED"
+    }
+  ],
+  "improvements": [
+    {
+      "type": "DWELLING",
+      "sqft": 1511,
+      "year_built": 1969,
+      "condition": "AVERAGE"
+    },
+    {
+      "type": "GARAGE",
+      "sqft": 441,
+      "year_built": 1972,
+      "condition": "GOOD"
+    }
+  ]
+}
