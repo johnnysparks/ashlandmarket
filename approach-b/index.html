@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ashland Market Heat Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Controls Panel -->
+  <div id="controls" class="controls">
+    <button id="controls-toggle" class="controls-toggle" aria-label="Toggle controls">
+      <span class="toggle-icon">&#9776;</span>
+    </button>
+    <div id="controls-body" class="controls-body">
+      <h3>Overlay</h3>
+      <div class="control-group">
+        <label for="metric-select">Metric</label>
+        <select id="metric-select">
+          <option value="price_per_sqft">$/sqft</option>
+          <option value="last_sale_price">Sale Price</option>
+          <option value="assessed_value">Assessed Value</option>
+          <option value="sqft_living">Living Sqft</option>
+          <option value="sqft_lot">Lot Size</option>
+          <option value="year_built">Year Built</option>
+          <option value="num_sales">Sale Count</option>
+          <option value="num_permits">Permit Count</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="ramp-select">Color Ramp</label>
+        <select id="ramp-select">
+          <option value="YlOrRd">Yellow-Orange-Red</option>
+          <option value="Viridis">Viridis</option>
+          <option value="Blues">Blues</option>
+          <option value="RdYlGn">Red-Yellow-Green</option>
+          <option value="Spectral">Spectral</option>
+          <option value="Plasma">Plasma</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="opacity-slider">Opacity: <span id="opacity-value">0.75</span></label>
+        <input type="range" id="opacity-slider" min="0.1" max="1" step="0.05" value="0.75">
+      </div>
+      <div class="control-group">
+        <label>Time Window</label>
+        <div class="time-inputs">
+          <input type="date" id="date-from" value="2000-01-01">
+          <span>to</span>
+          <input type="date" id="date-to" value="2026-12-31">
+        </div>
+      </div>
+      <div id="legend" class="legend"></div>
+    </div>
+  </div>
+
+  <!-- Detail Panel -->
+  <div id="detail-panel" class="detail-panel hidden">
+    <div class="detail-header">
+      <h3 id="detail-title">Property Detail</h3>
+      <button id="detail-close" class="detail-close">&times;</button>
+    </div>
+    <div id="detail-content" class="detail-content">
+      <div id="detail-summary" class="detail-summary"></div>
+      <div id="detail-chart" class="detail-chart"></div>
+      <div id="detail-sales" class="detail-sales"></div>
+      <div id="detail-permits" class="detail-permits"></div>
+      <div id="detail-improvements" class="detail-improvements"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
