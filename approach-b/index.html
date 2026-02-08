@@ -10,6 +10,12 @@
 <body>
   <div id="map"></div>
 
+  <!-- Search Bar -->
+  <div id="search-container" class="search-container">
+    <input type="text" id="search-input" class="search-input" placeholder="Search address or account...">
+    <div id="search-results" class="search-results hidden"></div>
+  </div>
+
   <!-- Controls Panel -->
   <div id="controls" class="controls">
     <button id="controls-toggle" class="controls-toggle" aria-label="Toggle controls">
@@ -17,6 +23,13 @@
     </button>
     <div id="controls-body" class="controls-body">
       <h3>Overlay</h3>
+      <div class="control-group">
+        <label>View Mode</label>
+        <div class="view-toggle">
+          <button id="view-parcels" class="view-btn active">Parcels</button>
+          <button id="view-hexbin" class="view-btn">Hexbin</button>
+        </div>
+      </div>
       <div class="control-group">
         <label for="metric-select">Metric</label>
         <select id="metric-select">
@@ -44,6 +57,13 @@
       <div class="control-group">
         <label for="opacity-slider">Opacity: <span id="opacity-value">0.75</span></label>
         <input type="range" id="opacity-slider" min="0.1" max="1" step="0.05" value="0.75">
+      </div>
+      <div class="control-group">
+        <label>Percentile Clamp: <span id="clamp-value">5–95</span></label>
+        <div class="clamp-inputs">
+          <input type="range" id="clamp-lo" min="0" max="25" step="1" value="5">
+          <input type="range" id="clamp-hi" min="75" max="100" step="1" value="95">
+        </div>
       </div>
       <div class="control-group">
         <label>Time Window</label>

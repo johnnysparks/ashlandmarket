@@ -36,10 +36,15 @@
   let allParcels = [];
   let filteredParcels = [];
   let markerLayer = null;
+  let hexLayer = null;
+  let hexData = null;
   let colorScale = null;
   let currentMetric = 'price_per_sqft';
   let currentRamp = 'YlOrRd';
   let currentOpacity = 0.75;
+  let currentView = 'parcels'; // 'parcels' or 'hexbin'
+  let clampLo = 5;
+  let clampHi = 95;
   let dateFrom = new Date('2000-01-01');
   let dateTo = new Date('2026-12-31');
 
@@ -71,6 +76,16 @@
     renderMarkers();
   }
 
+  async function loadHexData() {
+    try {
+      const resp = await fetch(`${DATA_BASE}/aggregates/hexbin-price-sqft.json`);
+      if (!resp.ok) throw new Error('No hexbin data');
+      hexData = await resp.json();
+    } catch {
+      hexData = null;
+    }
+  }
+
   // ── Filtering ──────────────────────────────────────────
   function applyFilters() {
     filteredParcels = allParcels.filter(p => {
@@ -91,10 +106,10 @@
       return;
     }
 
-    // Use 5th-95th percentile to reduce outlier influence
+    // Percentile clamping (user-adjustable)
     values.sort((a, b) => a - b);
-    const lo = d3.quantile(values, 0.05);
-    const hi = d3.quantile(values, 0.95);
+    const lo = d3.quantile(values, clampLo / 100);
+    const hi = d3.quantile(values, clampHi / 100);
 
     const interpolator = COLOR_RAMPS[currentRamp] || COLOR_RAMPS.YlOrRd;
     const scale = d3.scaleSequential(interpolator).domain([lo, hi]).clamp(true);
@@ -108,10 +123,20 @@
   function renderMarkers() {
     if (markerLayer) {
       map.removeLayer(markerLayer);
+      markerLayer = null;
+    }
+    if (hexLayer) {
+      map.removeLayer(hexLayer);
+      hexLayer = null;
     }
 
     buildColorScale();
     renderLegend();
+
+    if (currentView === 'hexbin') {
+      renderHexbins();
+      return;
+    }
 
     const markers = filteredParcels.map(p => {
       const val = p[currentMetric];
@@ -131,6 +156,68 @@
     });
 
     markerLayer = L.layerGroup(markers).addTo(map);
+  }
+
+  // ── Hexbin rendering ─────────────────────────────────
+  function renderHexbins() {
+    if (!hexData || !hexData.hexagons) return;
+
+    const hexSize = hexData.hex_size_degrees || 0.005;
+    const hexagons = hexData.hexagons.filter(h => h.count > 0);
+
+    // Build a color scale from hexbin median values
+    const values = hexagons.map(h => h.median_price_sqft).filter(v => v != null && isFinite(v));
+    if (!values.length) return;
+
+    values.sort((a, b) => a - b);
+    const lo = d3.quantile(values, clampLo / 100);
+    const hi = d3.quantile(values, clampHi / 100);
+    const interpolator = COLOR_RAMPS[currentRamp] || COLOR_RAMPS.YlOrRd;
+    const hexScale = d3.scaleSequential(interpolator).domain([lo, hi]).clamp(true);
+
+    // Update colorScale for legend
+    colorScale = v => (v == null || !isFinite(v)) ? '#444' : hexScale(v);
+    colorScale.domain = [lo, hi];
+    colorScale.interpolator = interpolator;
+    renderLegend();
+
+    const polys = hexagons.map(h => {
+      const hex = createHexPolygon(h.center_lat, h.center_lng, hexSize * 0.55);
+      const color = hexScale(h.median_price_sqft);
+
+      const poly = L.polygon(hex, {
+        fillColor: color,
+        fillOpacity: currentOpacity,
+        color: 'rgba(255,255,255,0.1)',
+        weight: 1,
+      });
+
+      poly.bindPopup(`
+        <div class="popup-title">Hex Area</div>
+        <div class="popup-stat"><span class="label">Median $/sqft</span><span class="value">$${Math.round(h.median_price_sqft)}</span></div>
+        <div class="popup-stat"><span class="label">Mean $/sqft</span><span class="value">$${Math.round(h.mean_price_sqft)}</span></div>
+        <div class="popup-stat"><span class="label">Parcels</span><span class="value">${h.count}</span></div>
+        <div class="popup-stat"><span class="label">Range</span><span class="value">$${Math.round(h.min_price_sqft)}–$${Math.round(h.max_price_sqft)}</span></div>
+      `, { maxWidth: 240 });
+
+      return poly;
+    });
+
+    hexLayer = L.layerGroup(polys).addTo(map);
+  }
+
+  function createHexPolygon(lat, lng, size) {
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (Math.PI / 3) * i + Math.PI / 6;
+      // Correct for latitude distortion on lng
+      const lngSize = size / Math.cos(lat * Math.PI / 180);
+      points.push([
+        lat + size * Math.sin(angle),
+        lng + lngSize * Math.cos(angle),
+      ]);
+    }
+    return points;
   }
 
   function getRadius() {
@@ -385,10 +472,91 @@
     `;
   }
 
+  // ── Search ─────────────────────────────────────────────
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  let searchDebounce = null;
+
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(doSearch, 200);
+  });
+
+  searchInput.addEventListener('focus', () => {
+    if (searchInput.value.length >= 2) doSearch();
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#search-container')) {
+      searchResults.classList.add('hidden');
+    }
+  });
+
+  function doSearch() {
+    const q = searchInput.value.trim().toLowerCase();
+    if (q.length < 2) {
+      searchResults.classList.add('hidden');
+      return;
+    }
+
+    const matches = allParcels.filter(p => {
+      const addr = (p.address || '').toLowerCase();
+      const acct = (p.account || '').toLowerCase();
+      return addr.includes(q) || acct.includes(q);
+    }).slice(0, 8);
+
+    if (!matches.length) {
+      searchResults.innerHTML = '<div class="search-result-item"><span class="result-meta">No results</span></div>';
+      searchResults.classList.remove('hidden');
+      return;
+    }
+
+    searchResults.innerHTML = matches.map(p => `
+      <div class="search-result-item" data-account="${p.account}" data-lat="${p.lat}" data-lng="${p.lng}">
+        <div class="result-addr">${p.address || 'Parcel ' + p.account}</div>
+        <div class="result-meta">${p.price_per_sqft ? '$' + Math.round(p.price_per_sqft) + '/sqft' : ''} ${p.last_sale_date ? '· ' + p.last_sale_date : ''}</div>
+      </div>
+    `).join('');
+    searchResults.classList.remove('hidden');
+
+    searchResults.querySelectorAll('.search-result-item[data-account]').forEach(el => {
+      el.addEventListener('click', () => {
+        const lat = parseFloat(el.dataset.lat);
+        const lng = parseFloat(el.dataset.lng);
+        const account = el.dataset.account;
+        map.setView([lat, lng], 17);
+        searchResults.classList.add('hidden');
+        searchInput.value = '';
+
+        // Find and click the parcel
+        const parcel = allParcels.find(p => p.account === account);
+        if (parcel) {
+          // Small delay to let the map pan, then open detail
+          setTimeout(() => openDetailPanel(parcel), 300);
+        }
+      });
+    });
+  }
+
   // ── Controls wiring ────────────────────────────────────
   // Toggle controls panel
   document.getElementById('controls-toggle').addEventListener('click', () => {
     document.getElementById('controls-body').classList.toggle('collapsed');
+  });
+
+  // View mode toggle
+  document.getElementById('view-parcels').addEventListener('click', () => {
+    currentView = 'parcels';
+    document.getElementById('view-parcels').classList.add('active');
+    document.getElementById('view-hexbin').classList.remove('active');
+    renderMarkers();
+  });
+
+  document.getElementById('view-hexbin').addEventListener('click', () => {
+    currentView = 'hexbin';
+    document.getElementById('view-hexbin').classList.add('active');
+    document.getElementById('view-parcels').classList.remove('active');
+    renderMarkers();
   });
 
   // Metric selector
@@ -407,11 +575,29 @@
   document.getElementById('opacity-slider').addEventListener('input', e => {
     currentOpacity = parseFloat(e.target.value);
     document.getElementById('opacity-value').textContent = currentOpacity.toFixed(2);
-    if (markerLayer) {
-      markerLayer.eachLayer(m => {
+    const layer = markerLayer || hexLayer;
+    if (layer) {
+      layer.eachLayer(m => {
         if (m.setStyle) m.setStyle({ fillOpacity: currentOpacity });
       });
     }
+  });
+
+  // Percentile clamp
+  document.getElementById('clamp-lo').addEventListener('input', e => {
+    clampLo = parseInt(e.target.value);
+    document.getElementById('clamp-value').textContent = clampLo + '–' + clampHi;
+  });
+  document.getElementById('clamp-lo').addEventListener('change', () => {
+    renderMarkers();
+  });
+
+  document.getElementById('clamp-hi').addEventListener('input', e => {
+    clampHi = parseInt(e.target.value);
+    document.getElementById('clamp-value').textContent = clampLo + '–' + clampHi;
+  });
+  document.getElementById('clamp-hi').addEventListener('change', () => {
+    renderMarkers();
   });
 
   // Date filters
@@ -429,4 +615,5 @@
 
   // ── Init ───────────────────────────────────────────────
   loadParcels();
+  loadHexData();
 })();
