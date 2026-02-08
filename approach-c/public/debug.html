@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashland Market - Deployment Debug</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: monospace; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+  h1 { font-size: 16px; margin-bottom: 16px; color: #fff; }
+  h2 { font-size: 13px; margin: 16px 0 8px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+  .check { padding: 6px 10px; margin: 4px 0; border-radius: 4px; font-size: 13px; }
+  .pass { background: rgba(0,200,80,0.15); border-left: 3px solid #0c6; }
+  .fail { background: rgba(255,60,60,0.15); border-left: 3px solid #f44; }
+  .warn { background: rgba(255,180,0,0.15); border-left: 3px solid #fa0; }
+  .pending { background: rgba(100,100,100,0.15); border-left: 3px solid #666; }
+  .detail { font-size: 11px; color: #888; margin-top: 2px; word-break: break-all; }
+  pre { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 11px; margin-top: 8px; }
+  a { color: #6bf; }
+</style>
+</head>
+<body>
+<h1>Deployment Diagnostics</h1>
+<div id="results"></div>
+
+<script>
+const results = document.getElementById('results')
+
+function addSection(title) {
+  const h = document.createElement('h2')
+  h.textContent = title
+  results.appendChild(h)
+}
+
+function addCheck(label, status, detail) {
+  const div = document.createElement('div')
+  div.className = 'check ' + status
+  div.innerHTML = `<strong>${status === 'pass' ? '✓' : status === 'fail' ? '✗' : '⚠'}</strong> ${label}`
+  if (detail) {
+    const d = document.createElement('div')
+    d.className = 'detail'
+    d.textContent = detail
+    div.appendChild(d)
+  }
+  results.appendChild(div)
+  return div
+}
+
+function addPre(text) {
+  const pre = document.createElement('pre')
+  pre.textContent = text
+  results.appendChild(pre)
+}
+
+// --- Environment ---
+addSection('Environment')
+addCheck('Page URL', 'pass', location.href)
+addCheck('Origin', 'pass', location.origin)
+addCheck('Pathname', 'pass', location.pathname)
+addCheck('Protocol', location.protocol === 'https:' ? 'pass' : 'warn',
+  location.protocol + ' ' + (location.protocol === 'https:' ? '(secure)' : '(not secure — CORS/mixed content issues possible)'))
+addCheck('User Agent', 'pass', navigator.userAgent.substring(0, 120))
+
+// --- File checks ---
+addSection('Static File Checks')
+
+async function checkFile(url, label) {
+  const el = addCheck(label, 'pending', `Fetching ${url}...`)
+  try {
+    const resp = await fetch(url, { method: 'HEAD' })
+    if (resp.ok) {
+      const ct = resp.headers.get('content-type') || 'unknown'
+      const cl = resp.headers.get('content-length')
+      el.className = 'check pass'
+      el.querySelector('.detail').textContent =
+        `${resp.status} OK — type: ${ct}` + (cl ? `, size: ${(parseInt(cl)/1024).toFixed(1)}KB` : '')
+    } else {
+      el.className = 'check fail'
+      el.querySelector('.detail').textContent = `${resp.status} ${resp.statusText} — URL: ${url}`
+    }
+    return resp.ok
+  } catch (err) {
+    el.className = 'check fail'
+    el.querySelector('.detail').textContent = `Network error: ${err.message} — URL: ${url}`
+    return false
+  }
+}
+
+async function checkDataContent() {
+  const el = addCheck('parcels.json content', 'pending', 'Loading and parsing...')
+  try {
+    const resp = await fetch('./data/parcels.json')
+    if (!resp.ok) {
+      el.className = 'check fail'
+      el.querySelector('.detail').textContent = `HTTP ${resp.status} — cannot load parcels.json`
+      return
+    }
+    const data = await resp.json()
+    if (data.parcels && Array.isArray(data.parcels)) {
+      el.className = 'check pass'
+      el.querySelector('.detail').textContent =
+        `${data.parcels.length} parcels loaded. Generated: ${data.generated || 'unknown'}`
+
+      if (data.parcels.length > 0) {
+        addSection('Sample Parcel')
+        addPre(JSON.stringify(data.parcels[0], null, 2))
+      }
+    } else {
+      el.className = 'check fail'
+      el.querySelector('.detail').textContent =
+        `Unexpected structure: keys = ${Object.keys(data).join(', ')}`
+    }
+  } catch (err) {
+    el.className = 'check fail'
+    el.querySelector('.detail').textContent = `Parse error: ${err.message}`
+  }
+}
+
+async function runChecks() {
+  // Check if index.html (the app) is accessible
+  await checkFile('./index.html', 'index.html (app entry)')
+  // Check data directory
+  await checkFile('./data/parcels.json', 'data/parcels.json')
+  // Check a common build artifact
+  await checkFile('./vite.svg', 'vite.svg (public asset)')
+
+  addSection('Data Validation')
+  await checkDataContent()
+
+  // Alternative path check — test the WRONG path to confirm
+  addSection('Path Debugging')
+  const wrongPath = await checkFile('../data/parcels.json', '../data/parcels.json (old broken path)')
+  if (wrongPath) {
+    addCheck('Path diagnosis', 'warn',
+      'The old ../data/ path also works — this site may not be in a subdirectory')
+  } else {
+    addCheck('Path diagnosis', 'pass',
+      'The old ../data/ path fails as expected — confirms ./data/ is the correct path')
+  }
+}
+
+runChecks()
+</script>
+</body>
+</html>

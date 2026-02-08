@@ -40,7 +40,55 @@ jobs:
 
       - name: Copy data files into dist
         run: |
-          cp -r data approach-c/dist/data
+          echo "=== Copying data files ==="
+          # Copy parcels.json (required)
+          mkdir -p approach-c/dist/data
+          cp data/parcels.json approach-c/dist/data/parcels.json
+          echo "parcels.json: $(wc -c < data/parcels.json) bytes"
+
+          # Copy aggregates if they exist
+          if [ -d data/aggregates ]; then
+            cp -r data/aggregates approach-c/dist/data/aggregates
+            echo "aggregates: $(find data/aggregates -type f | wc -l) files"
+          fi
+
+          # Copy sales data (skip if too many files to keep artifact small)
+          if [ -d data/sales ]; then
+            SALES_COUNT=$(find data/sales -type f | wc -l)
+            echo "sales directory: $SALES_COUNT files"
+            if [ "$SALES_COUNT" -le 50000 ]; then
+              cp -r data/sales approach-c/dist/data/sales
+              echo "sales: copied $SALES_COUNT files"
+            else
+              echo "WARNING: Skipping sales/ ($SALES_COUNT files) — too many for Pages artifact"
+              echo "Consider pre-bundling or using an API instead"
+            fi
+          fi
+
+      - name: Verify build output
+        run: |
+          echo "=== Build output verification ==="
+          echo "--- dist/ top-level ---"
+          ls -la approach-c/dist/
+          echo ""
+          echo "--- dist/assets/ ---"
+          ls -la approach-c/dist/assets/ 2>/dev/null || echo "(no assets/ directory)"
+          echo ""
+          echo "--- dist/data/ ---"
+          ls -la approach-c/dist/data/ 2>/dev/null || echo "ERROR: data/ directory missing!"
+          echo ""
+          echo "--- Key file checks ---"
+          for f in index.html debug.html data/parcels.json; do
+            if [ -f "approach-c/dist/$f" ]; then
+              SIZE=$(wc -c < "approach-c/dist/$f")
+              echo "  ✓ $f ($SIZE bytes)"
+            else
+              echo "  ✗ $f MISSING"
+            fi
+          done
+          echo ""
+          echo "--- Total dist size ---"
+          du -sh approach-c/dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -57,3 +105,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Post-deploy info
+        run: |
+          echo "=== Deployment complete ==="
+          echo "Site URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "Debug page: ${{ steps.deployment.outputs.page_url }}debug.html"

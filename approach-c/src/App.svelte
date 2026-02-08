@@ -5,6 +5,7 @@
   import Tooltip from './components/Tooltip.svelte'
   import DetailPanel from './components/DetailPanel.svelte'
   import Legend from './components/Legend.svelte'
+  import DebugOverlay from './components/DebugOverlay.svelte'
   import { loadParcels, selectedParcel } from './store'
 
   onMount(() => {
@@ -20,6 +21,7 @@
   {#if $selectedParcel}
     <DetailPanel />
   {/if}
+  <DebugOverlay />
 </main>
 
 <style>

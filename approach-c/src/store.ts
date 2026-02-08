@@ -1,6 +1,10 @@
 import { writable, derived } from 'svelte/store'
 import type { Parcel, ParcelDetail, MetricKey, ColorRamp, ViewMode } from './types'
 
+// In dev, data lives at ../data/ (sibling to approach-c/).
+// In production (GitHub Pages), data is copied into dist/data/.
+const DATA_BASE = import.meta.env.DEV ? '../data' : './data'
+
 export const parcels = writable<Parcel[]>([])
 export const selectedMetric = writable<MetricKey>('price_per_sqft')
 export const colorRamp = writable<ColorRamp>('viridis')
@@ -69,19 +73,48 @@ export const metricRange = derived(
   }
 )
 
+// Debug/diagnostics store for deployment troubleshooting
+export const loadError = writable<string | null>(null)
+export const loadStatus = writable<string>('idle')
+
 export async function loadParcels() {
-  const resp = await fetch('../data/parcels.json')
-  const data = await resp.json()
-  parcels.set(data.parcels)
+  const url = `${DATA_BASE}/parcels.json`
+  loadStatus.set(`fetching ${url}`)
+  try {
+    const resp = await fetch(url)
+    if (!resp.ok) {
+      const msg = `Failed to load parcels: ${resp.status} ${resp.statusText} (${url})`
+      console.error(msg)
+      loadError.set(msg)
+      loadStatus.set('error')
+      return
+    }
+    const data = await resp.json()
+    parcels.set(data.parcels)
+    loadStatus.set(`loaded ${data.parcels.length} parcels`)
+    loadError.set(null)
+  } catch (err) {
+    const msg = `Error loading parcels from ${url}: ${err instanceof Error ? err.message : String(err)}`
+    console.error(msg)
+    loadError.set(msg)
+    loadStatus.set('error')
+  }
 }
 
 export async function loadParcelDetail(account: string) {
   detailLoading.set(true)
+  const url = `${DATA_BASE}/sales/${account}.json`
   try {
-    const resp = await fetch(`../data/sales/${account}.json`)
+    const resp = await fetch(url)
+    if (!resp.ok) {
+      console.warn(`Detail load failed: ${resp.status} for ${url}`)
+      selectedDetail.set(null)
+      return
+    }
     const data = await resp.json()
     selectedDetail.set(data)
-  } catch {
+  } catch (err) {
+    console.warn(`Error loading detail from ${url}:`, err)
     selectedDetail.set(null)
   } finally {
     detailLoading.set(false)

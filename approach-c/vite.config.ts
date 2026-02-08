@@ -1,9 +1,22 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { execSync } from 'child_process'
+
+function gitSha(): string {
+  try {
+    return execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim()
+  } catch {
+    return 'unknown'
+  }
+}
 
 export default defineConfig({
   plugins: [svelte()],
   base: './',
+  define: {
+    __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    __GIT_SHA__: JSON.stringify(gitSha()),
+  },
   server: {
     port: 5173,
   },
