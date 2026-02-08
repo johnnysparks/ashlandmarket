@@ -30,6 +30,10 @@ jobs:
         working-directory: approach-c
         run: npm ci
 
+      - name: Run tests
+        working-directory: approach-c
+        run: npm test
+
       - name: Build
         working-directory: approach-c
         run: npm run build
