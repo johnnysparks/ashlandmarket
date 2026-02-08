@@ -42,7 +42,7 @@ SESSION.headers.update({
 # Page types and their URL templates
 PAGE_TYPES = {
     "sales": f"{PDO_BASE}/sales.cfm",
-    "detail": f"{PDO_BASE}/detail.cfm",
+    "detail": f"{PDO_BASE}/Ora_asmt_details.cfm",
     "permit": f"{PDO_BASE}/permit.cfm",
 }
 
