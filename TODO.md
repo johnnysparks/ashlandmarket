@@ -10,35 +10,51 @@
 ## Phase 1: Data Pipeline (Agent 1)
 
 ### 1.1 Project Setup
-- [ ] Create `data/scraper/` directory structure
-- [ ] Set up Python project (`pyproject.toml` or `requirements.txt`) with requests, beautifulsoup4, lxml
-- [ ] Create `.gitignore` (Python venvs, `__pycache__`, `.env`, `node_modules`, raw HTML cache)
+- [x] Create `data/scraper/` directory structure
+- [x] Set up Python project (`requirements.txt`) with requests, beautifulsoup4, lxml
+- [x] Create `.gitignore` (Python venvs, `__pycache__`, `.env`, `node_modules`, raw HTML cache)
 
 ### 1.2 Parcel Seed List
-- [ ] Research Jackson County GIS data sources for Ashland parcel list
-- [ ] Download or scrape Ashland parcel/account numbers with addresses
-- [ ] Geocode parcels (county GIS shapefiles or Nominatim) to get lat/lng
-- [ ] Output initial `data/parcels.json` with account, address, lat, lng (other fields null)
+- [x] Research Jackson County GIS data sources for Ashland parcel list
+- [x] Fetch 10,317 Ashland parcels from ODOT ArcGIS (maptaxlot + polygon centroids)
+- [~] Get account numbers (county spatial server intermittently down — `spatial.jacksoncountyor.gov` returns 502)
+- [x] Output initial `data/parcels.json` with maptaxlot, lat, lng (other fields null pending scrape)
+
+> **Note:** ODOT endpoint provides maptaxlot + geometry but no account numbers or addresses.
+> The JCGIS AGOL hosted layer has the fields but returns null for non-geometry attributes.
+> The county spatial server (`spatial.jacksoncountyor.gov`) has full data but is intermittently down.
+> PDO `sales.cfm` supports both `?account=` and `?maptaxlot=` parameters.
+> When the county server comes back, re-run `python jaco_scraper.py seed` to get full data.
 
 ### 1.3 Scraper
-- [ ] Build scraper for PDO sales page (`/pdo/sales.cfm?account=...`)
-- [ ] Build scraper for PDO property detail page
-- [ ] Build scraper for PDO permit page
-- [ ] Add rate limiting (be respectful — 1-2 req/sec max)
-- [ ] Add raw HTML caching (don't re-scrape what we have)
-- [ ] Add resume capability (pick up where we left off)
+- [x] Build scraper for PDO sales page (`/pdo/sales.cfm?account=...` or `?maptaxlot=...`)
+- [x] Build scraper for PDO property detail page (note: `detail.cfm` returns 404 — URL may have changed)
+- [x] Build scraper for PDO permit page (note: `permit.cfm` returns 404 — URL may have changed)
+- [x] Add rate limiting (0.75s between requests)
+- [x] Add raw HTML caching (don't re-scrape what we have)
+- [x] Add resume capability (skip already-cached accounts)
 
 ### 1.4 Parser
-- [ ] Parse sales history from cached HTML → structured JSON
-- [ ] Parse property details (sqft, lot size, year built, improvements)
-- [ ] Parse permit history
-- [ ] Write per-account JSON files to `data/sales/{account}.json`
-- [ ] Update `data/parcels.json` master index with computed fields (price_per_sqft, etc.)
+- [x] Parse sales history from cached HTML → structured JSON (tested on real data)
+- [~] Parse property details (sqft, lot size, year built, improvements) — parser ready, needs working detail page URL
+- [~] Parse permit history — parser ready, needs working permit page URL
+- [x] Write per-account JSON files to `data/sales/{account}.json`
+- [x] Update `data/parcels.json` master index with computed fields (price_per_sqft, etc.)
 
 ### 1.5 Aggregation
-- [ ] Precompute hexbin aggregation for $/sqft
-- [ ] Precompute grid-square aggregation
-- [ ] Write aggregate JSONs to `data/aggregates/`
+- [x] Precompute hexbin aggregation for $/sqft (code ready, runs after parse step)
+- [x] Precompute grid-square aggregation (code ready, runs after parse step)
+- [x] Write aggregate JSONs to `data/aggregates/`
+
+### Data Pipeline Commands
+```bash
+cd data/scraper
+python jaco_scraper.py seed       # Fetch parcel geometry from GIS
+python jaco_scraper.py scrape     # Scrape PDO pages (sales history)
+python jaco_scraper.py parse      # Parse HTML → JSON
+python jaco_scraper.py aggregate  # Precompute hex/grid aggregations
+python jaco_scraper.py status     # Show pipeline progress
+```
 
 ---
 
