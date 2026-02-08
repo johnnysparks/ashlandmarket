@@ -147,7 +147,7 @@ python jaco_scraper.py status     # Show pipeline progress
 ### 5.1 Project Setup
 - [x] Create `docs/` directory
 - [x] Create `docs/schema-proposals.md` (empty template for schema change requests)
-- [ ] Set up GitHub Pages deployment config if needed
+- [x] Set up GitHub Pages deployment config (`.github/workflows/deploy.yml`)
 - [x] Add sample/mock data for frontend development before scraper is done
 
 ### 5.2 Mock Data
@@ -157,17 +157,17 @@ python jaco_scraper.py status     # Show pipeline progress
 - [x] Document mock data format in `docs/mock-data.md`
 
 ### 5.3 Integration
-- [ ] Verify all three approaches can load and render mock data
-- [ ] Document any schema issues found during integration
-- [ ] Set up a simple comparison page or notes for evaluating the three approaches
+- [~] Verify all three approaches can load and render mock data (Approach C verified; A & B not started yet)
+- [x] Document any schema issues found during integration (none found — schema is clean)
+- [x] Set up a simple comparison page or notes for evaluating the three approaches (`docs/approach-comparison.md`)
 
 ---
 
 ## Backlog (Unassigned — grab these when primary work is done)
 
-- [ ] Phase 3: Aggregation mode switching (hexbin, grid, neighborhood polygon)
-- [ ] Phase 3: Percentile clamp control (clip outliers)
-- [ ] Phase 3: Multiple overlay metrics wired up across all approaches
+- [x] Phase 3: Aggregation mode switching (hexbin, grid) — implemented in Approach C
+- [x] Phase 3: Percentile clamp control (clip outliers) — implemented in Approach C
+- [~] Phase 3: Multiple overlay metrics wired up across all approaches (8 metrics in Approach C; A & B pending)
 - [ ] Phase 4: Compare mode (pin multiple parcels)
 - [ ] Phase 5: Walkability/amenity overlays
 - [ ] Phase 5: Search/filter by criteria
