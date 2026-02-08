@@ -230,6 +230,55 @@
   padding: 2px 0;
 }
 
+/* View mode toggle buttons */
+.mode-options {
+  display: flex;
+  gap: 4px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.15s;
+}
+
+.mode-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Percentile clamp inputs */
+.percentile-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.percentile-inputs input[type="range"] {
+  flex: 1;
+}
+
+.percentile-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 28px;
+}
+
+.percentile-value {
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 28px;
+  text-align: right;
+}
+
 /* Legend */
 .legend {
   position: absolute;

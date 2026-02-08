@@ -3,8 +3,8 @@ import MapView from './components/MapView'
 import Controls from './components/Controls'
 import Tooltip from './components/Tooltip'
 import DetailPanel from './components/DetailPanel'
-import { loadParcels, parcelsToGeoJSON, filterByTimeWindow } from './utils/data'
-import { COLOR_RAMPS, METRICS } from './utils/colors'
+import { loadParcels, parcelsToGeoJSON, filterByTimeWindow, loadHexbins, hexbinsToGeoJSON } from './utils/data'
+import { COLOR_RAMPS, METRICS, computePercentiles } from './utils/colors'
 import './App.css'
 
 export default function App() {
@@ -18,6 +18,16 @@ export default function App() {
   const [opacity, setOpacity] = useState(0.8)
   const [dateRange, setDateRange] = useState({ start: '', end: '' })
   const [controlsOpen, setControlsOpen] = useState(false)
+
+  // Phase 3: Percentile clamp control
+  const [percentileRange, setPercentileRange] = useState({ lower: 5, upper: 95 })
+
+  // Phase 3: Aggregation mode switching
+  const [viewMode, setViewMode] = useState('points') // 'points' | 'heatmap' | 'hexbin'
+  const [hexbinData, setHexbinData] = useState(null)
+
+  // Phase 3: Secondary metric for circle size (bivariate)
+  const [sizeMetric, setSizeMetric] = useState(null) // null = uniform size
 
   // Interaction state
   const [hoveredParcel, setHoveredParcel] = useState(null)
@@ -34,6 +44,10 @@ export default function App() {
         setError(err.message)
         setLoading(false)
       })
+    // Pre-load hexbin data
+    loadHexbins().then(data => {
+      if (data) setHexbinData(data)
+    })
   }, [])
 
   const filteredParcels = useMemo(
@@ -44,6 +58,11 @@ export default function App() {
   const geojson = useMemo(
     () => parcelsToGeoJSON(filteredParcels),
     [filteredParcels]
+  )
+
+  const hexbinGeojson = useMemo(
+    () => hexbinsToGeoJSON(hexbinData),
+    [hexbinData]
   )
 
   const handleParcelClick = useCallback((props) => {
@@ -80,9 +99,13 @@ export default function App() {
       <div className="map-container">
         <MapView
           geojson={geojson}
+          hexbinGeojson={hexbinGeojson}
           metric={metric}
           colorRamp={colorRamp}
           opacity={opacity}
+          percentileRange={percentileRange}
+          viewMode={viewMode}
+          sizeMetric={sizeMetric}
           onParcelClick={handleParcelClick}
           onParcelHover={handleParcelHover}
           hoveredAccount={hoveredParcel?.account}
@@ -104,11 +127,17 @@ export default function App() {
           setOpacity={setOpacity}
           dateRange={dateRange}
           setDateRange={setDateRange}
+          percentileRange={percentileRange}
+          setPercentileRange={setPercentileRange}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          sizeMetric={sizeMetric}
+          setSizeMetric={setSizeMetric}
           isOpen={controlsOpen}
           setIsOpen={setControlsOpen}
         />
 
-        <Legend metric={metric} colorRamp={colorRamp} geojson={geojson} />
+        <Legend metric={metric} colorRamp={colorRamp} geojson={geojson} percentileRange={percentileRange} />
       </div>
 
       {selectedParcel && (
@@ -121,19 +150,15 @@ export default function App() {
   )
 }
 
-function Legend({ metric, colorRamp, geojson }) {
+function Legend({ metric, colorRamp, geojson, percentileRange }) {
   const { min, max } = useMemo(() => {
     if (!geojson || !geojson.features.length) return { min: 0, max: 1 }
     const values = geojson.features
       .map(f => f.properties[metric.key])
       .filter(v => v != null && !isNaN(v))
-      .sort((a, b) => a - b)
     if (values.length === 0) return { min: 0, max: 1 }
-    return {
-      min: values[Math.floor(values.length * 0.05)],
-      max: values[Math.floor(values.length * 0.95)]
-    }
-  }, [geojson, metric.key])
+    return computePercentiles(values, percentileRange.lower, percentileRange.upper)
+  }, [geojson, metric.key, percentileRange.lower, percentileRange.upper])
 
   return (
     <div className="legend">
