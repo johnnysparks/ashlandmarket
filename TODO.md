@@ -165,13 +165,10 @@ python jaco_scraper.py status     # Show pipeline progress
 
 ## Backlog (Unassigned — grab these when primary work is done)
 
-- [x] Phase 3: Aggregation mode switching (hexbin, grid) — implemented in Approach C
-- [x] Phase 3: Percentile clamp control (clip outliers) — implemented in Approach C
-- [~] Phase 3: Multiple overlay metrics wired up across all approaches (8 metrics in Approach C; A & B pending)
-- [x] Phase 3: Aggregation mode switching (hexbin, heatmap, points) — Approach A done
-- [x] Phase 3: Percentile clamp control (clip outliers) — Approach A done
-- [x] Phase 3: Multiple overlay metrics wired up — Approach A done (bivariate size-by metric)
+- [x] Phase 3: Aggregation mode switching (hexbin, grid, neighborhood polygon) — **Approach B done** (hexbin toggle)
+- [x] Phase 3: Percentile clamp control (clip outliers) — **Approach B done** (adjustable lo/hi sliders)
+- [ ] Phase 3: Multiple overlay metrics wired up across all approaches
 - [ ] Phase 4: Compare mode (pin multiple parcels)
 - [ ] Phase 5: Walkability/amenity overlays
-- [ ] Phase 5: Search/filter by criteria
+- [x] Phase 5: Search/filter by criteria — **Approach B done** (address/account search with results)
 - [ ] Phase 5: Offline/PWA support
