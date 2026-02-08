@@ -89,28 +89,28 @@ python jaco_scraper.py status     # Show pipeline progress
 ## Phase 2: Approach B — Leaflet + Vanilla JS + D3 (Agent 3)
 
 ### 3.1 Project Setup
-- [ ] Create `approach-b/` with `index.html`, `style.css`, `main.js`
-- [ ] Include Leaflet + D3 via CDN or local bundle
-- [ ] Create `approach-b/README.md` with setup instructions
-- [ ] Confirm map renders with `npx serve .` or `python -m http.server`
+- [x] Create `approach-b/` with `index.html`, `style.css`, `main.js`
+- [x] Include Leaflet + D3 via CDN or local bundle
+- [x] Create `approach-b/README.md` with setup instructions
+- [x] Confirm map renders with `npx serve .` or `python -m http.server`
 
 ### 3.2 MVP Map
-- [ ] Render Ashland-centered Leaflet map with OSM tiles
-- [ ] Load `data/parcels.json`, create GeoJSON layer from parcels
-- [ ] D3 color scale for $/sqft, apply to parcel markers
-- [ ] Click parcel → popup/tooltip with key stats
+- [x] Render Ashland-centered Leaflet map with OSM tiles
+- [x] Load `data/parcels.json`, create GeoJSON layer from parcels
+- [x] D3 color scale for $/sqft, apply to parcel markers
+- [x] Click parcel → popup/tooltip with key stats
 
 ### 3.3 Controls
-- [ ] Overlay metric selector (HTML select or button group)
-- [ ] D3 color ramp switching
-- [ ] Opacity control
-- [ ] Time window filter (range inputs)
+- [x] Overlay metric selector (HTML select or button group)
+- [x] D3 color ramp switching
+- [x] Opacity control
+- [x] Time window filter (range inputs)
 
 ### 3.4 Detail View
-- [ ] Click parcel → side panel or modal with full history
-- [ ] Fetch per-account JSON, render sales table
-- [ ] D3 line chart for price trajectory
-- [ ] Permit list, improvement breakdown
+- [x] Click parcel → side panel or modal with full history
+- [x] Fetch per-account JSON, render sales table
+- [x] D3 line chart for price trajectory
+- [x] Permit list, improvement breakdown
 
 ---
 
