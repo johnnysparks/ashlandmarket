@@ -146,7 +146,7 @@ describe('Constants', () => {
 describe('METRIC_CONFIG', () => {
   it('has all expected metrics', () => {
     const expected = [
-      'price_per_sqft', 'last_sale_price', 'assessed_value',
+      'price_per_sqft', 'price_per_sqft_lot', 'last_sale_price', 'assessed_value',
       'sqft_living', 'sqft_lot', 'year_built', 'num_sales', 'num_permits',
     ];
     expect(Object.keys(METRIC_CONFIG)).toEqual(expect.arrayContaining(expected));
