@@ -1,0 +1,43 @@
+{
+  "account": "10730358",
+  "maptaxlot": "391E250000422",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3804,
+      "year_built": 1991,
+      "description": "Two story with basement",
+      "stat_class": "164"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 1200,
+      "year_built": 1995,
+      "description": "Two story",
+      "stat_class": "142"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 11520,
+      "year_built": 2002,
+      "description": "Arena",
+      "stat_class": "810"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 336,
+      "year_built": 2002,
+      "description": "Horse Stables",
+      "stat_class": "811"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 672,
+      "year_built": 2002,
+      "description": "Machine Shed",
+      "stat_class": "862"
+    }
+  ]
+}

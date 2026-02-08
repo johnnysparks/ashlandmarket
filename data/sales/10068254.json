@@ -1,0 +1,15 @@
+{
+  "account": "10068254",
+  "maptaxlot": "391E09BD01801",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 2004,
+      "year_built": 2015,
+      "description": "Tavern",
+      "stat_class": "555"
+    }
+  ]
+}

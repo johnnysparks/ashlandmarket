@@ -1,0 +1,14 @@
+{
+  "account": "10057100",
+  "maptaxlot": "391E05DB01800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 1688,
+      "description": "Medical/Dental-Non Hospital Influence",
+      "stat_class": "622"
+    }
+  ]
+}

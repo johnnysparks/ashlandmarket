@@ -1,0 +1,20 @@
+{
+  "account": "10063953",
+  "maptaxlot": "391E09AD03800",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 864,
+      "description": "Fast Food",
+      "stat_class": "551"
+    },
+    {
+      "type": "COMML IMP",
+      "year_built": 2018,
+      "description": "Yard Improvements",
+      "stat_class": "651"
+    }
+  ]
+}

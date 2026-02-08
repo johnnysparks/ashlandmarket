@@ -1,0 +1,15 @@
+{
+  "account": "10099725",
+  "maptaxlot": "391E010000200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MANF STRCT",
+      "sqft": 615,
+      "year_built": 2019,
+      "description": "Single wide",
+      "stat_class": "961"
+    }
+  ]
+}

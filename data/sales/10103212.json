@@ -1,0 +1,29 @@
+{
+  "account": "10103212",
+  "maptaxlot": "391E250000400",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3315,
+      "year_built": 1995,
+      "description": "Two story with basement",
+      "stat_class": "154"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 906,
+      "year_built": 2002,
+      "description": "Area over Garage/Shop",
+      "stat_class": "147"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 1000,
+      "year_built": 2024,
+      "description": "Metal Component Bldg",
+      "stat_class": "852"
+    }
+  ]
+}
