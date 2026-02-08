@@ -288,7 +288,7 @@ def _update_parcel_from_parsed(
     parsed: dict[str, Any],
 ) -> None:
     """Update a parcel record with data extracted from PDO pages."""
-    # From detail page
+    # From detail page (Ora_asmt_details.cfm)
     if parsed.get("sqft_living"):
         parcel["sqft_living"] = parsed["sqft_living"]
     if parsed.get("sqft_lot"):
@@ -298,26 +298,29 @@ def _update_parcel_from_parsed(
     if parsed.get("assessed_value"):
         parcel["assessed_value"] = parsed["assessed_value"]
 
-    # From sales history
-    sales = parsed.get("sales", [])
-    parcel["num_sales"] = len(sales)
+    # Last sale — may come directly from detail page or from sales list
+    if parsed.get("last_sale_price"):
+        parcel["last_sale_price"] = parsed["last_sale_price"]
+        parcel["last_sale_date"] = parsed.get("last_sale_date")
+    else:
+        # Fallback: from sales history list
+        sales = parsed.get("sales", [])
+        for sale in sales:
+            price = sale.get("price")
+            if price and price > 0:
+                parcel["last_sale_price"] = price
+                parcel["last_sale_date"] = sale.get("date")
+                break
 
-    # Find last sale with a price > 0
-    for sale in sales:
-        price = sale.get("price")
-        if price and price > 0:
-            parcel["last_sale_price"] = price
-            parcel["last_sale_date"] = sale.get("date")
-            break
+    # Sales and permits counts
+    parcel["num_sales"] = len(parsed.get("sales", []))
+    parcel["num_permits"] = len(parsed.get("permits", []))
 
     # Compute $/sqft
     if parcel.get("last_sale_price") and parcel.get("sqft_living"):
         parcel["price_per_sqft"] = round(
             parcel["last_sale_price"] / parcel["sqft_living"], 2,
         )
-
-    # From permits
-    parcel["num_permits"] = len(parsed.get("permits", []))
 
 
 # ── CLI ────────────────────────────────────────────────────────────────────
