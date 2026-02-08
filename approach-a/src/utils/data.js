@@ -59,3 +59,40 @@ export async function loadParcelDetail(account) {
     return null
   }
 }
+
+let cachedHexbins = null
+
+export async function loadHexbins() {
+  if (cachedHexbins) return cachedHexbins
+  try {
+    const resp = await fetch('../data/aggregates/hexbin-price-sqft.json')
+    if (!resp.ok) return null
+    const data = await resp.json()
+    cachedHexbins = data
+    return data
+  } catch {
+    return null
+  }
+}
+
+export function hexbinsToGeoJSON(hexData) {
+  if (!hexData || !hexData.hexagons) return { type: 'FeatureCollection', features: [] }
+  return {
+    type: 'FeatureCollection',
+    features: hexData.hexagons.map((h, i) => ({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [h.center_lng, h.center_lat]
+      },
+      properties: {
+        id: i,
+        count: h.count,
+        median_price_sqft: h.median_price_sqft,
+        mean_price_sqft: h.mean_price_sqft,
+        min_price_sqft: h.min_price_sqft,
+        max_price_sqft: h.max_price_sqft
+      }
+    }))
+  }
+}
