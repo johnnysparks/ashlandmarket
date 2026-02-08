@@ -1,0 +1,14 @@
+{
+  "account": "10115452",
+  "maptaxlot": "391E120000310",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 4800,
+      "description": "Aircraft Hangar",
+      "stat_class": "616"
+    }
+  ]
+}

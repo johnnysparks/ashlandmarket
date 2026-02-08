@@ -1,0 +1,14 @@
+{
+  "account": "10118397",
+  "maptaxlot": "391E14D000200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MANF STRCT",
+      "year_built": 1975,
+      "description": "Zero value",
+      "stat_class": "950"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "account": "10099661",
+  "maptaxlot": "391E010000101",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 3314,
+      "year_built": 1976,
+      "description": "Two story",
+      "stat_class": "162"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 2700,
+      "year_built": 1976,
+      "description": "Free Stall Barn",
+      "stat_class": "841"
+    },
+    {
+      "type": "FARM BLDG",
+      "sqft": 900,
+      "year_built": 1973,
+      "description": "Machine Shed",
+      "stat_class": "862"
+    }
+  ]
+}
