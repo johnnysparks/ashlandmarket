@@ -1,0 +1,15 @@
+{
+  "account": "10928866",
+  "maptaxlot": "391E04DC03606",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "RESIDENCE",
+      "sqft": 2182,
+      "year_built": 2001,
+      "description": "One story with basement",
+      "stat_class": "143"
+    }
+  ]
+}

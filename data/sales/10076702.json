@@ -1,0 +1,20 @@
+{
+  "account": "10076702",
+  "maptaxlot": "391E10CA00100",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "year_built": 1983,
+      "description": "EXEMPT",
+      "stat_class": "685"
+    },
+    {
+      "type": "COMML IMP",
+      "year_built": 2020,
+      "description": "EXEMPT",
+      "stat_class": "685"
+    }
+  ]
+}

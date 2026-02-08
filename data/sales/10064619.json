@@ -1,0 +1,15 @@
+{
+  "account": "10064619",
+  "maptaxlot": "391E09AB09200",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "sqft": 3770,
+      "year_built": 1982,
+      "description": "Dinner House",
+      "stat_class": "554"
+    }
+  ]
+}

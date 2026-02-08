@@ -1,0 +1,13 @@
+{
+  "account": "10116939",
+  "maptaxlot": "391E14AA06900",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "COMML IMP",
+      "description": "Food & Kindred Products",
+      "stat_class": "710"
+    }
+  ]
+}

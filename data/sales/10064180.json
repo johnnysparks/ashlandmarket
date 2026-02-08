@@ -1,0 +1,22 @@
+{
+  "account": "10064180",
+  "maptaxlot": "391E09AD05700",
+  "sales": [],
+  "permits": [],
+  "improvements": [
+    {
+      "type": "MULTI-FMLY",
+      "sqft": 1518,
+      "year_built": 1910,
+      "description": "DUPLEX CLASS 3 UPPER LEVELS",
+      "stat_class": "232"
+    },
+    {
+      "type": "RESIDENCE",
+      "sqft": 500,
+      "year_built": 2014,
+      "description": "Area over Garage/Shop",
+      "stat_class": "137"
+    }
+  ]
+}
