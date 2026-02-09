@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashland Market — Anomaly Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Ashland Market <span class="subtitle">Anomaly Finder</span></h1>
+    <p class="tagline">Neighborhood-level outliers in Jackson County parcel data</p>
+  </header>
+
+  <div id="controls">
+    <div class="control-row">
+      <label>
+        Sensitivity
+        <select id="threshold-select">
+          <option value="2">Very Sensitive (2&sigma;)</option>
+          <option value="3" selected>Normal (3&sigma;)</option>
+          <option value="4">Strict (4&sigma;)</option>
+          <option value="5">Very Strict (5&sigma;)</option>
+        </select>
+      </label>
+      <label>
+        Grid Size
+        <select id="grid-select">
+          <option value="0.002">Fine (~200m)</option>
+          <option value="0.003" selected>Medium (~300m)</option>
+          <option value="0.005">Coarse (~500m)</option>
+          <option value="0.008">Very Coarse (~800m)</option>
+        </select>
+      </label>
+      <label>
+        Metric Filter
+        <select id="metric-filter">
+          <option value="all">All Metrics</option>
+        </select>
+      </label>
+    </div>
+    <div class="control-row">
+      <label>
+        Sort by
+        <select id="sort-select">
+          <option value="severity" selected>Severity</option>
+          <option value="price-high">Sale Price (High)</option>
+          <option value="price-low">Sale Price (Low)</option>
+          <option value="lot-size">Lot Size</option>
+          <option value="address">Address</option>
+        </select>
+      </label>
+      <input type="search" id="search-input" placeholder="Search address or account...">
+    </div>
+  </div>
+
+  <div id="summary-bar">
+    <div class="stat-chip" id="stat-parcels">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Parcels</span>
+    </div>
+    <div class="stat-chip" id="stat-neighborhoods">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Neighborhoods</span>
+    </div>
+    <div class="stat-chip" id="stat-anomalies">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Anomalies</span>
+    </div>
+    <div class="stat-chip" id="stat-parcels-flagged">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Parcels Flagged</span>
+    </div>
+  </div>
+
+  <nav id="view-tabs">
+    <button class="tab active" data-view="anomalies">Anomalies</button>
+    <button class="tab" data-view="neighborhoods">Neighborhoods</button>
+  </nav>
+
+  <main id="app">
+    <div id="loading">Loading parcel data...</div>
+
+    <section id="anomalies-view" class="view active">
+      <div id="anomaly-list"></div>
+    </section>
+
+    <section id="neighborhoods-view" class="view">
+      <div id="neighborhood-list"></div>
+    </section>
+  </main>
+
+  <!-- Detail modal / slide-up panel -->
+  <div id="detail-overlay" class="hidden">
+    <div id="detail-panel">
+      <button id="detail-close">&times;</button>
+      <div id="detail-content"></div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
