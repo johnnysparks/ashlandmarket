@@ -57,11 +57,11 @@ describe('Controls', () => {
     expect(container.querySelector('.controls-content')).toBeInTheDocument()
   })
 
-  it('renders metric selector with all 8 options', () => {
+  it('renders metric selector with all 9 options', () => {
     const { container } = render(Controls)
     const select = container.querySelector('#metric-select') as HTMLSelectElement
     expect(select).toBeInTheDocument()
-    expect(select.options).toHaveLength(8)
+    expect(select.options).toHaveLength(9)
   })
 
   it('renders view mode buttons', () => {

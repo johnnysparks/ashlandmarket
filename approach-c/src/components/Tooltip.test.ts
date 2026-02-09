@@ -16,6 +16,7 @@ function makeParcel(overrides: Partial<Parcel> = {}): Parcel {
     last_sale_price: 425000,
     last_sale_date: '2023-06-15',
     price_per_sqft: 229.73,
+    price_per_sqft_lot: 56.67,
     assessed_value: 380000,
     num_sales: 4,
     num_permits: 2,

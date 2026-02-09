@@ -17,6 +17,7 @@ function makeParcel(overrides: Partial<Parcel> = {}): Parcel {
     last_sale_price: 425000,
     last_sale_date: '2023-06-15',
     price_per_sqft: 229.73,
+    price_per_sqft_lot: 56.67,
     assessed_value: 380000,
     num_sales: 4,
     num_permits: 2,
@@ -79,7 +80,7 @@ describe('DetailPanel', () => {
     await new Promise(r => setTimeout(r, 0))
     const { container } = render(DetailPanel)
     const stats = container.querySelectorAll('.stat')
-    expect(stats.length).toBe(6) // Last Sale, $/sqft, Living, Lot, Built, Assessed
+    expect(stats.length).toBe(7) // Last Sale, $/sqft, $/sqft Lot, Living, Lot, Built, Assessed
   })
 
   it('renders sales table', async () => {
