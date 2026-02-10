@@ -23,7 +23,11 @@ let filters = {
 // --- Data Loading ---
 
 async function loadParcels() {
-  const resp = await fetch('../data/parcels.json')
+  // Try local data/ first (deployed), fall back to ../data/ (dev from project root)
+  let resp = await fetch('./data/parcels.json')
+  if (!resp.ok) {
+    resp = await fetch('../data/parcels.json')
+  }
   const data = await resp.json()
   return data.parcels
 }
