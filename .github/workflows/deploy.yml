@@ -102,6 +102,12 @@ jobs:
             fi
           fi
 
+          # Anomaly Finder (static, no build step)
+          mkdir -p site/anomaly-finder
+          cp anomaly-finder/index.html anomaly-finder/main.js anomaly-finder/analysis.js anomaly-finder/style.css site/anomaly-finder/
+          mkdir -p site/anomaly-finder/data
+          cp data/parcels.json site/anomaly-finder/data/parcels.json
+
           cp docs/pages/index.html site/index.html
 
       - name: Verify build output
@@ -114,7 +120,7 @@ jobs:
           ls -la site/approach-c/assets/ 2>/dev/null || echo "(no assets/ directory)"
           echo ""
           echo "--- Key file checks ---"
-          for f in index.html approach-a/index.html approach-b/index.html approach-c/index.html approach-c/debug.html approach-c/data/parcels.json; do
+          for f in index.html approach-a/index.html approach-b/index.html approach-c/index.html approach-c/debug.html approach-c/data/parcels.json anomaly-finder/index.html anomaly-finder/data/parcels.json; do
             if [ -f "site/$f" ]; then
               SIZE=$(wc -c < "site/$f")
               echo "  ✓ $f ($SIZE bytes)"
