@@ -202,6 +202,12 @@ def cmd_parse(args: argparse.Namespace) -> None:
         if (i + 1) % 100 == 0:
             logger.info("Parsed %d/%d accounts", i + 1, len(parcels))
 
+    # Filter to residential parcels (must have a building with living space)
+    before = len(parcels)
+    parcels = _filter_residential(parcels)
+    logger.info("Filtered to residential: %d → %d parcels (%d dropped)",
+                before, len(parcels), before - len(parcels))
+
     _write_parcels_json(parcels)
     logger.info("Parse complete: %d accounts updated, wrote %s", updated, PARCELS_JSON)
 
@@ -289,6 +295,15 @@ def _write_parcels_json(parcels: list[dict[str, Any]]) -> None:
     }
     with open(PARCELS_JSON, "w") as f:
         json.dump(data, f, indent=2)
+
+
+def _filter_residential(parcels: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Keep only parcels with living space (single-family residential).
+
+    Drops vacant lots, utility easements, phantom sub-parcels, and
+    commercial properties that have no dwelling.
+    """
+    return [p for p in parcels if p.get("sqft_living")]
 
 
 def _update_parcel_from_parsed(
