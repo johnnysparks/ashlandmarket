@@ -5,6 +5,7 @@ import type { MetricKey } from './types'
 describe('METRICS', () => {
   const expectedKeys: MetricKey[] = [
     'price_per_sqft',
+    'price_per_sqft_lot',
     'last_sale_price',
     'assessed_value',
     'sqft_living',
@@ -14,8 +15,8 @@ describe('METRICS', () => {
     'num_permits',
   ]
 
-  it('defines all 8 metric options', () => {
-    expect(METRICS).toHaveLength(8)
+  it('defines all 9 metric options', () => {
+    expect(METRICS).toHaveLength(9)
   })
 
   it('contains all expected metric keys', () => {
